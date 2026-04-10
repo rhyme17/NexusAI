@@ -1,0 +1,23 @@
+{
+  "agents": [
+	{
+	  "name": "risk-reviewer-demo",
+	  "role": "reviewer",
+	  "skills": ["risk", "quality", "validation"],
+	  "metadata": {
+		"source": "seed_example"
+	  }
+	}
+  ],
+  "tasks": [
+	{
+	  "objective": "Evaluate demo workflow readiness and summarize risks",
+	  "priority": "medium",
+	  "metadata": {
+		"source": "seed_example",
+		"max_retries": 1
+	  }
+	}
+  ]
+}
+

@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --nexus-bg: #ece9e0;
+  --nexus-bg-raised: #f5f3ec;
+  --nexus-bg-inverted: #141413;
+  --nexus-accent: #d97757;
+  --nexus-accent-soft: #f2d8cc;
+  --nexus-border: #d8d2c4;
+  --nexus-border-strong: #b9b2a1;
+  --nexus-text: #141413;
+  --nexus-text-soft: #6b6860;
+  --nexus-ok: #3f6b4a;
+  --nexus-error: #c0453a;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(ellipse 70% 52% at 12% 8%, rgba(217, 119, 87, 0.08) 0%, transparent 62%),
+    radial-gradient(ellipse 65% 45% at 92% 4%, rgba(63, 107, 74, 0.06) 0%, transparent 58%),
+    var(--nexus-bg);
+  color: var(--nexus-text);
+  font-family: "Lora", "Noto Serif SC", "Source Han Serif SC", Georgia, serif;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+  font-variant-numeric: tabular-nums;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+button,
+label,
+select,
+input,
+summary {
+  font-family: "Poppins", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+.nexus-panel {
+  border: 1px solid var(--nexus-border);
+  border-radius: 20px;
+  background: color-mix(in oklab, var(--nexus-bg-raised) 92%, white 8%);
+  box-shadow: 0 12px 32px rgba(20, 20, 19, 0.06);
+  backdrop-filter: blur(6px);
+}
+
+.nexus-muted {
+  color: var(--nexus-text-soft);
+}
+
+.nexus-button-primary {
+  border: 1px solid var(--nexus-accent);
+  background: var(--nexus-accent);
+  color: #fffaf5;
+}
+
+.nexus-button-primary:hover {
+  background: #cb6d4f;
+}
+
+.nexus-button-ghost {
+  border: 1px solid var(--nexus-border-strong);
+  background: transparent;
+  color: var(--nexus-text);
+}
+
+.nexus-button-ghost:hover {
+  background: rgba(20, 20, 19, 0.04);
+}
+
+.react-flow__controls {
+  box-shadow: none;
+  border: 1px solid var(--nexus-border);
+  background: var(--nexus-bg-raised);
+  border-radius: 12px;
+}
+
+.react-flow__controls-button {
+  background: var(--nexus-bg-raised);
+  border-bottom: 1px solid var(--nexus-border);
+  color: var(--nexus-text-soft);
+}
+
+.react-flow__minimap {
+  background: var(--nexus-bg-raised);
+  border: 1px solid var(--nexus-border);
+  border-radius: 10px;
+}
+

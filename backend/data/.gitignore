@@ -1,0 +1,6 @@
+*.json
+*.json.tmp
+!.gitignore
+!seed.example.json
+
+

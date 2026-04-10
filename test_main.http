@@ -1,0 +1,166 @@
+# NexusAI API flow baseline
+
+GET http://127.0.0.1:8000/health
+Accept: application/json
+
+###
+
+GET http://127.0.0.1:8000/api/agents
+Accept: application/json
+
+###
+
+POST http://127.0.0.1:8000/api/agents
+Content-Type: application/json
+
+{
+  "name": "reviewer-1",
+  "role": "reviewer",
+  "skills": ["review", "quality", "analysis"],
+  "metadata": {
+  "team": "ops"
+  }
+}
+
+###
+
+POST http://127.0.0.1:8000/api/tasks
+Content-Type: application/json
+
+{
+  "objective": "research AI trend and write a short report",
+  "priority": "high",
+  "metadata": {
+	"source": "http-file",
+	"consensus_strategy": "majority_vote"
+  }
+}
+
+###
+
+# Replace {task_id} using the value returned by the create task call.
+PATCH http://127.0.0.1:8000/api/tasks/{task_id}/status
+Content-Type: application/json
+
+{
+  "status": "completed",
+  "progress": 100,
+  "result": {
+	"summary": "task completed from HTTP client"
+  }
+}
+
+###
+
+# Replace {task_id} with an existing task. Requires provider token configured on backend.
+POST http://127.0.0.1:8000/api/tasks/{task_id}/execute
+Content-Type: application/json
+
+{
+  "agent_id": "agent_planner",
+  "allow_fallback": true,
+  "fallback_mode": "simulate",
+  "arbitration_mode": "judge_on_conflict",
+  "judge_agent_id": "agent_reviewer"
+}
+
+###
+
+# Preview a serial multi-agent pipeline before actual execution.
+# Check response fields: steps, estimated_events, preview_warnings.
+POST http://127.0.0.1:8000/api/tasks/{task_id}/execute/preview
+Content-Type: application/json
+
+{
+  "execution_mode": "pipeline",
+  "pipeline_agent_ids": ["agent_planner", "agent_research", "agent_writer"],
+  "pipeline_error_policy": "continue",
+  "allow_fallback": true,
+  "fallback_mode": "simulate",
+  "arbitration_mode": "judge_on_conflict",
+  "judge_agent_id": "agent_judge"
+}
+
+###
+
+# Execute a lightweight parallel batch across multiple agents.
+# The backend will aggregate successful results and pick the highest-confidence output as the final summary.
+POST http://127.0.0.1:8000/api/tasks/{task_id}/execute
+Content-Type: application/json
+
+{
+  "execution_mode": "parallel",
+  "pipeline_agent_ids": ["agent_research", "agent_writer", "agent_analyst"],
+  "pipeline_error_policy": "continue",
+  "allow_fallback": true,
+  "fallback_mode": "simulate"
+}
+
+###
+
+# Preview a strict single-agent execution path.
+# This should usually include W_PREVIEW_STRICT_FAILURE_PATH in preview_warnings.
+POST http://127.0.0.1:8000/api/tasks/{task_id}/execute/preview
+Content-Type: application/json
+
+{
+  "execution_mode": "single",
+  "agent_id": "agent_planner",
+  "allow_fallback": false,
+  "fallback_mode": "fail",
+  "arbitration_mode": "off"
+}
+
+###
+
+# Preview a judge-required path with a missing judge agent to surface warnings.
+POST http://127.0.0.1:8000/api/tasks/{task_id}/execute/preview
+Content-Type: application/json
+
+{
+  "execution_mode": "single",
+  "agent_id": "agent_planner",
+  "arbitration_mode": "judge_always",
+  "judge_agent_id": "agent_missing"
+}
+
+###
+
+GET http://127.0.0.1:8000/api/tasks/{task_id}/result
+Accept: application/json
+
+###
+
+GET http://127.0.0.1:8000/api/tasks/{task_id}/events
+Accept: application/json
+
+###
+
+GET http://127.0.0.1:8000/api/tasks/{task_id}/events?limit=5
+Accept: application/json
+
+###
+
+GET http://127.0.0.1:8000/api/tasks/{task_id}/events?type=TaskFailed
+Accept: application/json
+
+###
+
+GET http://127.0.0.1:8000/api/tasks/{task_id}/events?type=TaskFailed&type=Decision&offset=0&limit=20
+Accept: application/json
+
+###
+
+GET http://127.0.0.1:8000/api/tasks/{task_id}/events?type=TaskFailed&type=Decision&offset=0&limit=20&sort=desc
+Accept: application/json
+
+###
+
+GET http://127.0.0.1:8000/api/tasks/{task_id}/events?from=2026-04-05T10:00:00Z&to=2026-04-05T12:00:00Z
+Accept: application/json
+
+###
+
+GET http://127.0.0.1:8000/api/tasks/{task_id}/events?include_meta=true&sort=desc&limit=10
+Accept: application/json
+

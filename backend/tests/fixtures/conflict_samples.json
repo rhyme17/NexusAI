@@ -1,0 +1,59 @@
+[
+  {
+    "name": "highest_confidence_conflict",
+    "strategy": "highest_confidence",
+    "expected": {
+      "decided_by": "highest_confidence",
+      "conflict_detected": true,
+      "selected_agent_id": "agent_writer"
+    },
+    "proposals": [
+      {"agent_id": "agent_planner", "summary": "Option A", "confidence": 0.60},
+      {"agent_id": "agent_research", "summary": "Option B", "confidence": 0.75},
+      {"agent_id": "agent_writer", "summary": "Option C", "confidence": 0.90}
+    ]
+  },
+  {
+    "name": "majority_vote_conflict",
+    "strategy": "majority_vote",
+    "expected": {
+      "decided_by": "majority_vote",
+      "conflict_detected": true,
+      "selected_agent_id": "agent_research"
+    },
+    "proposals": [
+      {"agent_id": "agent_planner", "summary": "Option B", "confidence": 0.65},
+      {"agent_id": "agent_research", "summary": "Option B", "confidence": 0.80},
+      {"agent_id": "agent_writer", "summary": "Option A", "confidence": 0.90}
+    ]
+  },
+  {
+    "name": "highest_confidence_tie_prefers_first_seen",
+    "strategy": "highest_confidence",
+    "expected": {
+      "decided_by": "highest_confidence",
+      "conflict_detected": true,
+      "selected_agent_id": "agent_planner"
+    },
+    "proposals": [
+      {"agent_id": "agent_planner", "summary": "Option X", "confidence": 0.90},
+      {"agent_id": "agent_research", "summary": "Option Y", "confidence": 0.90},
+      {"agent_id": "agent_writer", "summary": "Option Z", "confidence": 0.70}
+    ]
+  },
+  {
+    "name": "majority_vote_boundary_confidence",
+    "strategy": "majority_vote",
+    "expected": {
+      "decided_by": "majority_vote",
+      "conflict_detected": true,
+      "selected_agent_id": "agent_writer"
+    },
+    "proposals": [
+      {"agent_id": "agent_planner", "summary": "Option C", "confidence": 0.01},
+      {"agent_id": "agent_research", "summary": "Option B", "confidence": 0.99},
+      {"agent_id": "agent_writer", "summary": "Option C", "confidence": 1.00}
+    ]
+  }
+]
+
