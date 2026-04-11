@@ -87,20 +87,21 @@ async def api_key_auth_middleware(request: Request, call_next):
         request.state.auth_actor = f"user:{user.username}/{user.role.value}"
         return True
 
+    has_bearer_user = _try_auth_user_from_token()
+
     if not is_api_auth_enabled() or is_exempt_path(request.url.path):
-        _try_auth_user_from_token()
         response = await call_next(request)
     else:
         allowed_api_keys = get_api_auth_keys()
         if not allowed_api_keys:
-            if _try_auth_user_from_token():
+            if has_bearer_user:
                 response = await call_next(request)
             else:
                 response = JSONResponse(status_code=503, content={"detail": build_auth_misconfigured_detail()})
+        elif has_bearer_user:
+            response = await call_next(request)
         elif provided_api_key is not None and provided_api_key in allowed_api_keys:
             request.state.auth_role = resolve_api_key_role(provided_api_key)
-            response = await call_next(request)
-        elif _try_auth_user_from_token():
             response = await call_next(request)
         else:
             response = JSONResponse(status_code=401, content={"detail": build_unauthorized_detail()})

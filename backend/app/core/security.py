@@ -44,7 +44,7 @@ def build_unauthorized_detail() -> dict[str, object]:
         "error_code": "E_AUTH_UNAUTHORIZED",
         "user_message": "Missing or invalid API key.",
         "operation": "api_auth",
-        "detail": "Provide a valid X-API-Key header",
+        "detail": "Provide a valid X-API-Key header or Authorization: Bearer <token>",
         "retryable": False,
     }
 

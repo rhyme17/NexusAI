@@ -1,15 +1,65 @@
 from pathlib import Path
 import sys
+from typing import cast
 
 from fastapi.testclient import TestClient
+import pytest
+from starlette.websockets import WebSocketDisconnect
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from backend.app.main import app
+from backend.app.api import auth as auth_api
 from backend.app.api import tasks as tasks_api
+from backend.app.services.auth_service import reset_auth_service
+from backend.app.services.message_bus import InMemoryMessageBus
+from backend.app.services.store import InMemoryStore
 
 
 client = TestClient(app)
+
+ADMIN_USERNAME = "admin"
+ADMIN_PASSWORD = "change-me-admin-password"
+
+
+def _bootstrap_admin_and_headers(monkeypatch, tmp_path: Path) -> dict[str, str]:
+    monkeypatch.setenv("NEXUSAI_AUTH_FILE", str(tmp_path / "auth.json"))
+    monkeypatch.setenv("NEXUSAI_AUTH_BOOTSTRAP_ADMIN_USERNAME", ADMIN_USERNAME)
+    monkeypatch.setenv("NEXUSAI_AUTH_BOOTSTRAP_ADMIN_PASSWORD", ADMIN_PASSWORD)
+    reset_auth_service()
+    login = client.post(
+        "/api/auth/login",
+        json={"username": ADMIN_USERNAME, "password": ADMIN_PASSWORD},
+    )
+    assert login.status_code == 200
+    token = login.json()["access_token"]
+    return {"Authorization": f"Bearer {token}"}
+
+
+def _create_user_and_headers(admin_headers: dict[str, str], username: str, password: str = "password123") -> dict[str, object]:
+    invite_response = client.post(
+        "/api/auth/invites",
+        json={"max_uses": 1, "expires_hours": 24},
+        headers=admin_headers,
+    )
+    assert invite_response.status_code == 200
+    invite_code = invite_response.json()["code"]
+
+    register = client.post(
+        "/api/auth/register",
+        json={"username": username, "password": password, "invite_code": invite_code},
+    )
+    assert register.status_code == 200
+    login = client.post(
+        "/api/auth/login",
+        json={"username": username, "password": password},
+    )
+    assert login.status_code == 200
+    body = login.json()
+    return {
+        "headers": {"Authorization": f"Bearer {body['access_token']}"},
+        "user_id": body["user"]["user_id"],
+    }
 
 
 def test_task_websocket_receives_status_and_result_events() -> None:
@@ -281,6 +331,59 @@ def test_task_websocket_receives_parallel_execution_events() -> None:
         assert event_types.intersection({"TaskUpdate", "AgentExecutionStart", "TaskClaim"})
     finally:
         app.dependency_overrides.pop(tasks_api.get_execution_service, None)
+
+
+def test_task_websocket_requires_auth_when_api_auth_enabled(monkeypatch, tmp_path: Path) -> None:
+    monkeypatch.setenv("NEXUSAI_API_AUTH_ENABLED", "true")
+    monkeypatch.setenv("NEXUSAI_API_KEYS", "viewer-key")
+
+    create_response = client.post(
+        "/api/tasks",
+        json={"objective": "ws auth required", "priority": "medium"},
+        headers={"X-API-Key": "viewer-key"},
+    )
+    assert create_response.status_code == 201
+    task_id = create_response.json()["task_id"]
+
+    with pytest.raises(WebSocketDisconnect):
+        with client.websocket_connect(f"/ws/tasks/{task_id}"):
+            pass
+
+
+def test_task_websocket_hides_non_owner_task_when_api_auth_enabled(monkeypatch, tmp_path: Path) -> None:
+    monkeypatch.setenv("NEXUSAI_API_AUTH_ENABLED", "true")
+    monkeypatch.setenv("NEXUSAI_API_KEYS", "viewer-key")
+
+    admin_headers = _bootstrap_admin_and_headers(monkeypatch, tmp_path)
+    store = InMemoryStore(persistence_enabled=False)
+    bus = InMemoryMessageBus(persistence_enabled=False)
+    app.dependency_overrides[tasks_api.get_store] = lambda: store
+    app.dependency_overrides[tasks_api.get_message_bus] = lambda: bus
+    app.dependency_overrides[auth_api.get_store] = lambda: store
+    app.dependency_overrides[auth_api.get_message_bus] = lambda: bus
+    try:
+        owner = _create_user_and_headers(admin_headers, "ws-owner")
+        other = _create_user_and_headers(admin_headers, "ws-other")
+
+        create_response = client.post(
+            "/api/tasks",
+            json={"objective": "ws ownership", "priority": "medium"},
+            headers=cast(dict[str, str], owner["headers"]),
+        )
+        assert create_response.status_code == 201
+        task_id = create_response.json()["task_id"]
+
+        with pytest.raises(WebSocketDisconnect):
+            with client.websocket_connect(
+                f"/ws/tasks/{task_id}",
+                headers=cast(dict[str, str], other["headers"]),
+            ):
+                pass
+    finally:
+        app.dependency_overrides.pop(tasks_api.get_store, None)
+        app.dependency_overrides.pop(tasks_api.get_message_bus, None)
+        app.dependency_overrides.pop(auth_api.get_store, None)
+        app.dependency_overrides.pop(auth_api.get_message_bus, None)
 
 
 

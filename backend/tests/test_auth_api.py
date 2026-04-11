@@ -2,6 +2,7 @@ from pathlib import Path
 import json
 import sys
 from datetime import datetime, timedelta, timezone
+from typing import TypedDict
 
 from fastapi.testclient import TestClient
 
@@ -21,6 +22,11 @@ ADMIN_USERNAME = "admin"
 ADMIN_PASSWORD = "change-me-admin-password"
 
 
+class UserAuthContext(TypedDict):
+    headers: dict[str, str]
+    user_id: str
+
+
 def _bootstrap_admin_and_headers(monkeypatch, tmp_path: Path) -> dict[str, str]:
     monkeypatch.setenv("NEXUSAI_AUTH_FILE", str(tmp_path / "auth.json"))
     monkeypatch.setenv("NEXUSAI_AUTH_BOOTSTRAP_ADMIN_USERNAME", ADMIN_USERNAME)
@@ -35,7 +41,7 @@ def _bootstrap_admin_and_headers(monkeypatch, tmp_path: Path) -> dict[str, str]:
     return {"Authorization": f"Bearer {token}"}
 
 
-def _create_user_and_headers(admin_headers: dict[str, str], username: str, password: str = "password123") -> dict[str, object]:
+def _create_user_and_headers(admin_headers: dict[str, str], username: str, password: str = "password123") -> UserAuthContext:
     invite_response = client.post(
         "/api/auth/invites",
         json={"max_uses": 1, "expires_hours": 24},
@@ -77,6 +83,7 @@ def test_bootstrap_admin_can_login(monkeypatch, tmp_path: Path) -> None:
     assert payload["user"]["username"] == ADMIN_USERNAME
     assert payload["user"]["role"] == "admin"
     assert isinstance(payload["access_token"], str) and payload["access_token"]
+    assert payload["token_type"] == "bearer"
 
 
 def test_register_requires_invite_code(monkeypatch, tmp_path: Path) -> None:
@@ -120,6 +127,7 @@ def test_admin_can_create_invite_and_register_user(monkeypatch, tmp_path: Path) 
     register_payload = register.json()
     assert register_payload["user"]["username"] == "new-user"
     assert register_payload["user"]["role"] == "viewer"
+    assert register_payload["token_type"] == "bearer"
 
 
 def test_admin_user_management_and_invite_revoke(monkeypatch, tmp_path: Path) -> None:
@@ -332,6 +340,40 @@ def test_api_key_only_cannot_bypass_task_visibility(monkeypatch, tmp_path: Path)
 
         admin_get = client.get(f"/api/tasks/{task_id}", headers={"X-API-Key": "admin-key"})
         assert admin_get.status_code == 404
+    finally:
+        app.dependency_overrides.pop(tasks_api.get_store, None)
+        app.dependency_overrides.pop(tasks_api.get_message_bus, None)
+
+
+def test_bearer_user_context_wins_when_api_key_is_also_present(monkeypatch, tmp_path: Path) -> None:
+    monkeypatch.setenv("NEXUSAI_API_AUTH_ENABLED", "true")
+    monkeypatch.setenv("NEXUSAI_API_KEYS", "viewer-key")
+    monkeypatch.setenv("NEXUSAI_API_KEY_ROLES", "viewer-key:viewer")
+
+    admin_headers = _bootstrap_admin_and_headers(monkeypatch, tmp_path)
+    store = InMemoryStore(persistence_enabled=False)
+    bus = InMemoryMessageBus(persistence_enabled=False)
+    app.dependency_overrides[tasks_api.get_store] = lambda: store
+    app.dependency_overrides[tasks_api.get_message_bus] = lambda: bus
+    try:
+        user = _create_user_and_headers(admin_headers, "mixed-auth-user")
+        mixed_headers = dict(user["headers"])
+        mixed_headers["X-API-Key"] = "viewer-key"
+
+        create_response = client.post(
+            "/api/tasks",
+            json={"objective": "owned despite extra api key", "priority": "medium"},
+            headers=mixed_headers,
+        )
+        assert create_response.status_code == 201
+        created = create_response.json()
+        assert created["owner_user_id"] == user["user_id"]
+        assert created["owner_username"] == "mixed-auth-user"
+
+        list_response = client.get("/api/tasks", headers=mixed_headers)
+        assert list_response.status_code == 200
+        task_ids = {item["task_id"] for item in list_response.json()}
+        assert created["task_id"] in task_ids
     finally:
         app.dependency_overrides.pop(tasks_api.get_store, None)
         app.dependency_overrides.pop(tasks_api.get_message_bus, None)

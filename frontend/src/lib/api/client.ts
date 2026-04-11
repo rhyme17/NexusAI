@@ -180,14 +180,7 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
     if (!headers.has("Content-Type")) {
       headers.set("Content-Type", "application/json");
     }
-    const storedBackendApiKey = getStoredBackendApiKey();
-    if (storedBackendApiKey && !headers.has("X-API-Key")) {
-      headers.set("X-API-Key", storedBackendApiKey);
-    }
-    const authToken = getStoredAuthToken();
-    if (authToken && !headers.has("Authorization")) {
-      headers.set("Authorization", `Bearer ${authToken}`);
-    }
+    applyStoredAuthHeaders(headers);
     response = await fetch(`${API_BASE_URL}${path}`, {
       ...init,
       headers,
@@ -210,6 +203,17 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
   }
 
   return (await response.json()) as T;
+}
+
+function applyStoredAuthHeaders(headers: Headers): void {
+  const storedBackendApiKey = getStoredBackendApiKey();
+  if (storedBackendApiKey && !headers.has("X-API-Key")) {
+    headers.set("X-API-Key", storedBackendApiKey);
+  }
+  const authToken = getStoredAuthToken();
+  if (authToken && !headers.has("Authorization")) {
+    headers.set("Authorization", `Bearer ${authToken}`);
+  }
 }
 
 function getCurrentUserCached(): Promise<AuthUser> {
@@ -400,10 +404,7 @@ export const apiClient = {
     }),
   exportTaskResult: async (taskId: string, format: TaskResultExportFormat) => {
     const headers = new Headers();
-    const storedBackendApiKey = getStoredBackendApiKey();
-    if (storedBackendApiKey) {
-      headers.set("X-API-Key", storedBackendApiKey);
-    }
+    applyStoredAuthHeaders(headers);
     const response = await fetch(`${API_BASE_URL}/api/tasks/${taskId}/result/export?format=${format}`, {
       method: "GET",
       headers,
@@ -434,10 +435,5 @@ export const apiClient = {
         reason
       })
     }),
-  updateTaskStatus: (taskId: string, status: TaskStatus, progress: number) =>
-    request<Task>(`/api/tasks/${taskId}/status`, {
-      method: "PATCH",
-      body: JSON.stringify({ status, progress })
-    })
 };
 

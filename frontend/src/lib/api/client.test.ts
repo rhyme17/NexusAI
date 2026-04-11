@@ -112,6 +112,40 @@ describe("apiClient", () => {
     expect(init.body).toBe(JSON.stringify({ name: "planner-2", role: "planner", skills: ["plan", "workflow"] }));
   });
 
+  it("parses login response auth shape correctly", async () => {
+    vi.stubGlobal("fetch", fetchMock);
+    fetchMock.mockResolvedValue(
+      jsonResponse({
+        access_token: "token-123",
+        token_type: "bearer",
+        user: { user_id: "u_1", username: "alice", role: "viewer", is_active: true, created_at: "2026-04-05T10:00:00Z" }
+      })
+    );
+
+    const result = await apiClient.loginUser({ username: "alice", password: "password123" });
+
+    expect(result.access_token).toBe("token-123");
+    expect(result.token_type).toBe("bearer");
+    expect(result.user.username).toBe("alice");
+  });
+
+  it("parses register response auth shape correctly", async () => {
+    vi.stubGlobal("fetch", fetchMock);
+    fetchMock.mockResolvedValue(
+      jsonResponse({
+        access_token: "token-456",
+        token_type: "bearer",
+        user: { user_id: "u_2", username: "bob", role: "viewer", is_active: true, created_at: "2026-04-05T10:00:00Z" }
+      })
+    );
+
+    const result = await apiClient.registerUser({ username: "bob", password: "password123", invite_code: "INV-1234" });
+
+    expect(result.access_token).toBe("token-456");
+    expect(result.token_type).toBe("bearer");
+    expect(result.user.username).toBe("bob");
+  });
+
   it("fetches backend health from the system endpoint", async () => {
     vi.stubGlobal("fetch", fetchMock);
     fetchMock.mockResolvedValue(jsonResponse({ status: "ok" }));
@@ -147,6 +181,25 @@ describe("apiClient", () => {
     const [, init] = fetchMock.mock.calls[0] as [string, RequestInit];
     const headers = new Headers(init.headers);
     expect(headers.get("Authorization")).toBe("Bearer bearer-token-1");
+  });
+
+  it("injects bearer token into export requests", async () => {
+    vi.stubGlobal("fetch", fetchMock);
+    setStoredAuthToken("bearer-token-export");
+    fetchMock.mockResolvedValue(
+      new Response(new Blob(["content"]), {
+        status: 200,
+        headers: {
+          "content-disposition": "attachment; filename=report.md"
+        }
+      })
+    );
+
+    await apiClient.exportTaskResult("task_export", "md");
+
+    const [, init] = fetchMock.mock.calls[0] as [string, RequestInit];
+    const headers = new Headers(init.headers);
+    expect(headers.get("Authorization")).toBe("Bearer bearer-token-export");
   });
 
   it("dedupes concurrent current-user requests for the same auth token", async () => {
