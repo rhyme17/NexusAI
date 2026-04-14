@@ -9,11 +9,10 @@
 - `/tasks/[taskId]`：单任务工作区，聚合执行、重试、事件、拆解和共识信息
 - `/agents`：智能体工作区，展示角色/状态/技能并高亮任务相关智能体
 
-  ## 前端用户手册
+## 手册入口
 
-- 业务简版：`docs/frontend/frontend_quick_guide.md`
-- 用户版（推荐）：`docs/frontend/frontend_end_user_guide.md`
-- 内部完整版：`docs/frontend/frontend_operations_manual.md`
+- 用户手册：`docs/user_manual.md`
+- 开发与运维手册：`docs/developer_manual.md`
 
 ## 当前 MVP 能力
 

@@ -87,7 +87,7 @@ npm run e2e
 1. 在维护窗口执行 Step 5 PostgreSQL 主切换
 2. 确认 `matches=true`，并关闭 fallback
 3. 以 `docs/release_baseline.md` 为准收口默认配置、角色矩阵和回滚标准
-4. 更新根 README / `FINAL_STATUS_REPORT.md` / 相关 docs
+4. 更新根 README / `docs/archive/FINAL_STATUS_REPORT.md` / 相关 docs
 5. 再宣布进入“产品化内测”而非“原型演练阶段”
 
 补充：可使用 `python backend/release_gate.py --profile quick` 做快速门禁回归，并保留 `backend/data/release-gate-report.json` 作为证据。
@@ -105,7 +105,7 @@ npm run e2e
 
 - 后端快速回归：`python -m pytest -q tests/test_api.py -k "health or agents"` -> `6 passed`
 - 前端快速校验：`npm run typecheck` -> 通过
-- 阶段状态报告：`FINAL_STATUS_REPORT.md`
+- 阶段状态报告：`docs/archive/FINAL_STATUS_REPORT.md`
 
 ## 8. Step 5 预演证据模板（维护窗口前）
 

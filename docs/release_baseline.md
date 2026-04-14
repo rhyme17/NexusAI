@@ -2,7 +2,7 @@
 
 更新日期：2026-04-08
 
-> 本文档用于承接 `PRODUCTIZATION_PLAN_ACA.md` 中的 **Step 6：形成发布封板与产品化门槛**。
+> 本文档用于承接 `docs/archive/PRODUCTIZATION_PLAN_ACA.md` 中的 **Step 6：形成发布封板与产品化门槛**。
 > 
 > 当前判断：
 > - **Step 1-4 已完成**
@@ -223,5 +223,5 @@ NEXUSAI_READ_ONLY_MODE=false
 
 > **NexusAI 已完成 Step 5/6 产品化收口，具备内部发布/内测基线。**
 
-补充：阶段收口说明见 `FINAL_STATUS_REPORT.md`。
+补充：阶段收口说明见 `docs/archive/FINAL_STATUS_REPORT.md`。
 
