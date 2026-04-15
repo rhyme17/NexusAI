@@ -45,10 +45,11 @@ function extractEmbeddedDetail(raw: string): string {
 }
 
 function getNetworkMessage(isChinese: boolean, context: ErrorContext): string {
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:8000";
   const map = {
     backend: isChinese
-      ? "无法连接后端服务。请确认 `http://localhost:8000` 已启动，再重试。"
-      : "Cannot reach the backend service. Confirm `http://localhost:8000` is running.",
+      ? `无法连接后端服务。请确认 \`${apiBaseUrl}\` 已启动，再重试。`
+      : `Cannot reach the backend service. Confirm \`${apiBaseUrl}\` is running.`,
     agents: isChinese
       ? "无法加载智能体列表。请先确认后端服务正常运行。"
       : "Unable to load the agent list. Confirm the backend service is running.",
