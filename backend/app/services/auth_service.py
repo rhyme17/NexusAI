@@ -15,6 +15,7 @@ from ..core.config import (
 )
 from ..core.passwords import hash_password, verify_password
 from ..models.auth import InviteCode, SessionToken, User, UserPublic, UserRole
+from .json_persistence import write_json_file_atomic
 
 
 class AuthServiceError(RuntimeError):
@@ -65,13 +66,12 @@ class AuthService:
         self._purge_expired_sessions()
 
     def _persist(self) -> None:
-        self._auth_file.parent.mkdir(parents=True, exist_ok=True)
         payload = {
             "users": {key: value.model_dump(mode="json") for key, value in self._users.items()},
             "invites": {key: value.model_dump(mode="json") for key, value in self._invites.items()},
             "sessions": {key: value.model_dump(mode="json") for key, value in self._sessions.items()},
         }
-        self._auth_file.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+        write_json_file_atomic(self._auth_file, payload)
 
     def _bootstrap_admin(self) -> None:
         username = get_auth_bootstrap_admin_username().strip().lower()

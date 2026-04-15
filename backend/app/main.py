@@ -1,4 +1,5 @@
 from contextlib import asynccontextmanager
+import os
 
 from fastapi import FastAPI, Request
 from fastapi.openapi.utils import get_openapi
@@ -26,6 +27,16 @@ from .services.auth_service import get_auth_service
 from .services.store import get_store
 
 
+def _get_cors_origins() -> list[str]:
+    raw = os.getenv("NEXUSAI_CORS_ORIGINS", "")
+    if raw:
+        return [o.strip() for o in raw.split(",") if o.strip()]
+    return [
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+    ]
+
+
 @asynccontextmanager
 async def app_lifespan(_: FastAPI):
     apply_startup_clear_if_enabled(store=get_store(), bus=get_message_bus())
@@ -40,10 +51,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:3000",
-        "http://127.0.0.1:3000",
-    ],
+    allow_origins=_get_cors_origins(),
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

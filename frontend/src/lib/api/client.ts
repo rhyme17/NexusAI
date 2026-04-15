@@ -39,14 +39,18 @@ function writeAuthCookie(token: string): void {
     return;
   }
   const encoded = encodeURIComponent(token);
-  document.cookie = `${AUTH_TOKEN_COOKIE_NAME}=${encoded}; Path=/; SameSite=Lax; Max-Age=${60 * 60 * 24 * 7}`;
+  const isSecure = document.location.protocol === "https:";
+  const secureFlag = isSecure ? "; Secure" : "";
+  document.cookie = `${AUTH_TOKEN_COOKIE_NAME}=${encoded}; Path=/; SameSite=Lax${secureFlag}; Max-Age=${60 * 60 * 24 * 7}`;
 }
 
 function clearAuthCookie(): void {
   if (typeof document === "undefined") {
     return;
   }
-  document.cookie = `${AUTH_TOKEN_COOKIE_NAME}=; Path=/; SameSite=Lax; Max-Age=0`;
+  const isSecure = document.location.protocol === "https:";
+  const secureFlag = isSecure ? "; Secure" : "";
+  document.cookie = `${AUTH_TOKEN_COOKIE_NAME}=; Path=/; SameSite=Lax${secureFlag}; Max-Age=0`;
 }
 
 export { ApiClientError };

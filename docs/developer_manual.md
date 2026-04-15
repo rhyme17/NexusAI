@@ -1,65 +1,113 @@
-# NexusAI 开发与运维手册（Ubuntu）
+# NexusAI 开发与运维手册（Ubuntu 24.04）
 
 ## 1. 运行基线
 
-- Ubuntu 22.04/24.04
-- Python 3.12
-- Node.js 20.x
-- SQLite 3（系统内置）
-- Nginx + systemd
+- **操作系统**: Ubuntu 22.04 / 24.04（推荐 24.04）
+- **Python**: 3.12+
+- **Node.js**: 20.x LTS（项目根目录有 `.nvmrc` 文件）
+- **数据库**: SQLite 3（系统内置，默认）/ PostgreSQL（生产推荐）
+- **Web 服务器**: Nginx + systemd
+- **前端框架**: Next.js 14.2.5（使用 standalone 模式部署）
+- **域名**: nexusai.rhyme17.top
 
-## 2. 首次部署
+## 2. 环境要求
 
-### 2.1 安装依赖
+| 资源 | 最低配置 | 推荐配置 |
+|------|---------|---------|
+| CPU | 1 核 | 2 核 |
+| 内存 | 2GB | 4GB |
+| 磁盘 | 20GB | 40GB |
+
+## 3. 首次部署
+
+### 3.1 安装系统依赖
 
 ```bash
-sudo apt update
-sudo apt install -y git curl build-essential nginx postgresql postgresql-contrib python3.12 python3.12-venv python3-pip
+# 更新系统
+sudo apt update && sudo apt upgrade -y
+
+# 安装基础工具
+sudo apt install -y git curl build-essential nginx
+
+# Python 3.12（Ubuntu 24.04 默认已包含）
+sudo apt install -y python3.12 python3.12-venv python3.12-dev python3-pip
+
+# Node.js 20.x LTS
 curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 sudo apt install -y nodejs
-node -v
-npm -v
+
+# C 扩展编译依赖
+sudo apt install -y gcc libssl-dev libpq-dev ca-certificates
+
+# 验证版本
+python3 --version    # 应显示 Python 3.12.x
+node --version       # 应显示 v20.x.x
+npm --version        # 应显示 10.x+
 ```
 
-### 2.2 拉取代码
+### 3.2 创建部署用户和目录
 
 ```bash
+# 创建专用用户（不要直接用 root 运行服务）
+sudo adduser --disabled-password --gecos "NexusAI" nexusai
+sudo usermod -aG sudo nexusai
+
+# 创建项目目录
 sudo mkdir -p /opt/nexusai
-sudo chown -R $USER:$USER /opt/nexusai
-cd /opt/nexusai
-git clone https://github.com/rhyme17/NexusAI.git .
+sudo chown -R nexusai:nexusai /opt/nexusai
+
+# 切换到部署用户
+sudo su - nexusai
 ```
 
-### 2.3 后端安装
+### 3.3 拉取代码
+
+```bash
+cd /opt/nexusai
+git clone <你的 Git 仓库地址> .
+```
+
+### 3.4 后端安装
 
 ```bash
 cd /opt/nexusai/backend
+
+# 创建 Python 虚拟环境
 python3.12 -m venv .venv
 source .venv/bin/activate
+
+# 安装依赖
 pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-### 2.4 前端安装与构建
+### 3.5 前端安装与构建
 
 ```bash
 cd /opt/nexusai/frontend
+
+# 安装依赖
 npm ci
+
+# ⚠️ 关键：构建时注入环境变量
+NEXT_PUBLIC_API_BASE_URL=https://nexusai.rhyme17.top \
+NEXT_PUBLIC_WS_BASE_URL=wss://nexusai.rhyme17.top \
 npm run build
 ```
 
-## 3. SQLite 数据文件准备
+> **重要说明**：`NEXT_PUBLIC_*` 变量在 `next build` 时被内联到客户端 JS 中，运行时设置无效。
+
+## 4. 数据目录准备
 
 ```bash
-sudo mkdir -p /opt/nexusai/backend/data
-sudo chown -R admin:admin /opt/nexusai/backend/data
+# 创建数据目录（用于 SQLite 数据库和 JSON 文件）
+sudo mkdir -p /var/lib/nexusai
+sudo chown -R nexusai:nexusai /var/lib/nexusai
 ```
 
-可选：如果你要自定义数据库文件路径，在后端 `.env` 中设置 `NEXUSAI_SQLITE_PATH`。
+## 5. 环境变量配置
 
-## 4. 环境变量
-
-### 4.1 后端
+### 5.1 后端配置
 
 ```bash
 cd /opt/nexusai/backend
@@ -67,40 +115,59 @@ cp .env.example .env
 nano .env
 ```
 
+**关键配置项**：
+
 ```env
+# ===== 必须修改 =====
+
+# 服务器监听地址
+NEXUSAI_HOST=0.0.0.0
+NEXUSAI_PORT=8000
+
+# CORS 允许源
+NEXUSAI_CORS_ORIGINS=https://nexusai.rhyme17.top
+
+# 存储后端（sqlite 或 postgres）
 NEXUSAI_STORAGE_BACKEND=sqlite
-# 可选：不填则默认使用 backend/data/nexusai.db
-# NEXUSAI_SQLITE_PATH=/opt/nexusai/backend/data/nexusai.db
+NEXUSAI_SQLITE_PATH=/var/lib/nexusai/nexusai.db
+
+# 如果使用 PostgreSQL，取消注释并修改：
+# NEXUSAI_STORAGE_BACKEND=postgres
+# NEXUSAI_POSTGRES_DSN=postgresql://nexusai:密码@127.0.0.1:5432/nexusai
+
+# 数据目录
+NEXUSAI_DATA_DIR=/var/lib/nexusai
+
+# 管理员密码（必须改为强密码！）
+NEXUSAI_AUTH_BOOTSTRAP_ADMIN_PASSWORD=你的强密码
+
+# API Key 鉴权（生产建议开启）
 NEXUSAI_API_AUTH_ENABLED=true
-NEXUSAI_AGENT_EXECUTION_PROVIDER=openai_compatible
+NEXUSAI_API_KEYS=admin-key-随机字符串
+
+# AI 执行配置（使用模拟模式，无需 API Key）
 NEXUSAI_AGENT_EXECUTION_BASE_URL=https://api-inference.modelscope.cn/v1
 NEXUSAI_AGENT_EXECUTION_MODEL=deepseek-ai/DeepSeek-V3.2
-NEXUSAI_AGENT_EXECUTION_TIMEOUT_SECONDS=120
+NEXUSAI_AGENT_EXECUTION_FALLBACK=simulate
+
+# 日志级别
+LOG_LEVEL=info
+ENVIRONMENT=production
 ```
 
-### 4.2 前端
+### 5.2 前端配置（已在构建时注入）
+
+前端环境变量已在 `npm run build` 时通过命令行注入，无需额外配置。如果需要修改，需重新构建：
 
 ```bash
-cd /opt/nexusai/frontend
-cp .env.local.example .env.local
-nano .env.local
-```
-
-```env
-NEXT_PUBLIC_API_BASE_URL=https://nexusai.rhyme17.top
-NEXT_PUBLIC_WS_BASE_URL=wss://nexusai.rhyme17.top
-```
-
-改完前端环境变量必须重建：
-
-```bash
-cd /opt/nexusai/frontend
+NEXT_PUBLIC_API_BASE_URL=https://nexusai.rhyme17.top \
+NEXT_PUBLIC_WS_BASE_URL=wss://nexusai.rhyme17.top \
 npm run build
 ```
 
-## 5. systemd 服务
+## 6. systemd 服务配置
 
-### 5.1 后端
+### 6.1 后端服务
 
 ```bash
 sudo tee /etc/systemd/system/nexusai-backend.service > /dev/null <<'EOF'
@@ -109,7 +176,8 @@ Description=NexusAI Backend
 After=network.target
 
 [Service]
-User=admin
+Type=simple
+User=nexusai
 WorkingDirectory=/opt/nexusai
 EnvironmentFile=/opt/nexusai/backend/.env
 ExecStart=/opt/nexusai/backend/.venv/bin/uvicorn backend.app.main:app --host 127.0.0.1 --port 8000 --app-dir /opt/nexusai
@@ -121,7 +189,7 @@ WantedBy=multi-user.target
 EOF
 ```
 
-### 5.2 前端
+### 6.2 前端服务（standalone 模式）
 
 ```bash
 sudo tee /etc/systemd/system/nexusai-frontend.service > /dev/null <<'EOF'
@@ -130,10 +198,11 @@ Description=NexusAI Frontend
 After=network.target
 
 [Service]
-User=admin
+Type=simple
+User=nexusai
 WorkingDirectory=/opt/nexusai/frontend
 Environment=NODE_ENV=production
-ExecStart=/usr/bin/npm run start -- -p 3000
+ExecStart=/usr/bin/node /opt/nexusai/frontend/.next/standalone/server.js -p 3000
 Restart=always
 RestartSec=3
 
@@ -142,66 +211,146 @@ WantedBy=multi-user.target
 EOF
 ```
 
-### 5.3 启动服务
+### 6.3 启动服务
 
 ```bash
 sudo systemctl daemon-reload
-sudo systemctl enable nexusai-backend
-sudo systemctl enable nexusai-frontend
-sudo systemctl restart nexusai-backend
-sudo systemctl restart nexusai-frontend
+sudo systemctl enable nexusai-backend nexusai-frontend
+sudo systemctl start nexusai-backend nexusai-frontend
+
+# 查看状态
+sudo systemctl status nexusai-backend
+sudo systemctl status nexusai-frontend
 ```
 
-## 6. Nginx 配置
+## 7. Nginx 配置（HTTPS）
 
 ```bash
 sudo tee /etc/nginx/sites-available/nexusai > /dev/null <<'EOF'
 server {
-	listen 80;
-	server_name nexusai.rhyme17.top;
+    listen 80;
+    server_name nexusai.rhyme17.top;
+    return 301 https://$server_name$request_uri;
+}
 
-	location /api/ {
-		proxy_pass http://127.0.0.1:8000;
-		proxy_http_version 1.1;
-		proxy_set_header Host $host;
-		proxy_set_header X-Real-IP $remote_addr;
-		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-		proxy_set_header X-Forwarded-Proto $scheme;
-	}
+server {
+    listen 443 ssl;
+    server_name nexusai.rhyme17.top;
 
-	location /ws/ {
-		proxy_pass http://127.0.0.1:8000;
-		proxy_http_version 1.1;
-		proxy_set_header Upgrade $http_upgrade;
-		proxy_set_header Connection "upgrade";
-		proxy_set_header Host $host;
-	}
+    ssl_certificate /etc/letsencrypt/live/nexusai.rhyme17.top/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/nexusai.rhyme17.top/privkey.pem;
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers HIGH:!aNULL:!MD5;
 
-	location / {
-		proxy_pass http://127.0.0.1:3000;
-		proxy_http_version 1.1;
-		proxy_set_header Host $host;
-		proxy_set_header X-Real-IP $remote_addr;
-		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-		proxy_set_header X-Forwarded-Proto $scheme;
-	}
+    client_max_body_size 10M;
+
+    # 前端静态页面
+    location / {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_cache_bypass $http_upgrade;
+    }
+
+    # 后端 API
+    location /api/ {
+        proxy_pass http://127.0.0.1:8000;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_read_timeout 120s;
+    }
+
+    # WebSocket 实时事件流
+    location /ws/ {
+        proxy_pass http://127.0.0.1:8000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_read_timeout 86400s;
+        proxy_send_timeout 86400s;
+    }
 }
 EOF
-sudo ln -sf /etc/nginx/sites-available/nexusai /etc/nginx/sites-enabled/nexusai
+
+# 启用站点
+sudo ln -sf /etc/nginx/sites-available/nexusai /etc/nginx/sites-enabled/
+sudo rm -f /etc/nginx/sites-enabled/default
+```
+
+## 8. 配置 SSL 证书（Let's Encrypt）
+
+```bash
+# 安装 certbot
+sudo apt install -y certbot python3-certbot-nginx
+
+# 获取证书并自动配置
+sudo certbot --nginx -d nexusai.rhyme17.top
+
+# 验证配置
 sudo nginx -t
 sudo systemctl reload nginx
 ```
 
-## 7. SSL（可选）
+## 9. PostgreSQL 配置（可选）
+
+如果选择 PostgreSQL 作为存储后端：
 
 ```bash
-sudo apt install -y certbot python3-certbot-nginx
-sudo certbot --nginx -d nexusai.rhyme17.top
+# 安装 PostgreSQL
+sudo apt install -y postgresql postgresql-contrib
+
+# 创建数据库和用户
+sudo -u postgres psql
 ```
 
-## 8. 日常命令
+在 psql 中执行：
+```sql
+CREATE USER nexusai WITH PASSWORD '你的数据库密码';
+CREATE DATABASE nexusai OWNER nexusai;
+\q
+```
 
-### 8.1 重启网站服务
+更新后端 `.env`：
+```env
+NEXUSAI_STORAGE_BACKEND=postgres
+NEXUSAI_POSTGRES_DSN=postgresql://nexusai:你的数据库密码@127.0.0.1:5432/nexusai
+```
+
+重启后端：
+```bash
+sudo systemctl restart nexusai-backend
+```
+
+## 10. 验证部署
+
+```bash
+# 检查后端健康状态
+curl https://nexusai.rhyme17.top/api/health
+# 期望输出: {"status":"ok","read_only":false,"storage_backend":"sqlite"}
+
+# 检查前端可访问
+curl -I https://nexusai.rhyme17.top
+
+# 检查服务状态
+sudo systemctl status nexusai-backend nexusai-frontend nginx
+
+# 查看端口占用
+sudo ss -lntp | grep -E '(:80|:443|:3000|:8000)'
+```
+
+## 11. 日常运维命令
+
+### 11.1 重启服务
 
 ```bash
 sudo systemctl restart nexusai-backend
@@ -209,58 +358,61 @@ sudo systemctl restart nexusai-frontend
 sudo systemctl restart nginx
 ```
 
-### 8.2 查看状态
+### 11.2 查看状态
 
 ```bash
 sudo systemctl status nexusai-backend --no-pager -l
 sudo systemctl status nexusai-frontend --no-pager -l
 ```
 
-### 8.3 查看日志
+### 11.3 查看日志
 
 ```bash
-sudo journalctl -u nexusai-backend -n 200 --no-pager
+# 实时查看后端日志
+sudo journalctl -u nexusai-backend -f
+
+# 查看最近 200 行前端日志
 sudo journalctl -u nexusai-frontend -n 200 --no-pager
 ```
 
-### 8.4 健康检查
+### 11.4 健康检查
 
 ```bash
-curl -i http://127.0.0.1:8000/health
-curl -i http://127.0.0.1:3000
+curl -i https://nexusai.rhyme17.top/api/health
 curl -i https://nexusai.rhyme17.top
 ```
 
-### 8.5 检查 SQLite 数据库文件
-
-```bash
-ls -lh /opt/nexusai/backend/data/nexusai.db
-```
-
-### 8.6 端口排查
+### 11.5 端口排查
 
 ```bash
 sudo ss -lntp | grep -E '(:80|:443|:3000|:8000)'
 ```
 
-## 9. 更新代码流程
+## 12. 更新代码流程
 
 ```bash
 cd /opt/nexusai
 git fetch --all
 git pull --rebase origin main
-```
 
-后端更新后：
-
-```bash
+# 更新后端
 cd /opt/nexusai/backend
 source .venv/bin/activate
 pip install -r requirements.txt
 sudo systemctl restart nexusai-backend
+
+# 更新前端（注意重新注入环境变量）
+cd /opt/nexusai/frontend
+npm ci
+NEXT_PUBLIC_API_BASE_URL=https://nexusai.rhyme17.top \
+NEXT_PUBLIC_WS_BASE_URL=wss://nexusai.rhyme17.top \
+npm run build
+sudo systemctl restart nexusai-frontend
 ```
 
-前端更新后：
+## 13. 常见问题
+
+### 13.1 前端报错：缺少 `.next`
 
 ```bash
 cd /opt/nexusai/frontend
@@ -269,54 +421,86 @@ npm run build
 sudo systemctl restart nexusai-frontend
 ```
 
-## 10. 常见问题
-
-### 10.1 前端报错：缺少 `.next`
+### 13.2 任务执行出现 504 超时
 
 ```bash
-cd /opt/nexusai/frontend
-npm ci
-npm run build
-sudo systemctl restart nexusai-frontend
-```
-
-### 10.2 任务执行出现 504
-
-```bash
+# 查看后端日志
 sudo journalctl -u nexusai-backend -n 200 --no-pager
 ```
 
-重点检查模型 API 可达性、超时设置、后端是否阻塞。
+检查：
+- 模型 API 是否可达
+- `NEXUSAI_AGENT_EXECUTION_TIMEOUT_SECONDS` 是否足够（默认 45 秒）
+- Nginx 的 `proxy_read_timeout` 设置
 
-### 10.3 需要切换到 PostgreSQL（可选）
+### 13.3 CORS 错误
 
-```bash
-cd /opt/nexusai/backend
-nano .env
-```
-
-写入/修改：
-
+确保后端 `.env` 中配置了正确的 CORS 允许源：
 ```env
-NEXUSAI_STORAGE_BACKEND=postgres
-NEXUSAI_POSTGRES_DSN=postgresql://user:password@127.0.0.1:5432/nexusai
+NEXUSAI_CORS_ORIGINS=https://nexusai.rhyme17.top
 ```
 
-然后重启后端：
+### 13.4 WebSocket 连接失败
+
+确保 Nginx 配置中包含 WebSocket 升级头：
+```nginx
+location /ws/ {
+    proxy_pass http://127.0.0.1:8000;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+    proxy_set_header Host $host;
+}
+```
+
+### 13.5 数据库文件权限问题
 
 ```bash
-sudo systemctl restart nexusai-backend
+sudo chown -R nexusai:nexusai /var/lib/nexusai
+sudo chmod -R 755 /var/lib/nexusai
 ```
 
-## 11. 本地开发验证命令（PowerShell）
+## 14. 代码修复说明
+
+### 14.1 已修复的兼容性问题
+
+| 修复项 | 文件 | 说明 |
+|--------|------|------|
+| CORS 环境变量配置 | `backend/app/main.py` | 支持 `NEXUSAI_CORS_ORIGINS` 配置多个允许源 |
+| Next.js standalone 模式 | `frontend/next.config.mjs` | 部署体积减少约 70% |
+| Cookie Secure 属性 | `frontend/src/lib/api/client.ts` | HTTPS 环境自动添加 Secure 属性 |
+| 原子文件写入 | `backend/app/services/auth_service.py` | 认证数据防崩溃损坏 |
+| Node.js 版本锁定 | `.nvmrc` | 锁定 Node.js 20.x |
+
+### 14.2 环境变量优先级
+
+1. **前端**：构建时通过 `NEXT_PUBLIC_*` 环境变量注入
+2. **后端**：`.env` 文件中的配置优先于系统环境变量
+
+## 15. 本地开发验证命令
+
+### 15.1 后端测试（PowerShell）
 
 ```powershell
-Set-Location "D:\Projects\PycharmProjects\NexusAI\backend"
-..\.venv\Scripts\python.exe -m pytest -q
+Set-Location "D:\Projects\TraeCNProjects\NexusAI\backend"
+.\.venv\Scripts\python.exe -m pytest -q
 ```
 
+### 15.2 前端构建（PowerShell）
+
 ```powershell
-Set-Location "D:\Projects\PycharmProjects\NexusAI\frontend"
+Set-Location "D:\Projects\TraeCNProjects\NexusAI\frontend"
 npm run build
 ```
 
+### 15.3 类型检查（PowerShell）
+
+```powershell
+Set-Location "D:\Projects\TraeCNProjects\NexusAI\frontend"
+npx tsc --noEmit
+```
+
+---
+
+**文档版本**: v2.1（域名：nexusai.rhyme17.top）
+**最后更新**: 2024-04-15
