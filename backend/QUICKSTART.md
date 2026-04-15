@@ -23,7 +23,7 @@ python -m uvicorn app.main:app --reload --port 8000
 - 健康检查：`http://localhost:8000/health`
 - Swagger 文档：`http://localhost:8000/docs`
 
-默认情况下，后端会把任务、Agent 和事件历史以 JSON 形式写入 `backend/data/`，用于本地演示时的轻量持久化。
+默认情况下，后端使用 SQLite 持久化，数据库文件为 `backend/data/nexusai.db`。
 
 ### 3️⃣ 可选：运行自动演示脚本
 
@@ -123,8 +123,10 @@ Copy-Item .env.example .env
 - `NEXUSAI_CONSENSUS_STRATEGY_DEFAULT` — 共识策略
 - `NEXUSAI_EVENT_HISTORY_MAX` — 事件历史保留条数
 - `NEXUSAI_MAX_RETRIES_DEFAULT` — 最大重试次数
-- `NEXUSAI_JSON_PERSISTENCE_ENABLED` — 是否启用 JSON 过渡持久化（默认 true）
-- `NEXUSAI_DATA_DIR` — JSON 数据目录（默认 `backend/data`）
+- `NEXUSAI_STORAGE_BACKEND` — 存储后端（默认 `sqlite`，可选 `json` / `postgres`）
+- `NEXUSAI_SQLITE_PATH` — SQLite 文件路径（默认 `backend/data/nexusai.db`）
+- `NEXUSAI_JSON_PERSISTENCE_ENABLED` — JSON 后端持久化开关（默认 true）
+- `NEXUSAI_DATA_DIR` — 数据目录（JSON 文件与 SQLite 默认目录）
 - `NEXUSAI_SEED_ENABLED` — 是否启用启动时种子加载（默认 false）
 - `NEXUSAI_SEED_APPLY_IF_EMPTY` — 仅在存储为空时应用种子（默认 true）
 - `NEXUSAI_SEED_FILE` — 种子文件路径（默认 `backend/data/seed.example.json`）
@@ -169,16 +171,16 @@ A:
 2. 在 `app/agents/__init__.py` 的 `build_default_agents()` 中注册
 
 ### Q: 支持数据库吗？
-A: 当前是“内存运行态 + JSON 过渡持久化”。后续可升级为 SQLite / PostgreSQL。
+A: 支持。默认就是 SQLite，也可切换到 PostgreSQL 或 JSON 后端。
 
 ---
 
 ## 接下来
 
-✅ **当前后端已可直接配合前端 Dashboard 使用。** 更符合当前仓库状态的下一步是：
+✅ **当前后端已可直接配合前端 Dashboard 使用。** 推荐下一步是：
 - [ ] 补充更稳定的演示脚本与固定 demo 路径
-- [ ] 将内存存储替换为 SQLite / PostgreSQL
-- [ ] 接入真实 LLM Agent 执行链路
+- [ ] 强化 SQLite/PostgreSQL 迁移与回滚自动化
+- [ ] 持续优化真实 LLM Agent 执行链路
 
 更多信息见：
 - 📖 **详细文档**：`IMPLEMENTATION_REPORT.md`

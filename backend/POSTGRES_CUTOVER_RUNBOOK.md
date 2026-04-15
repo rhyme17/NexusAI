@@ -1,8 +1,8 @@
 # PostgreSQL 主切换操作手册（ACA / 停机迁移）
 
-适用策略：**C = 全量停机迁移切换**
+适用策略：**C = 全量停机迁移切换（可选）**
 
-该操作手册面向当前 NexusAI 产品化路线中的 Step 5，目标是在维护窗口内，把当前运行态从 `json/sqlite` 切换到 `postgres`，并使用 `migrate_snapshot.py` 完成快照导出与导入。
+该操作手册用于 PostgreSQL 扩展场景。当前默认发布基线为 SQLite；当需要切换到 PostgreSQL 时，可在维护窗口内按本文档把运行态从 `sqlite/json` 切换到 `postgres`，并使用 `migrate_snapshot.py` 完成快照导出与导入。
 
 ---
 

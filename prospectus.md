@@ -75,7 +75,7 @@ Frontend (Next.js)
   -> API Gateway (FastAPI)
   -> Task Coordinator / Workflow / Router
   -> Agent Execution Adapter
-  -> Store (JSON/SQLite/PostgreSQL)
+  -> Store (SQLite default, PostgreSQL optional, JSON compatibility)
   -> Event Bus + WebSocket
 ```
 
@@ -95,7 +95,8 @@ Frontend (Next.js)
 
 ### M3 运维能力增强
 
-- 统一 PostgreSQL 基线与迁移流程
+- 固化 SQLite 默认基线与运维流程
+- 按需支持 PostgreSQL 迁移流程
 - 强化权限与数据隔离策略
 - 完善发布门禁与自动化回归
 
@@ -268,8 +269,9 @@ NexusAI 当前阶段的目标是：让用户稳定得到任务结果，让开发
 - **Uvicorn**（ASGI 服务器）
 
 ### 8.2 数据存储
-- **PostgreSQL**（任务、Agent 注册信息、执行日志）
-- **Redis**（消息队列、缓存、实时状态）
+- **SQLite（默认）**：任务、Agent、执行结果与状态持久化
+- **PostgreSQL（可选）**：高并发或集中化部署时的扩展存储
+- **JSON（兼容）**：调试/演示路径下的兼容存储
 
 ### 8.3 Agent 编排
 - **LangGraph**（推荐：适合状态机和 DAG）

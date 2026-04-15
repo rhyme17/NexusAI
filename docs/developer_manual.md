@@ -5,7 +5,7 @@
 - Ubuntu 22.04/24.04
 - Python 3.12
 - Node.js 20.x
-- PostgreSQL 16
+- SQLite 3（系统内置）
 - Nginx + systemd
 
 ## 2. 首次部署
@@ -48,24 +48,14 @@ npm ci
 npm run build
 ```
 
-## 3. PostgreSQL 初始化
+## 3. SQLite 数据文件准备
 
 ```bash
-sudo -u postgres psql
+sudo mkdir -p /opt/nexusai/backend/data
+sudo chown -R admin:admin /opt/nexusai/backend/data
 ```
 
-```sql
-CREATE DATABASE nexusai;
-CREATE USER nexusai_user WITH PASSWORD 'your_strong_password';
-GRANT ALL PRIVILEGES ON DATABASE nexusai TO nexusai_user;
-\q
-```
-
-连接测试：
-
-```bash
-psql "postgresql://nexusai_user:your_strong_password@127.0.0.1:5432/nexusai" -c "SELECT 1;"
-```
+可选：如果你要自定义数据库文件路径，在后端 `.env` 中设置 `NEXUSAI_SQLITE_PATH`。
 
 ## 4. 环境变量
 
@@ -78,8 +68,9 @@ nano .env
 ```
 
 ```env
-NEXUSAI_STORAGE_BACKEND=postgres
-NEXUSAI_POSTGRES_DSN=postgresql://nexusai_user:your_strong_password@127.0.0.1:5432/nexusai
+NEXUSAI_STORAGE_BACKEND=sqlite
+# 可选：不填则默认使用 backend/data/nexusai.db
+# NEXUSAI_SQLITE_PATH=/opt/nexusai/backend/data/nexusai.db
 NEXUSAI_API_AUTH_ENABLED=true
 NEXUSAI_AGENT_EXECUTION_PROVIDER=openai_compatible
 NEXUSAI_AGENT_EXECUTION_BASE_URL=https://api-inference.modelscope.cn/v1
@@ -240,7 +231,13 @@ curl -i http://127.0.0.1:3000
 curl -i https://nexusai.rhyme17.top
 ```
 
-### 8.5 端口排查
+### 8.5 检查 SQLite 数据库文件
+
+```bash
+ls -lh /opt/nexusai/backend/data/nexusai.db
+```
+
+### 8.6 端口排查
 
 ```bash
 sudo ss -lntp | grep -E '(:80|:443|:3000|:8000)'
@@ -290,6 +287,26 @@ sudo journalctl -u nexusai-backend -n 200 --no-pager
 ```
 
 重点检查模型 API 可达性、超时设置、后端是否阻塞。
+
+### 10.3 需要切换到 PostgreSQL（可选）
+
+```bash
+cd /opt/nexusai/backend
+nano .env
+```
+
+写入/修改：
+
+```env
+NEXUSAI_STORAGE_BACKEND=postgres
+NEXUSAI_POSTGRES_DSN=postgresql://user:password@127.0.0.1:5432/nexusai
+```
+
+然后重启后端：
+
+```bash
+sudo systemctl restart nexusai-backend
+```
 
 ## 11. 本地开发验证命令（PowerShell）
 

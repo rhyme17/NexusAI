@@ -236,11 +236,11 @@ def is_json_persistence_enabled() -> bool:
 def get_storage_backend() -> str:
     raw = os.getenv(STORAGE_BACKEND_ENV)
     if not raw:
-        return "json"
+        return "sqlite"
     normalized = raw.strip().lower()
     if normalized in SUPPORTED_STORAGE_BACKENDS:
         return normalized
-    return "json"
+    return "sqlite"
 
 
 def get_postgres_dsn() -> str | None:

@@ -2,7 +2,7 @@
 
 这是 NexusAI 面向产品化迭代阶段的 FastAPI 后端。它为当前的 Next.js 多工作区 Dashboard（`/`、`/tasks`、`/tasks/{taskId}`、`/agents`）提供支撑，并暴露任务、智能体、事件、重试、共识等 MVP 核心接口。
 
-后端支持 **本地 JSON 快照模式** 与 **PostgreSQL 主存储模式**。仓库默认仍保持 JSON 路径以便本地快速启动；发布基线已完成 PostgreSQL cutover 并形成可审计证据。
+后端支持 `sqlite` / `postgres` / `json` 三种存储后端。当前默认基线为 **SQLite**，并保留 PostgreSQL 可选迁移路径。
 
 ## 快速开始
 
@@ -110,15 +110,22 @@ NEXUSAI_CLEAR_RESTORE_SEED_ON_STARTUP=false
 - 环境变量 `NEXUSAI_EVENT_HISTORY_MAX` 控制每个任务在内存和 JSON 快照中的保留事件数量。
 - 默认值为 `2000`，最小有效值为 `100`。
 
-## JSON 持久化
+## SQLite（默认）
 
+- 默认存储后端：`NEXUSAI_STORAGE_BACKEND=sqlite`
+- 默认 SQLite 文件：`backend/data/nexusai.db`
+- 可通过 `NEXUSAI_SQLITE_PATH` 覆盖路径
+
+## JSON 持久化（兼容/调试）
+
+- `json` 后端可通过 `NEXUSAI_STORAGE_BACKEND=json` 启用
 - 默认通过 `NEXUSAI_JSON_PERSISTENCE_ENABLED=true` 开启
 - 默认数据目录：`backend/data/`
 - 可通过 `NEXUSAI_DATA_DIR` 覆盖路径
 - 输出文件：`tasks.json`、`agents.json`、`events.json`
-- 这是一层面向演示的过渡持久化方案，不能替代 SQLite/PostgreSQL 等正式数据库
+- 这是一层兼容/调试用持久化方案，生产与内测推荐 SQLite 或 PostgreSQL
 
-## PostgreSQL 迁移与发布基线
+## PostgreSQL（可选迁移）
 
 - 支持通过 `NEXUSAI_STORAGE_BACKEND=postgres` 切换存储后端。
 - 使用 `NEXUSAI_POSTGRES_DSN` 配置 DSN。

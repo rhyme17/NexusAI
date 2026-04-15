@@ -120,6 +120,7 @@ npm run build
 
 ## 已知注意项
 
+- 默认存储后端为 SQLite（`NEXUSAI_STORAGE_BACKEND=sqlite`）；如需切换 PostgreSQL，请参考 `docs/developer_manual.md` 与 `backend/POSTGRES_CUTOVER_RUNBOOK.md`。
 - `frontend/package.json` 当前固定 `next@14.2.5`，有安全升级提示，建议后续升级到官方修复版本。
 - 真实模型执行依赖有效的用户 API Key 与可访问的模型服务地址。
 - 服务器生产模式下，前端必须先执行 `npm run build`，再 `npm run start`。

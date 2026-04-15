@@ -52,7 +52,7 @@
 
 - 前端：Next.js，任务台 + 单任务工作区 + Agents + 设置。
 - 后端：FastAPI，任务 API、执行协调器、消息总线、WebSocket。
-- 存储：JSON/SQLite/PostgreSQL（三种后端契约一致）。
+- 存储：SQLite 默认，PostgreSQL 可选扩展，JSON 兼容路径。
 - 执行：支持模拟执行与真实模型执行（OpenAI 兼容接口）。
 
 **建议话术**
@@ -118,7 +118,7 @@
 
 - 接口鉴权与角色隔离（admin/user）。
 - 发布门禁与回归（release gate / pytest / frontend build）。
-- 服务端部署闭环（systemd + Nginx + PostgreSQL）。
+- 服务端部署闭环（systemd + Nginx + SQLite，支持可选 PostgreSQL 扩展）。
 
 **建议话术**
 
