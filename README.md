@@ -2,10 +2,7 @@
 
 <div align="center">
 
-[![许可证: MIT](https://img.shields.io/badge/许可证-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-latest-green.svg)](https://fastapi.tiangolo.com/)
-[![Next.js 14](https://img.shields.io/badge/Next.js-14-black.svg)](https://nextjs.org/)
+[![许可证: MIT](https://img.shields.io/badge/许可证-MIT-yellow.svg)](https://opensource.org/licenses/MIT)[![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)[![FastAPI](https://img.shields.io/badge/FastAPI-latest-green.svg)](https://fastapi.tiangolo.com/)[![Next.js 14](https://img.shields.io/badge/Next.js-14-black.svg)](https://nextjs.org/)
 
 **AI 智能体协作网络的编排中枢**
 
@@ -26,8 +23,6 @@
 
 ```text
 NexusAI/
-├── .github/                                # 项目内置技能与辅助配置
-│   └── skills/                             # Copilot 自定义技能定义
 ├── backend/                                # 后端服务（FastAPI）
 │   ├── app/
 │   │   ├── agents/                         # 智能体角色实现（planner/research/analyst/...）

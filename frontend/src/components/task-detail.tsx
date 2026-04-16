@@ -966,9 +966,10 @@ export function TaskDetail({ task, onTaskPatched, agents, userApiKey }: TaskDeta
             ) : null}
             {task.result ? (
               <div className="space-y-2">
-                <div data-testid="task-final-output" className="max-h-96 overflow-y-auto rounded-xl border border-[#ddd7ca] bg-[#fffcf6] p-3 text-xs text-[#3e3a35]">
+                <div data-testid="task-final-output" className="max-h-[600px] overflow-y-auto rounded-xl border border-[#ddd7ca] bg-[#fffcf6] p-3 text-xs text-[#3e3a35] relative">
                   <div className="whitespace-pre-wrap break-words leading-relaxed text-[#3e3a35]">{getUserFacingResultContent(task.result)}</div>
                 </div>
+                <p className="text-[10px] text-[#8a867d] italic">{isChinese ? "提示：内容较长时可滚动查看完整结果" : "Tip: Scroll to view full result when content is long"}</p>
               </div>
             ) : (
               <p className="text-xs text-[#6b6860]">{isChinese ? "暂无执行结果输出。" : "No result output yet."}</p>

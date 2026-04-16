@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)http://nexusai.rhyme17.top/tasks/task_138c16eb -->
+<html lang="zh-CN" style="">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="./NexusAI 协作中枢_files/418391731e0204f2.css" data-precedence="next">
+  <link rel="stylesheet" href="./NexusAI 协作中枢_files/a275cc2b185e04f8.css" data-precedence="next">
+  <link rel="preload" as="script" fetchpriority="low" href="./NexusAI 协作中枢_files/webpack-99ec6124b608ddd3.js.下载">
+  <script src="./NexusAI 协作中枢_files/fd9d1056-aab15d231232e966.js.下载" async=""></script>
+  <script src="./NexusAI 协作中枢_files/23-53564e16fe3936a8.js.下载" async=""></script>
+  <script src="./NexusAI 协作中枢_files/main-app-688cf6be65f525a4.js.下载" async=""></script>
+  <script src="./NexusAI 协作中枢_files/c37d3baf-9f2a2cb8bc87c9fd.js.下载" async=""></script>
+  <script src="./NexusAI 协作中枢_files/138-271c02f74d79736b.js.下载" async=""></script>
+  <script src="./NexusAI 协作中枢_files/556-27df11d1730035a6.js.下载" async=""></script>
+  <script src="./NexusAI 协作中枢_files/505-9ad7e255e7b1ccec.js.下载" async=""></script>
+  <script src="./NexusAI 协作中枢_files/282-0050fce8e7c110ac.js.下载" async=""></script>
+  <script src="./NexusAI 协作中枢_files/page-76706a91032fd9f8.js.下载" async=""></script>
+  <script src="./NexusAI 协作中枢_files/layout-eb9f820d12eaa967.js.下载" async=""></script>
+  <link rel="preload" href="./NexusAI 协作中枢_files/a275cc2b185e04f8.css" as="style">
+  <script src="./NexusAI 协作中枢_files/polyfills-78c92fac7aa8fdd8.js.下载" nomodule=""></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NexusAI 协作中枢</title>
+  <meta name="description" content="多智能体协作与任务编排控制台">
+</head>
+
+<body class="antialiased">
+  <div
+    class="mx-auto flex min-h-screen w-full max-w-[1600px] flex-col gap-4 px-4 py-4 md:px-6 xl:grid xl:grid-cols-[280px_minmax(0,1fr)] xl:gap-6 xl:px-8 xl:py-6">
+    <aside
+      class="nexus-panel flex flex-col gap-5 p-4 xl:sticky xl:top-6 xl:h-[calc(100vh-3rem)] xl:overflow-y-auto xl:p-5">
+      <div class="space-y-3 border-b border-[#ddd7ca] pb-4">
+        <div
+          class="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-[#e2d8c9] bg-[#fff7f1] text-sm font-semibold text-[#c96544]">
+          NA</div>
+        <h1 class="text-xl font-semibold text-[#141413]">玄枢</h1>
+      </div>
+      <nav class="space-y-2" aria-label="主导航">
+        <p class="px-1 text-xs uppercase tracking-[0.16em] text-[#8a867d]">工作区</p>
+        <div class="grid gap-2 sm:grid-cols-3 xl:grid-cols-1"><a
+            class="rounded-2xl border p-3 transition border-[#ddd7ca] bg-[#fffcf6] hover:border-[#c8bfaf] hover:bg-[#fff9f1]"
+            href="http://nexusai.rhyme17.top/">
+            <div class="flex items-center justify-between gap-2"><span class="font-medium text-[#141413]">概览</span><span
+                class="rounded-full px-2 py-0.5 text-[11px] bg-[#f2ece1] text-[#6b6860]">进入</span></div>
+            <p class="mt-2 text-xs leading-relaxed text-[#6b6860]">先看整体状态，再决定下一步。</p>
+          </a><a
+            class="rounded-2xl border p-3 transition border-[#d97757] bg-[#fff4ee] shadow-[0_10px_24px_rgba(217,119,87,0.12)]"
+            href="http://nexusai.rhyme17.top/tasks" aria-current="page">
+            <div class="flex items-center justify-between gap-2"><span
+                class="font-medium text-[#141413]">任务台</span><span
+                class="rounded-full px-2 py-0.5 text-[11px] bg-[#d97757] text-white">当前</span></div>
+            <p class="mt-2 text-xs leading-relaxed text-[#6b6860]">创建任务、筛选任务、进入任务工作区。</p>
+          </a><a
+            class="rounded-2xl border p-3 transition border-[#ddd7ca] bg-[#fffcf6] hover:border-[#c8bfaf] hover:bg-[#fff9f1]"
+            href="http://nexusai.rhyme17.top/agents">
+            <div class="flex items-center justify-between gap-2"><span
+                class="font-medium text-[#141413]">智能体</span><span
+                class="rounded-full px-2 py-0.5 text-[11px] bg-[#f2ece1] text-[#6b6860]">进入</span></div>
+            <p class="mt-2 text-xs leading-relaxed text-[#6b6860]">查看角色分工、状态与技能分布。</p>
+          </a><a
+            class="rounded-2xl border p-3 transition border-[#ddd7ca] bg-[#fffcf6] hover:border-[#c8bfaf] hover:bg-[#fff9f1]"
+            href="http://nexusai.rhyme17.top/settings">
+            <div class="flex items-center justify-between gap-2"><span class="font-medium text-[#141413]">设置</span><span
+                class="rounded-full px-2 py-0.5 text-[11px] bg-[#f2ece1] text-[#6b6860]">进入</span></div>
+            <p class="mt-2 text-xs leading-relaxed text-[#6b6860]">管理账号安全、密钥、偏好和系统功能。</p>
+          </a></div>
+      </nav>
+      <div class="rounded-2xl border border-[#ddd7ca] bg-[#fffcf6] p-4 text-sm text-[#3e3a35]">
+        <p class="text-xs uppercase tracking-[0.16em] text-[#8a867d]">使用建议</p>
+        <p class="mt-2 leading-relaxed text-[#6b6860]">先在任务台创建任务，再进入任务工作区执行与查看事件流，最后到智能体页查看协作网络。</p>
+      </div>
+    </aside>
+    <div class="min-w-0">
+      <main class="space-y-6 pb-3">
+        <header class="nexus-panel relative overflow-hidden p-5 md:p-6">
+          <div class="pointer-events-none absolute -right-12 -top-10 h-40 w-40 rounded-full bg-[#3f6b4a]/10 blur-3xl">
+          </div>
+          <div class="relative flex flex-wrap items-start justify-between gap-4">
+            <div class="max-w-3xl space-y-2">
+              <p class="text-xs uppercase tracking-[0.16em] text-[#8a867d]"><a class="hover:text-[#c96544]"
+                  href="http://nexusai.rhyme17.top/tasks">任务工作台</a><span class="px-2">/</span><span>任务工作区</span></p>
+              <h1 class="text-2xl font-semibold text-[#141413] md:text-3xl">介绍一下湖南大学，写一份报告</h1>
+              <p class="text-sm leading-relaxed text-[#6b6860] md:text-base">这里聚焦单个任务，将执行控制、结果、观测与流程统一在同一视图中。</p>
+            </div>
+            <div class="flex flex-wrap items-center gap-3"><span
+                class="inline-flex rounded-full border px-3 py-1 text-xs font-medium capitalize border-[#9bc5a7] bg-[#edf7ef] text-[#2f5d3e]">状态：completed</span><button
+                type="button"
+                class="nexus-button-ghost rounded-full px-4 py-2 text-sm font-medium disabled:opacity-50">刷新当前工作区</button>
+            </div>
+          </div>
+        </header>
+        <section class="grid gap-4 xl:grid-cols-[minmax(0,1.08fr)_360px]">
+          <section class="nexus-panel p-4">
+            <h3 class="mb-3 text-sm font-semibold uppercase tracking-wide text-[#8a867d]">任务详情</h3>
+            <div class="space-y-3 text-sm">
+              <p class="text-[#141413]">介绍一下湖南大学，写一份报告</p>
+              <p data-testid="task-status-line" class="text-[#6b6860]">task_138c16eb • 状态: completed • 完成进度: 100%</p>
+              <div class="grid gap-2 md:grid-cols-3">
+                <div class="rounded-xl border border-[#ddd7ca] bg-[#fffcf6] p-2 text-xs">
+                  <p class="text-[#8a867d]">优先级</p>
+                  <p class="mt-1 text-[#141413]">medium</p>
+                </div>
+                <div class="rounded-xl border border-[#ddd7ca] bg-[#fffcf6] p-2 text-xs">
+                  <p class="text-[#8a867d]">当前负责人</p>
+                  <p class="mt-1 text-[#141413]">agent_writer</p>
+                </div>
+                <div class="rounded-xl border border-[#ddd7ca] bg-[#fffcf6] p-2 text-xs">
+                  <p class="text-[#8a867d]">重试次数</p>
+                  <p class="mt-1 text-[#141413]">0</p>
+                </div>
+                <div class="rounded-xl border border-[#ddd7ca] bg-[#fffcf6] p-2 text-xs">
+                  <p class="text-[#8a867d]">已分配智能体</p>
+                  <p class="mt-1 text-[#141413]">翰墨执笔, 洞玄析理</p>
+                </div>
+                <div class="rounded-xl border border-[#ddd7ca] bg-[#fffcf6] p-2 text-xs">
+                  <p class="text-[#8a867d]">创建时间</p>
+                  <p class="mt-1 text-[#141413]">2026/4/16 00:15:55</p>
+                </div>
+                <div class="rounded-xl border border-[#ddd7ca] bg-[#fffcf6] p-2 text-xs">
+                  <p class="text-[#8a867d]">更新时间</p>
+                  <p class="mt-1 text-[#141413]">2026/4/16 00:17:16</p>
+                </div>
+              </div>
+              <div class="flex flex-wrap gap-2 rounded-2xl border border-[#ddd7ca] bg-[#fff8ef] p-2"><button
+                  data-testid="task-detail-tab-overview" type="button"
+                  class="rounded-full px-3 py-1.5 text-xs font-medium transition bg-[#141413] text-[#f5f3ec]">概览</button><button
+                  data-testid="task-detail-tab-execution" type="button"
+                  class="rounded-full px-3 py-1.5 text-xs font-medium transition bg-[#f4efe4] text-[#6b6860] hover:bg-[#ece6d9]">执行</button><button
+                  data-testid="task-detail-tab-coordination" type="button"
+                  class="rounded-full px-3 py-1.5 text-xs font-medium transition bg-[#f4efe4] text-[#6b6860] hover:bg-[#ece6d9]">协作记录</button>
+              </div>
+              <div class="rounded-xl border border-[#ddd7ca] bg-[#fffcf6] p-3 text-xs text-[#3e3a35]"
+                data-testid="task-explanation-panel">
+                <p class="mb-2 text-xs uppercase tracking-wide text-[#8a867d]">协作解释</p>
+                <div class="space-y-2">
+                  <div class="rounded-lg border border-[#ddd7ca] bg-[#fff8ef] p-2"
+                    data-testid="task-routing-explanation">
+                    <p class="font-medium text-[#141413]">路由解释</p>
+                    <p class="mt-1 text-[#6b6860]">未发现直接技能匹配；系统基于智能体可用性与较低活跃任务数，选择了 [翰墨执笔, 洞玄析理]。</p>
+                    <p class="mt-1 text-[#6b6860]">入选智能体: 翰墨执笔, 洞玄析理</p>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <p class="mb-1 text-xs uppercase tracking-wide text-[#8a867d]">执行结果</p>
+                <div class="mb-2 flex flex-wrap gap-2"><button type="button"
+                    class="rounded-lg border border-[#d8d2c4] bg-[#f4efe4] px-2 py-1 text-[11px] text-[#6b6860]">复制为
+                    Markdown</button><button type="button"
+                    class="rounded-lg border border-[#9bc5a7] bg-[#edf7ef] px-2 py-1 text-[11px] text-[#2f5d3e]">导出
+                    .md</button><button type="button"
+                    class="rounded-lg border border-[#d8d2c4] bg-[#fffcf6] px-2 py-1 text-[11px] text-[#6b6860]">导出
+                    .txt</button></div>
+                <div class="space-y-2">
+                  <div data-testid="task-final-output"
+                    class="max-h-96 overflow-y-auto rounded-xl border border-[#ddd7ca] bg-[#fffcf6] p-3 text-xs text-[#3e3a35]">
+                    <div class="whitespace-pre-wrap break-words leading-relaxed text-[#3e3a35]"># 湖南大学介绍报告
+
+                      ## 1. 概述与定位
+                      湖南大学（Hunan
+                      University）坐落于中国湖南省长沙市，是一所历史悠久、声誉卓著的综合性全国重点大学。学校起源于公元976年创建的岳麓书院，享有“千年学府，百年名校”的美誉。现为中华人民共和国教育部直属的全国重点大学，是国家“双一流”、“211工程”、“985工程”重点建设高校。
+
+                      ## 2. 历史沿革
+                      - **起源（976年）**：肇始于北宋开宝九年创建的岳麓书院，是中国古代四大书院之一。
+                      - **近代转型（1903年）**：改制为湖南高等学堂。
+                      - **定名与发展（1926年）**：正式定名为湖南大学。
+                      - **现代整合**：2000年，湖南大学与湖南财经学院合并，组建为新的湖南大学，学科体系更为完善。
+
+                      ## 3. 校区与基础设施
+                      学校主要拥有以下校区：
+                      - **主校区（岳麓校区）**：位于岳麓山脚下，湘江之滨，环境优美，人文与自然景观交融，是核心教学科研区。
+                      - **财院校区**：原湖南财经学院校区，以经济、管理类学科为主。
+                      - **设施概况**：图书馆藏书丰富，实验室、科研中心配备先进，体育、生活设施齐全，为师生提供了良好的学习与研究环境。
+
+                      ## 4. 学科建设与学术实力
+                      - **学科门类**：涵盖哲学、经济学、法学、教育学、文学、历史学、理学、工学、管理学、医学、艺术学等11大学科门类。
+                      - **优势学科**：
+                      - **化学、机械工程、土木工程**：入选国家“世界一流学科”建设名单，实力雄厚，在国际上享有较高声誉。
+                      - **电气工程、工商管理、设计学**：均为传统强势学科，在国内评估中名列前茅。
+                      - **科研平台**：拥有国家重点实验室、国家工程技术研究中心、教育部重点实验室等多个国家级及省部级科研平台。
+
+                      ## 5. 师资力量与学生培养
+                      - **师资队伍**：汇聚了一批包括院士、国家杰出青年科学基金获得者、“长江学者”在内的优秀学者。
+                      - **人才培养**：坚持立德树人，培养具有国际视野、创新精神和社会责任感的高素质人才。毕业生以基础扎实、适应能力强广受社会各界好评。
+
+                      ## 6. 国际交流与合作
+                      学校与多所世界知名大学和研究机构建立了广泛的合作关系，开展学生交换、联合培养、合作科研等项目，国际化办学水平持续提升。
+
+                      ## 7. 校园文化与社会贡献
+                      - **文化精神**：秉承“实事求是、敢为人先”的校训和“博学、睿思、勤勉、致知”的校风，文化底蕴深厚。
+                      - **社会服务**：积极发挥智力优势，在区域经济发展、科技成果转化、文化传承创新等方面做出了重要贡献。
+
+                      ## 8. 总结
+                      湖南大学以其千年文脉、百年积淀，发展成为一所学科齐全、特色鲜明、在国内外具有重要影响力的高水平研究型大学。它不仅是人才培养和科学研究的重要基地，也是推动社会进步与文化传承的关键力量。未来，学校将继续朝着中国特色世界一流大学的目标迈进。
+
+                      ---
+                      **报告说明**：本报告基于对湖南大学公开信息与普遍认知的整合撰写，旨在提供概括性介绍。具体数据（如师生精确人数、最新排名、科研经费等）建议查阅学校官方最新发布的信息。</div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <p class="mb-1 text-xs uppercase tracking-wide text-[#8a867d]">任务分解</p>
+                <div class="space-y-3 rounded-xl border border-[#ddd7ca] bg-[#fffcf6] p-3 text-xs">
+                  <p class="text-[#6b6860]">mode: mvp_linear • template: general</p>
+                  <div class="rounded-lg border border-[#ddd7ca] bg-[#fff8ef] p-2"
+                    data-testid="task-workflow-runtime-panel">
+                    <p class="font-medium text-[#141413]">调度运行态</p>
+                    <p class="mt-1 text-[#6b6860]">run=wf_f6295518ea • scheduler=mvp_linear_queue • queue=in_process</p>
+                    <div class="mt-2 grid gap-2 md:grid-cols-5">
+                      <div class="rounded-xl border border-[#ddd7ca] bg-[#fffcf6] p-2 text-xs">
+                        <p class="text-[#8a867d]">就绪</p>
+                        <p class="mt-1 text-[#141413]">0</p>
+                      </div>
+                      <div class="rounded-xl border border-[#ddd7ca] bg-[#fffcf6] p-2 text-xs">
+                        <p class="text-[#8a867d]">运行中</p>
+                        <p class="mt-1 text-[#141413]">1</p>
+                      </div>
+                      <div class="rounded-xl border border-[#ddd7ca] bg-[#fffcf6] p-2 text-xs">
+                        <p class="text-[#8a867d]">阻塞</p>
+                        <p class="mt-1 text-[#141413]">3</p>
+                      </div>
+                      <div class="rounded-xl border border-[#ddd7ca] bg-[#fffcf6] p-2 text-xs">
+                        <p class="text-[#8a867d]">已完成</p>
+                        <p class="mt-1 text-[#141413]">0</p>
+                      </div>
+                      <div class="rounded-xl border border-[#ddd7ca] bg-[#fffcf6] p-2 text-xs">
+                        <p class="text-[#8a867d]">失败</p>
+                        <p class="mt-1 text-[#141413]">0</p>
+                      </div>
+                    </div>
+                    <p class="mt-2 text-[#8a867d]">当前就绪队列: 空</p>
+                  </div>
+                  <ul class="space-y-2">
+                    <li class="rounded-lg border border-[#ddd7ca] bg-[#fff8ef] p-2">
+                      <p class="font-medium text-[#141413]">Clarify scope and success criteria</p>
+                      <p class="mt-1 text-[#6b6860]">step_1 • in_progress • running • agent_writer</p>
+                      <p class="mt-1 text-[#8a867d]">尝试次数: 1</p>
+                    </li>
+                    <li class="rounded-lg border border-[#ddd7ca] bg-[#fff8ef] p-2">
+                      <p class="font-medium text-[#141413]">Collect supporting information</p>
+                      <p class="mt-1 text-[#6b6860]">step_2 • queued • blocked • agent_analyst</p>
+                      <p class="mt-1 text-[#8a867d]">依赖: step_1</p>
+                    </li>
+                    <li class="rounded-lg border border-[#ddd7ca] bg-[#fff8ef] p-2">
+                      <p class="font-medium text-[#141413]">Analyze options and trade-offs</p>
+                      <p class="mt-1 text-[#6b6860]">step_3 • queued • blocked • agent_writer</p>
+                      <p class="mt-1 text-[#8a867d]">依赖: step_2</p>
+                    </li>
+                    <li class="rounded-lg border border-[#ddd7ca] bg-[#fff8ef] p-2">
+                      <p class="font-medium text-[#141413]">Draft final response</p>
+                      <p class="mt-1 text-[#6b6860]">step_4 • queued • blocked • agent_analyst</p>
+                      <p class="mt-1 text-[#8a867d]">依赖: step_3</p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+          <div class="space-y-4 xl:sticky xl:top-6 xl:self-start">
+            <section class="nexus-panel p-4">
+              <h3 class="mb-3 text-sm font-semibold uppercase tracking-wide text-[#8a867d]">事件洞察</h3>
+              <div class="grid gap-2 md:grid-cols-4">
+                <div class="rounded-xl border border-[#ddd7ca] bg-[#fffcf6] p-2 text-xs">
+                  <p class="text-[#8a867d]">最新持有者</p>
+                  <p class="mt-1 font-semibold text-[#141413]">agent_writer</p>
+                </div>
+                <div class="rounded-xl border border-[#ddd7ca] bg-[#fffcf6] p-2 text-xs">
+                  <p class="text-[#8a867d]">交接次数</p>
+                  <p class="mt-1 font-semibold text-[#141413]">0</p>
+                </div>
+                <div class="rounded-xl border border-[#ddd7ca] bg-[#fffcf6] p-2 text-xs">
+                  <p class="text-[#8a867d]">最新决策</p>
+                  <p class="mt-1 font-semibold text-[#141413]">-</p>
+                </div>
+                <div class="rounded-xl border border-[#ddd7ca] bg-[#fffcf6] p-2 text-xs">
+                  <p class="text-[#8a867d]">最近失败</p>
+                  <p class="mt-1 font-semibold text-[#141413]">-</p>
+                </div>
+              </div>
+              <div class="mt-3 grid gap-2 text-xs md:grid-cols-2">
+                <div class="rounded-xl border border-[#ddd7ca] bg-[#fffcf6] p-2">
+                  <p class="text-[#8a867d]">决策原因</p>
+                  <p class="mt-1 text-[#3e3a35]">-</p>
+                </div>
+                <div class="rounded-xl border border-[#ddd7ca] bg-[#fffcf6] p-2">
+                  <p class="text-[#8a867d]">失败信息</p>
+                  <p class="mt-1 text-[#3e3a35]">-</p>
+                </div>
+              </div>
+            </section>
+            <section class="nexus-panel p-4">
+              <h3 class="mb-3 text-sm font-semibold uppercase tracking-wide text-[#8a867d]">任务流程图</h3>
+              <div class="h-[460px] rounded-xl border border-[#ddd7ca] bg-[#fffdf9]">
+                <div class="flex justify-end px-2 pt-2"><button type="button"
+                    class="rounded-lg border border-[#d8d2c4] bg-[#f4efe4] px-2 py-1 text-[11px] text-[#6b6860]">显示迷你地图</button>
+                </div>
+                <div class="react-flow" data-testid="rf__wrapper"
+                  style="width: 100%; height: 100%; overflow: hidden; position: relative; z-index: 0;">
+                  <div class="react-flow__renderer"
+                    style="position: absolute; width: 100%; height: 100%; top: 0px; left: 0px;">
+                    <div class="react-flow__pane"
+                      style="position: absolute; width: 100%; height: 100%; top: 0px; left: 0px;">
+                      <div class="react-flow__viewport react-flow__container"
+                        style="transform: translate(-207.5px, 89.5px) scale(0.5);"><svg width="325" height="459"
+                          class="react-flow__edges react-flow__container" style="z-index: 0;">
+                          <defs>
+                            <marker class="react-flow__arrowhead"
+                              id="1__color=#c3bba8&amp;height=18&amp;type=arrowclosed&amp;width=18" markerWidth="18"
+                              markerHeight="18" viewBox="-10 -10 20 20" markerUnits="strokeWidth"
+                              orient="auto-start-reverse" refX="0" refY="0">
+                              <polyline stroke-linecap="round" stroke-linejoin="round" points="-5,-4 0,0 -5,4 -5,-4"
+                                style="stroke: rgb(195, 187, 168); fill: rgb(195, 187, 168); stroke-width: 1;">
+                              </polyline>
+                            </marker>
+                          </defs>
+                          <g>
+                            <g class="react-flow__edge react-flow__edge-default nopan inactive" tabindex="0"
+                              role="button" data-testid="rf__edge-step_1-&gt;step_2"
+                              aria-label="Edge from step_1 to step_2" aria-describedby="react-flow__edge-desc-1">
+                              <path
+                                d="M363.333251953125,80.1666259765625 C380,80.1666259765625 380,80.1666259765625 396.666748046875,80.1666259765625"
+                                fill="none" class="react-flow__edge-path"
+                                marker-end="url(&#39;#1__color=#c3bba8&amp;height=18&amp;type=arrowclosed&amp;width=18&#39;)"
+                                marker-start="url(&#39;#&#39;)" style="stroke: rgb(195, 187, 168);"></path>
+                              <path
+                                d="M363.333251953125,80.1666259765625 C380,80.1666259765625 380,80.1666259765625 396.666748046875,80.1666259765625"
+                                fill="none" stroke-opacity="0" stroke-width="20" class="react-flow__edge-interaction">
+                              </path>
+                            </g>
+                            <g class="react-flow__edge react-flow__edge-default nopan inactive" tabindex="0"
+                              role="button" data-testid="rf__edge-step_2-&gt;step_3"
+                              aria-label="Edge from step_2 to step_3" aria-describedby="react-flow__edge-desc-1">
+                              <path
+                                d="M723.333251953125,80.1666259765625 C740,80.1666259765625 740,80.1666259765625 756.666748046875,80.1666259765625"
+                                fill="none" class="react-flow__edge-path"
+                                marker-end="url(&#39;#1__color=#c3bba8&amp;height=18&amp;type=arrowclosed&amp;width=18&#39;)"
+                                marker-start="url(&#39;#&#39;)" style="stroke: rgb(195, 187, 168);"></path>
+                              <path
+                                d="M723.333251953125,80.1666259765625 C740,80.1666259765625 740,80.1666259765625 756.666748046875,80.1666259765625"
+                                fill="none" stroke-opacity="0" stroke-width="20" class="react-flow__edge-interaction">
+                              </path>
+                            </g>
+                            <g class="react-flow__edge react-flow__edge-default nopan inactive" tabindex="0"
+                              role="button" data-testid="rf__edge-step_3-&gt;step_4"
+                              aria-label="Edge from step_3 to step_4" aria-describedby="react-flow__edge-desc-1">
+                              <path
+                                d="M1083.333251953125,80.1666259765625 C1100,80.1666259765625 1100,80.1666259765625 1116.666748046875,80.1666259765625"
+                                fill="none" class="react-flow__edge-path"
+                                marker-end="url(&#39;#1__color=#c3bba8&amp;height=18&amp;type=arrowclosed&amp;width=18&#39;)"
+                                marker-start="url(&#39;#&#39;)" style="stroke: rgb(195, 187, 168);"></path>
+                              <path
+                                d="M1083.333251953125,80.1666259765625 C1100,80.1666259765625 1100,80.1666259765625 1116.666748046875,80.1666259765625"
+                                fill="none" stroke-opacity="0" stroke-width="20" class="react-flow__edge-interaction">
+                              </path>
+                            </g>
+                          </g>
+                        </svg>
+                        <div class="react-flow__edgelabel-renderer"></div>
+                        <div class="react-flow__nodes"
+                          style="position: absolute; width: 100%; height: 100%; top: 0px; left: 0px;">
+                          <div class="react-flow__node react-flow__node-default" data-id="step_1"
+                            data-testid="rf__node-step_1" tabindex="0" role="button"
+                            aria-describedby="react-flow__node-desc-1"
+                            style="z-index: 0; transform: translate(40px, 30px); pointer-events: none; visibility: visible; width: 320px; border-radius: 10px; border: 1px solid rgb(217, 119, 87); background: rgb(255, 250, 242); color: rgb(20, 20, 19);">
+                            <div data-nodeid="step_1" data-handlepos="left" data-id="step_1-null-target"
+                              class="react-flow__handle react-flow__handle-left nodrag nopan target connectablestart connectableend">
+                            </div>
+                            <div class="space-y-1 text-left">
+                              <p class="text-xs font-semibold text-[#141413]">Clarify scope and success criteria</p>
+                              <p class="text-[10px] text-[#8a867d]">step_1</p>
+                              <p class="text-[10px] text-[#8a867d]">分配给: agent_writer</p>
+                              <p class="text-[10px] uppercase text-[#6b6860]">in_progress</p>
+                            </div>
+                            <div data-nodeid="step_1" data-handlepos="right" data-id="step_1-null-source"
+                              class="react-flow__handle react-flow__handle-right nodrag nopan source connectablestart connectableend">
+                            </div>
+                          </div>
+                          <div class="react-flow__node react-flow__node-default" data-id="step_2"
+                            data-testid="rf__node-step_2" tabindex="0" role="button"
+                            aria-describedby="react-flow__node-desc-1"
+                            style="z-index: 0; transform: translate(400px, 30px); pointer-events: none; visibility: visible; width: 320px; border-radius: 10px; border: 1px solid rgb(163, 157, 143); background: rgb(255, 250, 242); color: rgb(20, 20, 19);">
+                            <div data-nodeid="step_2" data-handlepos="left" data-id="step_2-null-target"
+                              class="react-flow__handle react-flow__handle-left nodrag nopan target connectablestart connectableend">
+                            </div>
+                            <div class="space-y-1 text-left">
+                              <p class="text-xs font-semibold text-[#141413]">Collect supporting information</p>
+                              <p class="text-[10px] text-[#8a867d]">step_2</p>
+                              <p class="text-[10px] text-[#8a867d]">分配给: agent_analyst</p>
+                              <p class="text-[10px] uppercase text-[#6b6860]">queued</p>
+                            </div>
+                            <div data-nodeid="step_2" data-handlepos="right" data-id="step_2-null-source"
+                              class="react-flow__handle react-flow__handle-right nodrag nopan source connectablestart connectableend">
+                            </div>
+                          </div>
+                          <div class="react-flow__node react-flow__node-default" data-id="step_3"
+                            data-testid="rf__node-step_3" tabindex="0" role="button"
+                            aria-describedby="react-flow__node-desc-1"
+                            style="z-index: 0; transform: translate(760px, 30px); pointer-events: none; visibility: visible; width: 320px; border-radius: 10px; border: 1px solid rgb(163, 157, 143); background: rgb(255, 250, 242); color: rgb(20, 20, 19);">
+                            <div data-nodeid="step_3" data-handlepos="left" data-id="step_3-null-target"
+                              class="react-flow__handle react-flow__handle-left nodrag nopan target connectablestart connectableend">
+                            </div>
+                            <div class="space-y-1 text-left">
+                              <p class="text-xs font-semibold text-[#141413]">Analyze options and trade-offs</p>
+                              <p class="text-[10px] text-[#8a867d]">step_3</p>
+                              <p class="text-[10px] text-[#8a867d]">分配给: agent_writer</p>
+                              <p class="text-[10px] uppercase text-[#6b6860]">queued</p>
+                            </div>
+                            <div data-nodeid="step_3" data-handlepos="right" data-id="step_3-null-source"
+                              class="react-flow__handle react-flow__handle-right nodrag nopan source connectablestart connectableend">
+                            </div>
+                          </div>
+                          <div class="react-flow__node react-flow__node-default" data-id="step_4"
+                            data-testid="rf__node-step_4" tabindex="0" role="button"
+                            aria-describedby="react-flow__node-desc-1"
+                            style="z-index: 0; transform: translate(1120px, 30px); pointer-events: none; visibility: visible; width: 320px; border-radius: 10px; border: 1px solid rgb(163, 157, 143); background: rgb(255, 250, 242); color: rgb(20, 20, 19);">
+                            <div data-nodeid="step_4" data-handlepos="left" data-id="step_4-null-target"
+                              class="react-flow__handle react-flow__handle-left nodrag nopan target connectablestart connectableend">
+                            </div>
+                            <div class="space-y-1 text-left">
+                              <p class="text-xs font-semibold text-[#141413]">Draft final response</p>
+                              <p class="text-[10px] text-[#8a867d]">step_4</p>
+                              <p class="text-[10px] text-[#8a867d]">分配给: agent_analyst</p>
+                              <p class="text-[10px] uppercase text-[#6b6860]">queued</p>
+                            </div>
+                            <div data-nodeid="step_4" data-handlepos="right" data-id="step_4-null-source"
+                              class="react-flow__handle react-flow__handle-right nodrag nopan source connectablestart connectableend">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div><svg class="react-flow__background" data-testid="rf__background"
+                    style="position: absolute; width: 100%; height: 100%; top: 0px; left: 0px;">
+                    <pattern id="pattern-1undefined" x="-7.5" y="9.5" width="10" height="10"
+                      patternUnits="userSpaceOnUse" patternTransform="translate(-0.25,-0.25)">
+                      <circle cx="0.25" cy="0.25" r="0.25" fill="#e4decd"></circle>
+                    </pattern>
+                    <rect x="0" y="0" width="100%" height="100%" fill="url(#pattern-1undefined)"></rect>
+                  </svg>
+                  <div class="react-flow__panel react-flow__controls bottom right" data-testid="rf__controls"
+                    style="pointer-events: all;"><button type="button"
+                      class="react-flow__controls-button react-flow__controls-zoomin" title="zoom in"
+                      aria-label="zoom in"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                        <path d="M32 18.133H18.133V32h-4.266V18.133H0v-4.266h13.867V0h4.266v13.867H32z"></path>
+                      </svg></button><button type="button"
+                      class="react-flow__controls-button react-flow__controls-zoomout" title="zoom out"
+                      aria-label="zoom out" disabled=""><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 5">
+                        <path d="M0 0h32v4.2H0z"></path>
+                      </svg></button><button type="button"
+                      class="react-flow__controls-button react-flow__controls-fitview" title="fit view"
+                      aria-label="fit view"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 30">
+                        <path
+                          d="M3.692 4.63c0-.53.4-.938.939-.938h5.215V0H4.708C2.13 0 0 2.054 0 4.63v5.216h3.692V4.631zM27.354 0h-5.2v3.692h5.17c.53 0 .984.4.984.939v5.215H32V4.631A4.624 4.624 0 0027.354 0zm.954 24.83c0 .532-.4.94-.939.94h-5.215v3.768h5.215c2.577 0 4.631-2.13 4.631-4.707v-5.139h-3.692v5.139zm-23.677.94c-.531 0-.939-.4-.939-.94v-5.138H0v5.139c0 2.577 2.13 4.707 4.708 4.707h5.138V25.77H4.631z">
+                        </path>
+                      </svg></button><button type="button"
+                      class="react-flow__controls-button react-flow__controls-interactive" title="toggle interactivity"
+                      aria-label="toggle interactivity"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 32">
+                        <path
+                          d="M21.333 10.667H19.81V7.619C19.81 3.429 16.38 0 12.19 0 8 0 4.571 3.429 4.571 7.619v3.048H3.048A3.056 3.056 0 000 13.714v15.238A3.056 3.056 0 003.048 32h18.285a3.056 3.056 0 003.048-3.048V13.714a3.056 3.056 0 00-3.048-3.047zM12.19 24.533a3.056 3.056 0 01-3.047-3.047 3.056 3.056 0 013.047-3.048 3.056 3.056 0 013.048 3.048 3.056 3.056 0 01-3.048 3.047zm4.724-13.866H7.467V7.619c0-2.59 2.133-4.724 4.723-4.724 2.591 0 4.724 2.133 4.724 4.724v3.048z">
+                        </path>
+                      </svg></button></div>
+                  <div class="react-flow__panel react-flow__attribution bottom right"
+                    data-message="Please only hide this attribution when you are subscribed to React Flow Pro: https://reactflow.dev/pro"
+                    style="pointer-events: all;"><a href="https://reactflow.dev/" target="_blank"
+                      rel="noopener noreferrer" aria-label="React Flow attribution">React Flow</a></div>
+                  <div id="react-flow__node-desc-1" style="display: none;">Press enter or space to select a node.You can
+                    then use the arrow keys to move the node around. Press delete to remove it and escape to cancel.
+                  </div>
+                  <div id="react-flow__edge-desc-1" style="display: none;">Press enter or space to select an edge. You
+                    can then press delete to remove it or escape to cancel.</div>
+                  <div id="react-flow__aria-live-1" aria-live="assertive" aria-atomic="true"
+                    style="position: absolute; width: 1px; height: 1px; margin: -1px; border: 0px; padding: 0px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); clip-path: inset(100%);">
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </section>
+        <section class="grid gap-4 xl:grid-cols-[minmax(0,1fr)_360px]">
+          <section class="nexus-panel p-4">
+            <div class="mb-3 flex items-center justify-between gap-2">
+              <div>
+                <h3 class="text-sm font-semibold uppercase tracking-wide text-[#8a867d]">事件流</h3>
+                <p class="mt-1 text-xs text-[#6b6860]">19 条可见 • 过滤: 全部事件类型</p>
+              </div><button type="button" class="nexus-button-ghost rounded-lg px-2 py-1 text-xs">刷新</button>
+            </div>
+            <div class="mb-3 rounded-xl border p-3 text-xs border-[#9bc5a7] bg-[#edf7ef] text-[#2f5d3e]">
+              <p class="font-medium">实时连接已建立</p>
+              <p class="mt-1 leading-relaxed">新事件会自动追加到事件流。</p>
+            </div>
+            <div class="mb-3 grid gap-2 md:grid-cols-2"><label class="text-xs text-[#6b6860]">开始时间<input
+                  class="mt-1 w-full rounded-lg border border-[#d8d2c4] bg-[#fffdf9] px-2 py-1 text-xs"
+                  type="datetime-local" value=""></label><label class="text-xs text-[#6b6860]">结束时间<input
+                  class="mt-1 w-full rounded-lg border border-[#d8d2c4] bg-[#fffdf9] px-2 py-1 text-xs"
+                  type="datetime-local" value=""></label></div>
+            <div class="mb-3 rounded-xl border border-[#ddd7ca] bg-[#fffcf6] p-3 text-xs">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <p class="font-medium text-[#3e3a35]">回放视图（Phase B）</p><button data-testid="event-replay-toggle"
+                  type="button" class="rounded px-2 py-1 bg-[#f4efe4] text-[#6b6860]">进入回放</button>
+              </div>
+            </div>
+            <div class="mb-3 flex flex-wrap gap-1"><button type="button"
+                class="rounded px-2 py-1 text-xs bg-[#f4efe4] text-[#6b6860]">TaskRequest</button><button type="button"
+                class="rounded px-2 py-1 text-xs bg-[#f4efe4] text-[#6b6860]">TaskClaim</button><button type="button"
+                class="rounded px-2 py-1 text-xs bg-[#f4efe4] text-[#6b6860]">TaskUpdate</button><button type="button"
+                class="rounded px-2 py-1 text-xs bg-[#f4efe4] text-[#6b6860]">TaskResult</button><button type="button"
+                class="rounded px-2 py-1 text-xs bg-[#f4efe4] text-[#6b6860]">TaskHandoff</button><button type="button"
+                class="rounded px-2 py-1 text-xs bg-[#f4efe4] text-[#6b6860]">TaskReject</button><button type="button"
+                class="rounded px-2 py-1 text-xs bg-[#f4efe4] text-[#6b6860]">TaskRetry</button><button type="button"
+                class="rounded px-2 py-1 text-xs bg-[#f4efe4] text-[#6b6860]">TaskRetryExhausted</button><button
+                type="button" class="rounded px-2 py-1 text-xs bg-[#f4efe4] text-[#6b6860]">Vote</button><button
+                type="button"
+                class="rounded px-2 py-1 text-xs bg-[#f4efe4] text-[#6b6860]">ConflictNotice</button><button
+                type="button" class="rounded px-2 py-1 text-xs bg-[#f4efe4] text-[#6b6860]">Decision</button><button
+                type="button" class="rounded px-2 py-1 text-xs bg-[#f4efe4] text-[#6b6860]">TaskComplete</button><button
+                type="button" class="rounded px-2 py-1 text-xs bg-[#f4efe4] text-[#6b6860]">TaskFailed</button><button
+                type="button"
+                class="rounded px-2 py-1 text-xs bg-[#f4efe4] text-[#6b6860]">TaskPipelineStart</button><button
+                type="button"
+                class="rounded px-2 py-1 text-xs bg-[#f4efe4] text-[#6b6860]">TaskPipelineFinish</button><button
+                type="button"
+                class="rounded px-2 py-1 text-xs bg-[#f4efe4] text-[#6b6860]">AgentExecutionStart</button><button
+                type="button"
+                class="rounded px-2 py-1 text-xs bg-[#f4efe4] text-[#6b6860]">AgentExecutionResult</button><button
+                type="button" class="rounded px-2 py-1 text-xs bg-[#f4efe4] text-[#6b6860]">AgentExecutionError</button>
+            </div>
+            <ul data-testid="event-stream-list" class="max-h-[34rem] space-y-2 overflow-auto pr-1">
+              <li class="rounded-xl border border-[#ddd7ca] bg-[#fffcf6] p-2 text-xs">
+                <div class="flex items-center justify-between text-[#3e3a35]"><span
+                    class="font-semibold">TaskComplete</span><span>00:17:16</span></div>
+                <p class="mt-1 text-[#8a867d]">发送者: workflow_engine</p>
+                <p class="mt-1 text-[#8a867d]">接收者: 广播</p>
+                <details class="mt-2 rounded-lg border border-[#ddd7ca] bg-[#f7f2e8] p-2">
+                  <summary class="cursor-pointer text-[#3e3a35]">查看 payload</summary>
+                  <pre class="mt-2 overflow-auto text-[11px] text-[#6b6860]">{
+  "status": "completed",
+  "progress": 100,
+  "result": {
+    "summary": "# 湖南大学介绍报告\n\n## 1. 概述与定位\n湖南大学（Hunan University）坐落于中国湖南省长沙市，是一所历史悠久、声誉卓著的综合性全国重点大学。学校起源于公元976年创建的岳麓书院，享有“千年学府，百年名校”的美誉。现为中华人民共和国教育部直属的全国重点大学，是国家“双一流”、“211工程”、“985工程”重点建设高校。\n\n## 2. 历史沿革\n- **起源（976年）**：肇始于北宋开宝九年创建的岳麓书院，是中国古代四大书院之一。\n- **近代转型（1903年）**：改制为湖南高等学堂。\n- **定名与发展（1926年）**：正式定名为湖南大学。\n- **现代整合**：2000年，湖南大学与湖南财经学院合并，组建为新的湖南大学，学科体系更为完善。\n\n## 3. 校区与基础设施\n学校主要拥有以下校区：\n- **主校区（岳麓校区）**：位于岳麓山脚下，湘江之滨，环境优美，人文与自然景观交融，是核心教学科研区。\n- **财院校区**：原湖南财经学院校区，以经济、管理类学科为主。\n- **设施概况**：图书馆藏书丰富，实验室、科研中心配备先进，体育、生活设施齐全，为师生提供了良好的学习与研究环境。\n\n## 4. 学科建设与学术实力\n- **学科门类**：涵盖哲学、经济学、法学、教育学、文学、历史学、理学、工学、管理学、医学、艺术学等11大学科门类。\n- **优势学科**：\n    - **化学、机械工程、土木工程**：入选国家“世界一流学科”建设名单，实力雄厚，在国际上享有较高声誉。\n    - **电气工程、工商管理、设计学**：均为传统强势学科，在国内评估中名列前茅。\n- **科研平台**：拥有国家重点实验室、国家工程技术研究中心、教育部重点实验室等多个国家级及省部级科研平台。\n\n## 5. 师资力量与学生培养\n- **师资队伍**：汇聚了一批包括院士、国家杰出青年科学基金获得者、“长江学者”在内的优秀学者。\n- **人才培养**：坚持立德树人，培养具有国际视野、创新精神和社会责任感的高素质人才。毕业生以基础扎实、适应能力强广受社会各界好评。\n\n## 6. 国际交流与合作\n学校与多所世界知名大学和研究机构建立了广泛的合作关系，开展学生交换、联合培养、合作科研等项目，国际化办学水平持续提升。\n\n## 7. 校园文化与社会贡献\n- **文化精神**：秉承“实事求是、敢为人先”的校训和“博学、睿思、勤勉、致知”的校风，文化底蕴深厚。\n- **社会服务**：积极发挥智力优势，在区域经济发展、科技成果转化、文化传承创新等方面做出了重要贡献。\n\n## 8. 总结\n湖南大学以其千年文脉、百年积淀，发展成为一所学科齐全、特色鲜明、在国内外具有重要影响力的高水平研究型大学。它不仅是人才培养和科学研究的重要基地，也是推动社会进步与文化传承的关键力量。未来，学校将继续朝着中国特色世界一流大学的目标迈进。\n\n---\n**报告说明**：本报告基于对湖南大学公开信息与普遍认知的整合撰写，旨在提供概括性介绍。具体数据（如师生精确人数、最新排名、科研经费等）建议查阅学校官方最新发布的信息。",
+    "mode": "real",
+    "provider": "openai_compatible",
+    "model": "deepseek-ai/DeepSeek-V3.2",
+    "agent_id": "agent_writer",
+    "agent_role": "writer",
+    "execution_metrics": {
+      "latency_ms": 22985,
+      "usage": {
+        "prompt_tokens": 2096,
+        "completion_tokens": 725,
+        "total_tokens": 2821
+      },
+      "fallback_policy": "simulate",
+      "arbitration_mode": "off",
+      "judge_triggered": false,
+      "execution_mode": "parallel",
+      "pipeline_error_policy": "fail_fast",
+      "pipeline_error_count": 0,
+      "parallel_steps": 3,
+      "selected_agent_id": "agent_writer"
+    },
+    "parallel": {
+      "mode": "batch",
+      "selection": "highest_confidence",
+      "steps": [
+        {
+          "step": 1,
+          "agent_id": "agent_writer",
+          "agent_role": "writer",
+          "summary": "# 湖南大学介绍报告\n\n## 1. 概述与定位\n湖南大学（Hunan University）坐落于中国湖南省长沙市，是一所历史悠久、声誉卓著的综合性全国重点大学。学校起源于公元976年创建的岳麓书院，享有“千年学府，百年名校”的美誉。现为中华人民共和国教育部直属的全国重点大学，是国家“双一流”、“211工程”、“985工程”重点建设高校。\n\n## 2. 历史沿革\n- **起源（976年）**：肇始于北宋开宝九年创建的岳麓书院，是中国古代四大书院之一。\n- **近代转型（1903年）**：改制为湖南高等学堂。\n- **定名与发展（1926年）**：正式定名为湖南大学。\n- **现代整合**：2000年，湖南大学与湖南财经学院合并，组建为新的湖南大学，学科体系更为完善。\n\n## 3. 校区与基础设施\n学校主要拥有以下校区：\n- **主校区（岳麓校区）**：位于岳麓山脚下，湘江之滨，环境优美，人文与自然景观交融，是核心教学科研区。\n- **财院校区**：原湖南财经学院校区，以经济、管理类学科为主。\n- **设施概况**：图书馆藏书丰富，实验室、科研中心配备先进，体育、生活设施齐全，为师生提供了良好的学习与研究环境。\n\n## 4. 学科建设与学术实力\n- **学科门类**：涵盖哲学、经济学、法学、教育学、文学、历史学、理学、工学、管理学、医学、艺术学等11大学科门类。\n- **优势学科**：\n    - **化学、机械工程、土木工程**：入选国家“世界一流学科”建设名单，实力雄厚，在国际上享有较高声誉。\n    - **电气工程、工商管理、设计学**：均为传统强势学科，在国内评估中名列前茅。\n- **科研平台**：拥有国家重点实验室、国家工程技术研究中心、教育部重点实验室等多个国家级及省部级科研平台。\n\n## 5. 师资力量与学生培养\n- **师资队伍**：汇聚了一批包括院士、国家杰出青年科学基金获得者、“长江学者”在内的优秀学者。\n- **人才培养**：坚持立德树人，培养具有国际视野、创新精神和社会责任感的高素质人才。毕业生以基础扎实、适应能力强广受社会各界好评。\n\n## 6. 国际交流与合作\n学校与多所世界知名大学和研究机构建立了广泛的合作关系，开展学生交换、联合培养、合作科研等项目，国际化办学水平持续提升。\n\n## 7. 校园文化与社会贡献\n- **文化精神**：秉承“实事求是、敢为人先”的校训和“博学、睿思、勤勉、致知”的校风，文化底蕴深厚。\n- **社会服务**：积极发挥智力优势，在区域经济发展、科技成果转化、文化传承创新等方面做出了重要贡献。\n\n## 8. 总结\n湖南大学以其千年文脉、百年积淀，发展成为一所学科齐全、特色鲜明、在国内外具有重要影响力的高水平研究型大学。它不仅是人才培养和科学研究的重要基地，也是推动社会进步与文化传承的关键力量。未来，学校将继续朝着中国特色世界一流大学的目标迈进。\n\n---\n**报告说明**：本报告基于对湖南大学公开信息与普遍认知的整合撰写，旨在提供概括性介绍。具体数据（如师生精确人数、最新排名、科研经费等）建议查阅学校官方最新发布的信息。",
+          "confidence": 0.82,
+          "metrics": {
+            "latency_ms": 22985,
+            "usage": {
+              "prompt_tokens": 2096,
+              "completion_tokens": 725,
+              "total_tokens": 2821
+            }
+          }
+        },
+        {
+          "step": 2,
+          "agent_id": "agent_analyst",
+          "agent_role": "analyst",
+          "summary": "# 湖南大学综合介绍报告\n\n## 1. 学校概况\n湖南大学（Hunan University）坐落于中国湖南省长沙市，是教育部直属的全国重点大学，位列国家“双一流”、“985工程”、“211工程”重点建设高校。学校起源于公元976年创建的岳麓书院，享有“千年学府，百年名校”之誉，是中国高等教育发展历史的活化石。\n\n## 2. 历史沿革\n- **公元976年**：岳麓书院创立，为古代四大书院之一。\n- **1903年**：改制为湖南高等学堂。\n- **1926年**：正式定名为湖南大学。\n- **2000年**：湖南大学与湖南财经学院合并，组建新的湖南大学。\n- **2017年**：入选国家“双一流”建设高校。\n\n## 3. 校区与基础设施\n学校拥有南校区、北校区、财院校区等多个校区，总占地面积约240万平方米。校园坐落在岳麓山脚下，湘江之滨，环境优美，融合了古典书院建筑与现代教学设施。图书馆藏书丰富，数字资源完备，为教学科研提供有力支撑。\n\n## 4. 学科建设与学术实力\n- **学科门类**：涵盖哲学、经济学、法学、教育学、文学、历史学、理学、工学、管理学、医学、艺术学等11大学科门类。\n- **优势学科**：化学、机械工程、土木工程、工商管理、设计学等学科在国内外享有较高声誉。其中，化学、机械工程学科入选国家“世界一流学科”建设名单。\n- **科研平台**：拥有国家重点实验室、国家工程技术研究中心、国家工程实验室等多个国家级科研平台，在汽车车身先进设计制造、风工程与桥梁工程、化学生物传感与计量学等领域具有突出优势。\n\n## 5. 师资力量\n学校拥有一支高水平的师资队伍，包括两院院士、国家杰出青年科学基金获得者、长江学者等各类高层次人才。专任教师中具有博士学位的比例超过90%，形成了一支结构合理、富有创新精神的教师团队。\n\n## 6. 人才培养\n- **学生规模**：全日制在校学生约3.6万余人，其中本科生约2万余人，研究生约1.6万余人。\n- **培养特色**：坚持“基础扎实、视野开阔、德才兼备”的培养理念，注重创新创业教育，毕业生就业率与就业质量位居全国高校前列。\n- **国际交流**：与世界上160余所高校和科研机构建立了合作关系，开展学生交换、联合培养、合作科研等项目。\n\n## 7. 校园文化与社会贡献\n- **文化传承**：秉承岳麓书院“实事求是、敢为人先”的校训，形成了深厚的文化底蕴和独特的学术氛围。\n- **社会服务**：积极参与区域经济建设与社会发展，在科技成果转化、决策咨询、文化建设等方面发挥了重要作用。\n- **校友成就**：培养了大批杰出校友，遍布政界、学界、商界等领域，为国家发展和社会进步做出了重要贡献。\n\n## 8. 发展愿景\n湖南大学正朝着建设中国特色世界一流大学的目标迈进，致力于培养拔尖创新人才，产出高水平科研成果，传承创新优秀文化，服务国家战略需求，为中华民族伟大复兴贡献力量。\n\n---\n**报告说明**：本报告基于湖南大学公开信息整理，旨在提供综合性介绍。具体数据与最新动态请以学校官方发布为准。",
+          "confidence": 0.82,
+          "metrics": {
+            "latency_ms": 23659,
+            "usage": {
+              "prompt_tokens": 2096,
+              "completion_tokens": 712,
+              "total_tokens": 2808
+            }
+          }
+        },
+        {
+          "step": 3,
+          "agent_id": "agent_planner",
+          "agent_role": "planner",
+          "summary": "# 湖南大学介绍报告\n\n## 1. 学校概况\n湖南大学（Hunan University）坐落于中国湖南省长沙市，是一所历史悠久、声誉卓著的综合性研究型大学。学校起源于公元976年创建的岳麓书院，享有“千年学府，百年名校”的美誉。湖南大学是中华人民共和国教育部直属的全国重点大学，位列国家“双一流”、“985工程”、“211工程”重点建设高校。\n\n## 2. 历史沿革\n湖南大学的历史可追溯至宋太祖开宝九年（公元976年）创办的岳麓书院，是中国古代四大书院之一。1903年改制为湖南高等学堂，1926年正式定名为湖南大学。1937年成为国民政府教育部十余所国立大学之一。1953年全国院系调整后，学校更名为中南土木建筑学院，1958年恢复湖南大学校名。2000年，湖南大学与湖南财经学院合并组建新的湖南大学。\n\n## 3. 校区与基础设施\n学校拥有南校区、北校区、财院校区等多个校区，总占地面积约240万平方米，校舍建筑面积约145万平方米。主校区位于岳麓山脚下，湘江之滨，环境优美，人文气息浓厚。校园内保留有大量历史建筑，包括岳麓书院、自卑亭、爱晚亭等国家级文物保护单位。\n\n## 4. 学科建设与学术实力\n湖南大学学科门类齐全，涵盖哲学、经济学、法学、教育学、文学、历史学、理学、工学、管理学、医学、艺术学等11大学科门类。学校拥有：\n- 国家重点学科一级学科2个（机械工程、土木工程）\n- 国家重点学科二级学科14个\n- “双一流”建设学科3个（化学、机械工程、电气工程）\n- 博士后科研流动站28个\n- 博士学位授权一级学科30个\n- 硕士学位授权一级学科37个\n- 专业学位授权类别26个\n\n在第四轮全国学科评估中，化学、机械工程、土木工程、工商管理、设计学等学科表现突出。\n\n## 5. 师资力量\n学校现有教职工近4000人，其中专任教师约2300人。师资队伍包括：\n- 中国科学院、中国工程院院士12人（含双聘）\n- 国家杰出青年科学基金获得者27人\n- 国家优秀青年科学基金获得者25人\n- “长江学者”特聘教授、讲座教授、青年学者30余人\n- 国家级教学名师7人\n\n## 6. 人才培养\n湖南大学现有全日制在校学生约36000人，其中本科生约21000人，研究生约15000人（含博士研究生）。学校坚持立德树人，培养具有国际视野、创新精神和实践能力的高素质人才。近年来，学生在“互联网+”大学生创新创业大赛、“挑战杯”等国家级竞赛中屡获佳绩。\n\n## 7. 科学研究与社会服务\n学校拥有国家重点实验室、国家工程技术研究中心、国家工程实验室等国家级科研平台10余个，省部级科研平台70余个。在汽车设计与制造、土木工程、化学化工、电气工程、经济管理等领域具有显著优势。学校年科研经费超过15亿元，承担了大量国家重大科研项目，取得了一系列重要科研成果。\n\n## 8. 国际交流与合作\n湖南大学与世界上160余所高校和科研机构建立了合作关系，包括美国加州大学伯克利分校、英国牛津大学、日本早稻田大学等世界知名学府。学校设有中外合作办学项目，招收来自100多个国家的留学生，积极参与“一带一路”教育行动。\n\n## 9. 校园文化与传统\n学校秉承“实事求是、敢为人先”的校训和“博学、睿思、勤勉、致知”的校风，形成了独特的校园文化。岳麓书院作为学校的精神象征，传承着“传道济",
+          "confidence": 0.82,
+          "metrics": {
+            "latency_ms": 24254,
+            "usage": {
+              "prompt_tokens": 2101,
+              "completion_tokens": 800,
+              "total_tokens": 2901
+            }
+          }
+        }
+      ]
+    }
+  },
+  "consensus": null
+}</pre>
+                  <p class="mt-2 text-[#8a867d]">metadata</p>
+                  <pre class="mt-1 overflow-auto text-[11px] text-[#8a867d]">{}</pre>
+                </details>
+              </li>
+              <li class="rounded-xl border border-[#ddd7ca] bg-[#fffcf6] p-2 text-xs">
+                <div class="flex items-center justify-between text-[#3e3a35]"><span
+                    class="font-semibold">Vote</span><span>00:17:16</span></div>
+                <p class="mt-1 text-[#8a867d]">发送者: agent_writer</p>
+                <p class="mt-1 text-[#8a867d]">接收者: 广播</p>
+                <p class="mt-1 text-[#6b6860]">agent_id=agent_writer | confidence=0.82</p>
+                <details class="mt-2 rounded-lg border border-[#ddd7ca] bg-[#f7f2e8] p-2">
+                  <summary class="cursor-pointer text-[#3e3a35]">查看 payload</summary>
+                  <pre class="mt-2 overflow-auto text-[11px] text-[#6b6860]">{
+  "agent_id": "agent_writer",
+  "confidence": 0.82,
+  "result": {
+    "summary": "# 湖南大学介绍报告\n\n## 1. 概述与定位\n湖南大学（Hunan University）坐落于中国湖南省长沙市，是一所历史悠久、声誉卓著的综合性全国重点大学。学校起源于公元976年创建的岳麓书院，享有“千年学府，百年名校”的美誉。现为中华人民共和国教育部直属的全国重点大学，是国家“双一流”、“211工程”、“985工程”重点建设高校。\n\n## 2. 历史沿革\n- **起源（976年）**：肇始于北宋开宝九年创建的岳麓书院，是中国古代四大书院之一。\n- **近代转型（1903年）**：改制为湖南高等学堂。\n- **定名与发展（1926年）**：正式定名为湖南大学。\n- **现代整合**：2000年，湖南大学与湖南财经学院合并，组建为新的湖南大学，学科体系更为完善。\n\n## 3. 校区与基础设施\n学校主要拥有以下校区：\n- **主校区（岳麓校区）**：位于岳麓山脚下，湘江之滨，环境优美，人文与自然景观交融，是核心教学科研区。\n- **财院校区**：原湖南财经学院校区，以经济、管理类学科为主。\n- **设施概况**：图书馆藏书丰富，实验室、科研中心配备先进，体育、生活设施齐全，为师生提供了良好的学习与研究环境。\n\n## 4. 学科建设与学术实力\n- **学科门类**：涵盖哲学、经济学、法学、教育学、文学、历史学、理学、工学、管理学、医学、艺术学等11大学科门类。\n- **优势学科**：\n    - **化学、机械工程、土木工程**：入选国家“世界一流学科”建设名单，实力雄厚，在国际上享有较高声誉。\n    - **电气工程、工商管理、设计学**：均为传统强势学科，在国内评估中名列前茅。\n- **科研平台**：拥有国家重点实验室、国家工程技术研究中心、教育部重点实验室等多个国家级及省部级科研平台。\n\n## 5. 师资力量与学生培养\n- **师资队伍**：汇聚了一批包括院士、国家杰出青年科学基金获得者、“长江学者”在内的优秀学者。\n- **人才培养**：坚持立德树人，培养具有国际视野、创新精神和社会责任感的高素质人才。毕业生以基础扎实、适应能力强广受社会各界好评。\n\n## 6. 国际交流与合作\n学校与多所世界知名大学和研究机构建立了广泛的合作关系，开展学生交换、联合培养、合作科研等项目，国际化办学水平持续提升。\n\n## 7. 校园文化与社会贡献\n- **文化精神**：秉承“实事求是、敢为人先”的校训和“博学、睿思、勤勉、致知”的校风，文化底蕴深厚。\n- **社会服务**：积极发挥智力优势，在区域经济发展、科技成果转化、文化传承创新等方面做出了重要贡献。\n\n## 8. 总结\n湖南大学以其千年文脉、百年积淀，发展成为一所学科齐全、特色鲜明、在国内外具有重要影响力的高水平研究型大学。它不仅是人才培养和科学研究的重要基地，也是推动社会进步与文化传承的关键力量。未来，学校将继续朝着中国特色世界一流大学的目标迈进。\n\n---\n**报告说明**：本报告基于对湖南大学公开信息与普遍认知的整合撰写，旨在提供概括性介绍。具体数据（如师生精确人数、最新排名、科研经费等）建议查阅学校官方最新发布的信息。",
+    "mode": "real",
+    "provider": "openai_compatible",
+    "model": "deepseek-ai/DeepSeek-V3.2",
+    "agent_id": "agent_writer",
+    "agent_role": "writer",
+    "execution_metrics": {
+      "latency_ms": 22985,
+      "usage": {
+        "prompt_tokens": 2096,
+        "completion_tokens": 725,
+        "total_tokens": 2821
+      },
+      "fallback_policy": "simulate",
+      "arbitration_mode": "off",
+      "judge_triggered": false,
+      "execution_mode": "parallel",
+      "pipeline_error_policy": "fail_fast",
+      "pipeline_error_count": 0,
+      "parallel_steps": 3,
+      "selected_agent_id": "agent_writer"
+    },
+    "parallel": {
+      "mode": "batch",
+      "selection": "highest_confidence",
+      "steps": [
+        {
+          "step": 1,
+          "agent_id": "agent_writer",
+          "agent_role": "writer",
+          "summary": "# 湖南大学介绍报告\n\n## 1. 概述与定位\n湖南大学（Hunan University）坐落于中国湖南省长沙市，是一所历史悠久、声誉卓著的综合性全国重点大学。学校起源于公元976年创建的岳麓书院，享有“千年学府，百年名校”的美誉。现为中华人民共和国教育部直属的全国重点大学，是国家“双一流”、“211工程”、“985工程”重点建设高校。\n\n## 2. 历史沿革\n- **起源（976年）**：肇始于北宋开宝九年创建的岳麓书院，是中国古代四大书院之一。\n- **近代转型（1903年）**：改制为湖南高等学堂。\n- **定名与发展（1926年）**：正式定名为湖南大学。\n- **现代整合**：2000年，湖南大学与湖南财经学院合并，组建为新的湖南大学，学科体系更为完善。\n\n## 3. 校区与基础设施\n学校主要拥有以下校区：\n- **主校区（岳麓校区）**：位于岳麓山脚下，湘江之滨，环境优美，人文与自然景观交融，是核心教学科研区。\n- **财院校区**：原湖南财经学院校区，以经济、管理类学科为主。\n- **设施概况**：图书馆藏书丰富，实验室、科研中心配备先进，体育、生活设施齐全，为师生提供了良好的学习与研究环境。\n\n## 4. 学科建设与学术实力\n- **学科门类**：涵盖哲学、经济学、法学、教育学、文学、历史学、理学、工学、管理学、医学、艺术学等11大学科门类。\n- **优势学科**：\n    - **化学、机械工程、土木工程**：入选国家“世界一流学科”建设名单，实力雄厚，在国际上享有较高声誉。\n    - **电气工程、工商管理、设计学**：均为传统强势学科，在国内评估中名列前茅。\n- **科研平台**：拥有国家重点实验室、国家工程技术研究中心、教育部重点实验室等多个国家级及省部级科研平台。\n\n## 5. 师资力量与学生培养\n- **师资队伍**：汇聚了一批包括院士、国家杰出青年科学基金获得者、“长江学者”在内的优秀学者。\n- **人才培养**：坚持立德树人，培养具有国际视野、创新精神和社会责任感的高素质人才。毕业生以基础扎实、适应能力强广受社会各界好评。\n\n## 6. 国际交流与合作\n学校与多所世界知名大学和研究机构建立了广泛的合作关系，开展学生交换、联合培养、合作科研等项目，国际化办学水平持续提升。\n\n## 7. 校园文化与社会贡献\n- **文化精神**：秉承“实事求是、敢为人先”的校训和“博学、睿思、勤勉、致知”的校风，文化底蕴深厚。\n- **社会服务**：积极发挥智力优势，在区域经济发展、科技成果转化、文化传承创新等方面做出了重要贡献。\n\n## 8. 总结\n湖南大学以其千年文脉、百年积淀，发展成为一所学科齐全、特色鲜明、在国内外具有重要影响力的高水平研究型大学。它不仅是人才培养和科学研究的重要基地，也是推动社会进步与文化传承的关键力量。未来，学校将继续朝着中国特色世界一流大学的目标迈进。\n\n---\n**报告说明**：本报告基于对湖南大学公开信息与普遍认知的整合撰写，旨在提供概括性介绍。具体数据（如师生精确人数、最新排名、科研经费等）建议查阅学校官方最新发布的信息。",
+          "confidence": 0.82,
+          "metrics": {
+            "latency_ms": 22985,
+            "usage": {
+              "prompt_tokens": 2096,
+              "completion_tokens": 725,
+              "total_tokens": 2821
+            }
+          }
+        },
+        {
+          "step": 2,
+          "agent_id": "agent_analyst",
+          "agent_role": "analyst",
+          "summary": "# 湖南大学综合介绍报告\n\n## 1. 学校概况\n湖南大学（Hunan University）坐落于中国湖南省长沙市，是教育部直属的全国重点大学，位列国家“双一流”、“985工程”、“211工程”重点建设高校。学校起源于公元976年创建的岳麓书院，享有“千年学府，百年名校”之誉，是中国高等教育发展历史的活化石。\n\n## 2. 历史沿革\n- **公元976年**：岳麓书院创立，为古代四大书院之一。\n- **1903年**：改制为湖南高等学堂。\n- **1926年**：正式定名为湖南大学。\n- **2000年**：湖南大学与湖南财经学院合并，组建新的湖南大学。\n- **2017年**：入选国家“双一流”建设高校。\n\n## 3. 校区与基础设施\n学校拥有南校区、北校区、财院校区等多个校区，总占地面积约240万平方米。校园坐落在岳麓山脚下，湘江之滨，环境优美，融合了古典书院建筑与现代教学设施。图书馆藏书丰富，数字资源完备，为教学科研提供有力支撑。\n\n## 4. 学科建设与学术实力\n- **学科门类**：涵盖哲学、经济学、法学、教育学、文学、历史学、理学、工学、管理学、医学、艺术学等11大学科门类。\n- **优势学科**：化学、机械工程、土木工程、工商管理、设计学等学科在国内外享有较高声誉。其中，化学、机械工程学科入选国家“世界一流学科”建设名单。\n- **科研平台**：拥有国家重点实验室、国家工程技术研究中心、国家工程实验室等多个国家级科研平台，在汽车车身先进设计制造、风工程与桥梁工程、化学生物传感与计量学等领域具有突出优势。\n\n## 5. 师资力量\n学校拥有一支高水平的师资队伍，包括两院院士、国家杰出青年科学基金获得者、长江学者等各类高层次人才。专任教师中具有博士学位的比例超过90%，形成了一支结构合理、富有创新精神的教师团队。\n\n## 6. 人才培养\n- **学生规模**：全日制在校学生约3.6万余人，其中本科生约2万余人，研究生约1.6万余人。\n- **培养特色**：坚持“基础扎实、视野开阔、德才兼备”的培养理念，注重创新创业教育，毕业生就业率与就业质量位居全国高校前列。\n- **国际交流**：与世界上160余所高校和科研机构建立了合作关系，开展学生交换、联合培养、合作科研等项目。\n\n## 7. 校园文化与社会贡献\n- **文化传承**：秉承岳麓书院“实事求是、敢为人先”的校训，形成了深厚的文化底蕴和独特的学术氛围。\n- **社会服务**：积极参与区域经济建设与社会发展，在科技成果转化、决策咨询、文化建设等方面发挥了重要作用。\n- **校友成就**：培养了大批杰出校友，遍布政界、学界、商界等领域，为国家发展和社会进步做出了重要贡献。\n\n## 8. 发展愿景\n湖南大学正朝着建设中国特色世界一流大学的目标迈进，致力于培养拔尖创新人才，产出高水平科研成果，传承创新优秀文化，服务国家战略需求，为中华民族伟大复兴贡献力量。\n\n---\n**报告说明**：本报告基于湖南大学公开信息整理，旨在提供综合性介绍。具体数据与最新动态请以学校官方发布为准。",
+          "confidence": 0.82,
+          "metrics": {
+            "latency_ms": 23659,
+            "usage": {
+              "prompt_tokens": 2096,
+              "completion_tokens": 712,
+              "total_tokens": 2808
+            }
+          }
+        },
+        {
+          "step": 3,
+          "agent_id": "agent_planner",
+          "agent_role": "planner",
+          "summary": "# 湖南大学介绍报告\n\n## 1. 学校概况\n湖南大学（Hunan University）坐落于中国湖南省长沙市，是一所历史悠久、声誉卓著的综合性研究型大学。学校起源于公元976年创建的岳麓书院，享有“千年学府，百年名校”的美誉。湖南大学是中华人民共和国教育部直属的全国重点大学，位列国家“双一流”、“985工程”、“211工程”重点建设高校。\n\n## 2. 历史沿革\n湖南大学的历史可追溯至宋太祖开宝九年（公元976年）创办的岳麓书院，是中国古代四大书院之一。1903年改制为湖南高等学堂，1926年正式定名为湖南大学。1937年成为国民政府教育部十余所国立大学之一。1953年全国院系调整后，学校更名为中南土木建筑学院，1958年恢复湖南大学校名。2000年，湖南大学与湖南财经学院合并组建新的湖南大学。\n\n## 3. 校区与基础设施\n学校拥有南校区、北校区、财院校区等多个校区，总占地面积约240万平方米，校舍建筑面积约145万平方米。主校区位于岳麓山脚下，湘江之滨，环境优美，人文气息浓厚。校园内保留有大量历史建筑，包括岳麓书院、自卑亭、爱晚亭等国家级文物保护单位。\n\n## 4. 学科建设与学术实力\n湖南大学学科门类齐全，涵盖哲学、经济学、法学、教育学、文学、历史学、理学、工学、管理学、医学、艺术学等11大学科门类。学校拥有：\n- 国家重点学科一级学科2个（机械工程、土木工程）\n- 国家重点学科二级学科14个\n- “双一流”建设学科3个（化学、机械工程、电气工程）\n- 博士后科研流动站28个\n- 博士学位授权一级学科30个\n- 硕士学位授权一级学科37个\n- 专业学位授权类别26个\n\n在第四轮全国学科评估中，化学、机械工程、土木工程、工商管理、设计学等学科表现突出。\n\n## 5. 师资力量\n学校现有教职工近4000人，其中专任教师约2300人。师资队伍包括：\n- 中国科学院、中国工程院院士12人（含双聘）\n- 国家杰出青年科学基金获得者27人\n- 国家优秀青年科学基金获得者25人\n- “长江学者”特聘教授、讲座教授、青年学者30余人\n- 国家级教学名师7人\n\n## 6. 人才培养\n湖南大学现有全日制在校学生约36000人，其中本科生约21000人，研究生约15000人（含博士研究生）。学校坚持立德树人，培养具有国际视野、创新精神和实践能力的高素质人才。近年来，学生在“互联网+”大学生创新创业大赛、“挑战杯”等国家级竞赛中屡获佳绩。\n\n## 7. 科学研究与社会服务\n学校拥有国家重点实验室、国家工程技术研究中心、国家工程实验室等国家级科研平台10余个，省部级科研平台70余个。在汽车设计与制造、土木工程、化学化工、电气工程、经济管理等领域具有显著优势。学校年科研经费超过15亿元，承担了大量国家重大科研项目，取得了一系列重要科研成果。\n\n## 8. 国际交流与合作\n湖南大学与世界上160余所高校和科研机构建立了合作关系，包括美国加州大学伯克利分校、英国牛津大学、日本早稻田大学等世界知名学府。学校设有中外合作办学项目，招收来自100多个国家的留学生，积极参与“一带一路”教育行动。\n\n## 9. 校园文化与传统\n学校秉承“实事求是、敢为人先”的校训和“博学、睿思、勤勉、致知”的校风，形成了独特的校园文化。岳麓书院作为学校的精神象征，传承着“传道济",
+          "confidence": 0.82,
+          "metrics": {
+            "latency_ms": 24254,
+            "usage": {
+              "prompt_tokens": 2101,
+              "completion_tokens": 800,
+              "total_tokens": 2901
+            }
+          }
+        }
+      ]
+    }
+  }
+}</pre>
+                  <p class="mt-2 text-[#8a867d]">metadata</p>
+                  <pre class="mt-1 overflow-auto text-[11px] text-[#8a867d]">{}</pre>
+                </details>
+              </li>
+              <li class="rounded-xl border border-[#ddd7ca] bg-[#fffcf6] p-2 text-xs">
+                <div class="flex items-center justify-between text-[#3e3a35]"><span
+                    class="font-semibold">TaskResult</span><span>00:17:16</span></div>
+                <p class="mt-1 text-[#8a867d]">发送者: api_gateway</p>
+                <p class="mt-1 text-[#8a867d]">接收者: 广播</p>
+                <details class="mt-2 rounded-lg border border-[#ddd7ca] bg-[#f7f2e8] p-2">
+                  <summary class="cursor-pointer text-[#3e3a35]">查看 payload</summary>
+                  <pre class="mt-2 overflow-auto text-[11px] text-[#6b6860]">{
+  "result": {
+    "summary": "# 湖南大学介绍报告\n\n## 1. 概述与定位\n湖南大学（Hunan University）坐落于中国湖南省长沙市，是一所历史悠久、声誉卓著的综合性全国重点大学。学校起源于公元976年创建的岳麓书院，享有“千年学府，百年名校”的美誉。现为中华人民共和国教育部直属的全国重点大学，是国家“双一流”、“211工程”、“985工程”重点建设高校。\n\n## 2. 历史沿革\n- **起源（976年）**：肇始于北宋开宝九年创建的岳麓书院，是中国古代四大书院之一。\n- **近代转型（1903年）**：改制为湖南高等学堂。\n- **定名与发展（1926年）**：正式定名为湖南大学。\n- **现代整合**：2000年，湖南大学与湖南财经学院合并，组建为新的湖南大学，学科体系更为完善。\n\n## 3. 校区与基础设施\n学校主要拥有以下校区：\n- **主校区（岳麓校区）**：位于岳麓山脚下，湘江之滨，环境优美，人文与自然景观交融，是核心教学科研区。\n- **财院校区**：原湖南财经学院校区，以经济、管理类学科为主。\n- **设施概况**：图书馆藏书丰富，实验室、科研中心配备先进，体育、生活设施齐全，为师生提供了良好的学习与研究环境。\n\n## 4. 学科建设与学术实力\n- **学科门类**：涵盖哲学、经济学、法学、教育学、文学、历史学、理学、工学、管理学、医学、艺术学等11大学科门类。\n- **优势学科**：\n    - **化学、机械工程、土木工程**：入选国家“世界一流学科”建设名单，实力雄厚，在国际上享有较高声誉。\n    - **电气工程、工商管理、设计学**：均为传统强势学科，在国内评估中名列前茅。\n- **科研平台**：拥有国家重点实验室、国家工程技术研究中心、教育部重点实验室等多个国家级及省部级科研平台。\n\n## 5. 师资力量与学生培养\n- **师资队伍**：汇聚了一批包括院士、国家杰出青年科学基金获得者、“长江学者”在内的优秀学者。\n- **人才培养**：坚持立德树人，培养具有国际视野、创新精神和社会责任感的高素质人才。毕业生以基础扎实、适应能力强广受社会各界好评。\n\n## 6. 国际交流与合作\n学校与多所世界知名大学和研究机构建立了广泛的合作关系，开展学生交换、联合培养、合作科研等项目，国际化办学水平持续提升。\n\n## 7. 校园文化与社会贡献\n- **文化精神**：秉承“实事求是、敢为人先”的校训和“博学、睿思、勤勉、致知”的校风，文化底蕴深厚。\n- **社会服务**：积极发挥智力优势，在区域经济发展、科技成果转化、文化传承创新等方面做出了重要贡献。\n\n## 8. 总结\n湖南大学以其千年文脉、百年积淀，发展成为一所学科齐全、特色鲜明、在国内外具有重要影响力的高水平研究型大学。它不仅是人才培养和科学研究的重要基地，也是推动社会进步与文化传承的关键力量。未来，学校将继续朝着中国特色世界一流大学的目标迈进。\n\n---\n**报告说明**：本报告基于对湖南大学公开信息与普遍认知的整合撰写，旨在提供概括性介绍。具体数据（如师生精确人数、最新排名、科研经费等）建议查阅学校官方最新发布的信息。",
+    "mode": "real",
+    "provider": "openai_compatible",
+    "model": "deepseek-ai/DeepSeek-V3.2",
+    "agent_id": "agent_writer",
+    "agent_role": "writer",
+    "execution_metrics": {
+      "latency_ms": 22985,
+      "usage": {
+        "prompt_tokens": 2096,
+        "completion_tokens": 725,
+        "total_tokens": 2821
+      },
+      "fallback_policy": "simulate",
+      "arbitration_mode": "off",
+      "judge_triggered": false,
+      "execution_mode": "parallel",
+      "pipeline_error_policy": "fail_fast",
+      "pipeline_error_count": 0,
+      "parallel_steps": 3,
+      "selected_agent_id": "agent_writer"
+    },
+    "parallel": {
+      "mode": "batch",
+      "selection": "highest_confidence",
+      "steps": [
+        {
+          "step": 1,
+          "agent_id": "agent_writer",
+          "agent_role": "writer",
+          "summary": "# 湖南大学介绍报告\n\n## 1. 概述与定位\n湖南大学（Hunan University）坐落于中国湖南省长沙市，是一所历史悠久、声誉卓著的综合性全国重点大学。学校起源于公元976年创建的岳麓书院，享有“千年学府，百年名校”的美誉。现为中华人民共和国教育部直属的全国重点大学，是国家“双一流”、“211工程”、“985工程”重点建设高校。\n\n## 2. 历史沿革\n- **起源（976年）**：肇始于北宋开宝九年创建的岳麓书院，是中国古代四大书院之一。\n- **近代转型（1903年）**：改制为湖南高等学堂。\n- **定名与发展（1926年）**：正式定名为湖南大学。\n- **现代整合**：2000年，湖南大学与湖南财经学院合并，组建为新的湖南大学，学科体系更为完善。\n\n## 3. 校区与基础设施\n学校主要拥有以下校区：\n- **主校区（岳麓校区）**：位于岳麓山脚下，湘江之滨，环境优美，人文与自然景观交融，是核心教学科研区。\n- **财院校区**：原湖南财经学院校区，以经济、管理类学科为主。\n- **设施概况**：图书馆藏书丰富，实验室、科研中心配备先进，体育、生活设施齐全，为师生提供了良好的学习与研究环境。\n\n## 4. 学科建设与学术实力\n- **学科门类**：涵盖哲学、经济学、法学、教育学、文学、历史学、理学、工学、管理学、医学、艺术学等11大学科门类。\n- **优势学科**：\n    - **化学、机械工程、土木工程**：入选国家“世界一流学科”建设名单，实力雄厚，在国际上享有较高声誉。\n    - **电气工程、工商管理、设计学**：均为传统强势学科，在国内评估中名列前茅。\n- **科研平台**：拥有国家重点实验室、国家工程技术研究中心、教育部重点实验室等多个国家级及省部级科研平台。\n\n## 5. 师资力量与学生培养\n- **师资队伍**：汇聚了一批包括院士、国家杰出青年科学基金获得者、“长江学者”在内的优秀学者。\n- **人才培养**：坚持立德树人，培养具有国际视野、创新精神和社会责任感的高素质人才。毕业生以基础扎实、适应能力强广受社会各界好评。\n\n## 6. 国际交流与合作\n学校与多所世界知名大学和研究机构建立了广泛的合作关系，开展学生交换、联合培养、合作科研等项目，国际化办学水平持续提升。\n\n## 7. 校园文化与社会贡献\n- **文化精神**：秉承“实事求是、敢为人先”的校训和“博学、睿思、勤勉、致知”的校风，文化底蕴深厚。\n- **社会服务**：积极发挥智力优势，在区域经济发展、科技成果转化、文化传承创新等方面做出了重要贡献。\n\n## 8. 总结\n湖南大学以其千年文脉、百年积淀，发展成为一所学科齐全、特色鲜明、在国内外具有重要影响力的高水平研究型大学。它不仅是人才培养和科学研究的重要基地，也是推动社会进步与文化传承的关键力量。未来，学校将继续朝着中国特色世界一流大学的目标迈进。\n\n---\n**报告说明**：本报告基于对湖南大学公开信息与普遍认知的整合撰写，旨在提供概括性介绍。具体数据（如师生精确人数、最新排名、科研经费等）建议查阅学校官方最新发布的信息。",
+          "confidence": 0.82,
+          "metrics": {
+            "latency_ms": 22985,
+            "usage": {
+              "prompt_tokens": 2096,
+              "completion_tokens": 725,
+              "total_tokens": 2821
+            }
+          }
+        },
+        {
+          "step": 2,
+          "agent_id": "agent_analyst",
+          "agent_role": "analyst",
+          "summary": "# 湖南大学综合介绍报告\n\n## 1. 学校概况\n湖南大学（Hunan University）坐落于中国湖南省长沙市，是教育部直属的全国重点大学，位列国家“双一流”、“985工程”、“211工程”重点建设高校。学校起源于公元976年创建的岳麓书院，享有“千年学府，百年名校”之誉，是中国高等教育发展历史的活化石。\n\n## 2. 历史沿革\n- **公元976年**：岳麓书院创立，为古代四大书院之一。\n- **1903年**：改制为湖南高等学堂。\n- **1926年**：正式定名为湖南大学。\n- **2000年**：湖南大学与湖南财经学院合并，组建新的湖南大学。\n- **2017年**：入选国家“双一流”建设高校。\n\n## 3. 校区与基础设施\n学校拥有南校区、北校区、财院校区等多个校区，总占地面积约240万平方米。校园坐落在岳麓山脚下，湘江之滨，环境优美，融合了古典书院建筑与现代教学设施。图书馆藏书丰富，数字资源完备，为教学科研提供有力支撑。\n\n## 4. 学科建设与学术实力\n- **学科门类**：涵盖哲学、经济学、法学、教育学、文学、历史学、理学、工学、管理学、医学、艺术学等11大学科门类。\n- **优势学科**：化学、机械工程、土木工程、工商管理、设计学等学科在国内外享有较高声誉。其中，化学、机械工程学科入选国家“世界一流学科”建设名单。\n- **科研平台**：拥有国家重点实验室、国家工程技术研究中心、国家工程实验室等多个国家级科研平台，在汽车车身先进设计制造、风工程与桥梁工程、化学生物传感与计量学等领域具有突出优势。\n\n## 5. 师资力量\n学校拥有一支高水平的师资队伍，包括两院院士、国家杰出青年科学基金获得者、长江学者等各类高层次人才。专任教师中具有博士学位的比例超过90%，形成了一支结构合理、富有创新精神的教师团队。\n\n## 6. 人才培养\n- **学生规模**：全日制在校学生约3.6万余人，其中本科生约2万余人，研究生约1.6万余人。\n- **培养特色**：坚持“基础扎实、视野开阔、德才兼备”的培养理念，注重创新创业教育，毕业生就业率与就业质量位居全国高校前列。\n- **国际交流**：与世界上160余所高校和科研机构建立了合作关系，开展学生交换、联合培养、合作科研等项目。\n\n## 7. 校园文化与社会贡献\n- **文化传承**：秉承岳麓书院“实事求是、敢为人先”的校训，形成了深厚的文化底蕴和独特的学术氛围。\n- **社会服务**：积极参与区域经济建设与社会发展，在科技成果转化、决策咨询、文化建设等方面发挥了重要作用。\n- **校友成就**：培养了大批杰出校友，遍布政界、学界、商界等领域，为国家发展和社会进步做出了重要贡献。\n\n## 8. 发展愿景\n湖南大学正朝着建设中国特色世界一流大学的目标迈进，致力于培养拔尖创新人才，产出高水平科研成果，传承创新优秀文化，服务国家战略需求，为中华民族伟大复兴贡献力量。\n\n---\n**报告说明**：本报告基于湖南大学公开信息整理，旨在提供综合性介绍。具体数据与最新动态请以学校官方发布为准。",
+          "confidence": 0.82,
+          "metrics": {
+            "latency_ms": 23659,
+            "usage": {
+              "prompt_tokens": 2096,
+              "completion_tokens": 712,
+              "total_tokens": 2808
+            }
+          }
+        },
+        {
+          "step": 3,
+          "agent_id": "agent_planner",
+          "agent_role": "planner",
+          "summary": "# 湖南大学介绍报告\n\n## 1. 学校概况\n湖南大学（Hunan University）坐落于中国湖南省长沙市，是一所历史悠久、声誉卓著的综合性研究型大学。学校起源于公元976年创建的岳麓书院，享有“千年学府，百年名校”的美誉。湖南大学是中华人民共和国教育部直属的全国重点大学，位列国家“双一流”、“985工程”、“211工程”重点建设高校。\n\n## 2. 历史沿革\n湖南大学的历史可追溯至宋太祖开宝九年（公元976年）创办的岳麓书院，是中国古代四大书院之一。1903年改制为湖南高等学堂，1926年正式定名为湖南大学。1937年成为国民政府教育部十余所国立大学之一。1953年全国院系调整后，学校更名为中南土木建筑学院，1958年恢复湖南大学校名。2000年，湖南大学与湖南财经学院合并组建新的湖南大学。\n\n## 3. 校区与基础设施\n学校拥有南校区、北校区、财院校区等多个校区，总占地面积约240万平方米，校舍建筑面积约145万平方米。主校区位于岳麓山脚下，湘江之滨，环境优美，人文气息浓厚。校园内保留有大量历史建筑，包括岳麓书院、自卑亭、爱晚亭等国家级文物保护单位。\n\n## 4. 学科建设与学术实力\n湖南大学学科门类齐全，涵盖哲学、经济学、法学、教育学、文学、历史学、理学、工学、管理学、医学、艺术学等11大学科门类。学校拥有：\n- 国家重点学科一级学科2个（机械工程、土木工程）\n- 国家重点学科二级学科14个\n- “双一流”建设学科3个（化学、机械工程、电气工程）\n- 博士后科研流动站28个\n- 博士学位授权一级学科30个\n- 硕士学位授权一级学科37个\n- 专业学位授权类别26个\n\n在第四轮全国学科评估中，化学、机械工程、土木工程、工商管理、设计学等学科表现突出。\n\n## 5. 师资力量\n学校现有教职工近4000人，其中专任教师约2300人。师资队伍包括：\n- 中国科学院、中国工程院院士12人（含双聘）\n- 国家杰出青年科学基金获得者27人\n- 国家优秀青年科学基金获得者25人\n- “长江学者”特聘教授、讲座教授、青年学者30余人\n- 国家级教学名师7人\n\n## 6. 人才培养\n湖南大学现有全日制在校学生约36000人，其中本科生约21000人，研究生约15000人（含博士研究生）。学校坚持立德树人，培养具有国际视野、创新精神和实践能力的高素质人才。近年来，学生在“互联网+”大学生创新创业大赛、“挑战杯”等国家级竞赛中屡获佳绩。\n\n## 7. 科学研究与社会服务\n学校拥有国家重点实验室、国家工程技术研究中心、国家工程实验室等国家级科研平台10余个，省部级科研平台70余个。在汽车设计与制造、土木工程、化学化工、电气工程、经济管理等领域具有显著优势。学校年科研经费超过15亿元，承担了大量国家重大科研项目，取得了一系列重要科研成果。\n\n## 8. 国际交流与合作\n湖南大学与世界上160余所高校和科研机构建立了合作关系，包括美国加州大学伯克利分校、英国牛津大学、日本早稻田大学等世界知名学府。学校设有中外合作办学项目，招收来自100多个国家的留学生，积极参与“一带一路”教育行动。\n\n## 9. 校园文化与传统\n学校秉承“实事求是、敢为人先”的校训和“博学、睿思、勤勉、致知”的校风，形成了独特的校园文化。岳麓书院作为学校的精神象征，传承着“传道济",
+          "confidence": 0.82,
+          "metrics": {
+            "latency_ms": 24254,
+            "usage": {
+              "prompt_tokens": 2101,
+              "completion_tokens": 800,
+              "total_tokens": 2901
+            }
+          }
+        }
+      ]
+    }
+  }
+}</pre>
+                  <p class="mt-2 text-[#8a867d]">metadata</p>
+                  <pre class="mt-1 overflow-auto text-[11px] text-[#8a867d]">{}</pre>
+                </details>
+              </li>
+              <li class="rounded-xl border border-[#ddd7ca] bg-[#fffcf6] p-2 text-xs">
+                <div class="flex items-center justify-between text-[#3e3a35]"><span
+                    class="font-semibold">TaskUpdate</span><span>00:17:16</span></div>
+                <p class="mt-1 text-[#8a867d]">发送者: api_gateway</p>
+                <p class="mt-1 text-[#8a867d]">接收者: 广播</p>
+                <p class="mt-1 text-[#6b6860]">status=completed</p>
+                <details class="mt-2 rounded-lg border border-[#ddd7ca] bg-[#f7f2e8] p-2">
+                  <summary class="cursor-pointer text-[#3e3a35]">查看 payload</summary>
+                  <pre class="mt-2 overflow-auto text-[11px] text-[#6b6860]">{
+  "status": "completed",
+  "progress": 100
+}</pre>
+                  <p class="mt-2 text-[#8a867d]">metadata</p>
+                  <pre class="mt-1 overflow-auto text-[11px] text-[#8a867d]">{}</pre>
+                </details>
+              </li>
+              <li class="rounded-xl border border-[#ddd7ca] bg-[#fffcf6] p-2 text-xs">
+                <div class="flex items-center justify-between text-[#3e3a35]"><span
+                    class="font-semibold">AgentExecutionResult</span><span>00:17:16</span></div>
+                <p class="mt-1 text-[#8a867d]">发送者: agent_planner</p>
+                <p class="mt-1 text-[#8a867d]">接收者: 广播</p>
+                <details class="mt-2 rounded-lg border border-[#ddd7ca] bg-[#f7f2e8] p-2">
+                  <summary class="cursor-pointer text-[#3e3a35]">查看 payload</summary>
+                  <pre class="mt-2 overflow-auto text-[11px] text-[#6b6860]">{
+  "step": 3,
+  "total_steps": 3,
+  "agent_id": "agent_planner",
+  "summary": "# 湖南大学介绍报告\n\n## 1. 学校概况\n湖南大学（Hunan University）坐落于中国湖南省长沙市，是一所历史悠久、声誉卓著的综合性研究型大学。学校起源于公元976年创建的岳麓书院，享有“千年学府，百年名校”的美誉。湖南大学是中华人民共和国教育部直属的全国重点大学，位列国家“双一流”、“985工程”、“211工程”重点建设高校。\n\n## 2. 历史沿革\n湖南大学的历史可追溯至宋太祖开宝九年（公元976年）创办的岳麓书院，是中国古代四大书院之一。1903年改制为湖南高等学堂，1926年正式定名为湖南大学。1937年成为国民政府教育部十余所国立大学之一。1953年全国院系调整后，学校更名为中南土木建筑学院，1958年恢复湖南大学校名。2000年，湖南大学与湖南财经学院合并组建新的湖南大学。\n\n## 3. 校区与基础设施\n学校拥有南校区、北校区、财院校区等多个校区，总占地面积约240万平方米，校舍建筑面积约145万平方米。主校区位于岳麓山脚下，湘江之滨，环境优美，人文气息浓厚。校园内保留有大量历史建筑，包括岳麓书院、自卑亭、爱晚亭等国家级文物保护单位。\n\n## 4. 学科建设与学术实力\n湖南大学学科门类齐全，涵盖哲学、经济学、法学、教育学、文学、历史学、理学、工学、管理学、医学、艺术学等11大学科门类。学校拥有：\n- 国家重点学科一级学科2个（机械工程、土木工程）\n- 国家重点学科二级学科14个\n- “双一流”建设学科3个（化学、机械工程、电气工程）\n- 博士后科研流动站28个\n- 博士学位授权一级学科30个\n- 硕士学位授权一级学科37个\n- 专业学位授权类别26个\n\n在第四轮全国学科评估中，化学、机械工程、土木工程、工商管理、设计学等学科表现突出。\n\n## 5. 师资力量\n学校现有教职工近4000人，其中专任教师约2300人。师资队伍包括：\n- 中国科学院、中国工程院院士12人（含双聘）\n- 国家杰出青年科学基金获得者27人\n- 国家优秀青年科学基金获得者25人\n- “长江学者”特聘教授、讲座教授、青年学者30余人\n- 国家级教学名师7人\n\n## 6. 人才培养\n湖南大学现有全日制在校学生约36000人，其中本科生约21000人，研究生约15000人（含博士研究生）。学校坚持立德树人，培养具有国际视野、创新精神和实践能力的高素质人才。近年来，学生在“互联网+”大学生创新创业大赛、“挑战杯”等国家级竞赛中屡获佳绩。\n\n## 7. 科学研究与社会服务\n学校拥有国家重点实验室、国家工程技术研究中心、国家工程实验室等国家级科研平台10余个，省部级科研平台70余个。在汽车设计与制造、土木工程、化学化工、电气工程、经济管理等领域具有显著优势。学校年科研经费超过15亿元，承担了大量国家重大科研项目，取得了一系列重要科研成果。\n\n## 8. 国际交流与合作\n湖南大学与世界上160余所高校和科研机构建立了合作关系，包括美国加州大学伯克利分校、英国牛津大学、日本早稻田大学等世界知名学府。学校设有中外合作办学项目，招收来自100多个国家的留学生，积极参与“一带一路”教育行动。\n\n## 9. 校园文化与传统\n学校秉承“实事求是、敢为人先”的校训和“博学、睿思、勤勉、致知”的校风，形成了独特的校园文化。岳麓书院作为学校的精神象征，传承着“传道济",
+  "metrics": {
+    "latency_ms": 24254,
+    "usage": {
+      "prompt_tokens": 2101,
+      "completion_tokens": 800,
+      "total_tokens": 2901
+    }
+  }
+}</pre>
+                  <p class="mt-2 text-[#8a867d]">metadata</p>
+                  <pre class="mt-1 overflow-auto text-[11px] text-[#8a867d]">{}</pre>
+                </details>
+              </li>
+              <li class="rounded-xl border border-[#ddd7ca] bg-[#fffcf6] p-2 text-xs">
+                <div class="flex items-center justify-between text-[#3e3a35]"><span
+                    class="font-semibold">AgentExecutionStart</span><span>00:16:52</span></div>
+                <p class="mt-1 text-[#8a867d]">发送者: agent_planner</p>
+                <p class="mt-1 text-[#8a867d]">接收者: 广播</p>
+                <details class="mt-2 rounded-lg border border-[#ddd7ca] bg-[#f7f2e8] p-2">
+                  <summary class="cursor-pointer text-[#3e3a35]">查看 payload</summary>
+                  <pre class="mt-2 overflow-auto text-[11px] text-[#6b6860]">{
+  "step": 3,
+  "total_steps": 3,
+  "agent_id": "agent_planner",
+  "agent_role": "planner",
+  "provider": "openai_compatible",
+  "model": null
+}</pre>
+                  <p class="mt-2 text-[#8a867d]">metadata</p>
+                  <pre class="mt-1 overflow-auto text-[11px] text-[#8a867d]">{}</pre>
+                </details>
+              </li>
+              <li class="rounded-xl border border-[#ddd7ca] bg-[#fffcf6] p-2 text-xs">
+                <div class="flex items-center justify-between text-[#3e3a35]"><span
+                    class="font-semibold">AgentExecutionResult</span><span>00:16:52</span></div>
+                <p class="mt-1 text-[#8a867d]">发送者: agent_analyst</p>
+                <p class="mt-1 text-[#8a867d]">接收者: 广播</p>
+                <details class="mt-2 rounded-lg border border-[#ddd7ca] bg-[#f7f2e8] p-2">
+                  <summary class="cursor-pointer text-[#3e3a35]">查看 payload</summary>
+                  <pre class="mt-2 overflow-auto text-[11px] text-[#6b6860]">{
+  "step": 2,
+  "total_steps": 3,
+  "agent_id": "agent_analyst",
+  "summary": "# 湖南大学综合介绍报告\n\n## 1. 学校概况\n湖南大学（Hunan University）坐落于中国湖南省长沙市，是教育部直属的全国重点大学，位列国家“双一流”、“985工程”、“211工程”重点建设高校。学校起源于公元976年创建的岳麓书院，享有“千年学府，百年名校”之誉，是中国高等教育发展历史的活化石。\n\n## 2. 历史沿革\n- **公元976年**：岳麓书院创立，为古代四大书院之一。\n- **1903年**：改制为湖南高等学堂。\n- **1926年**：正式定名为湖南大学。\n- **2000年**：湖南大学与湖南财经学院合并，组建新的湖南大学。\n- **2017年**：入选国家“双一流”建设高校。\n\n## 3. 校区与基础设施\n学校拥有南校区、北校区、财院校区等多个校区，总占地面积约240万平方米。校园坐落在岳麓山脚下，湘江之滨，环境优美，融合了古典书院建筑与现代教学设施。图书馆藏书丰富，数字资源完备，为教学科研提供有力支撑。\n\n## 4. 学科建设与学术实力\n- **学科门类**：涵盖哲学、经济学、法学、教育学、文学、历史学、理学、工学、管理学、医学、艺术学等11大学科门类。\n- **优势学科**：化学、机械工程、土木工程、工商管理、设计学等学科在国内外享有较高声誉。其中，化学、机械工程学科入选国家“世界一流学科”建设名单。\n- **科研平台**：拥有国家重点实验室、国家工程技术研究中心、国家工程实验室等多个国家级科研平台，在汽车车身先进设计制造、风工程与桥梁工程、化学生物传感与计量学等领域具有突出优势。\n\n## 5. 师资力量\n学校拥有一支高水平的师资队伍，包括两院院士、国家杰出青年科学基金获得者、长江学者等各类高层次人才。专任教师中具有博士学位的比例超过90%，形成了一支结构合理、富有创新精神的教师团队。\n\n## 6. 人才培养\n- **学生规模**：全日制在校学生约3.6万余人，其中本科生约2万余人，研究生约1.6万余人。\n- **培养特色**：坚持“基础扎实、视野开阔、德才兼备”的培养理念，注重创新创业教育，毕业生就业率与就业质量位居全国高校前列。\n- **国际交流**：与世界上160余所高校和科研机构建立了合作关系，开展学生交换、联合培养、合作科研等项目。\n\n## 7. 校园文化与社会贡献\n- **文化传承**：秉承岳麓书院“实事求是、敢为人先”的校训，形成了深厚的文化底蕴和独特的学术氛围。\n- **社会服务**：积极参与区域经济建设与社会发展，在科技成果转化、决策咨询、文化建设等方面发挥了重要作用。\n- **校友成就**：培养了大批杰出校友，遍布政界、学界、商界等领域，为国家发展和社会进步做出了重要贡献。\n\n## 8. 发展愿景\n湖南大学正朝着建设中国特色世界一流大学的目标迈进，致力于培养拔尖创新人才，产出高水平科研成果，传承创新优秀文化，服务国家战略需求，为中华民族伟大复兴贡献力量。\n\n---\n**报告说明**：本报告基于湖南大学公开信息整理，旨在提供综合性介绍。具体数据与最新动态请以学校官方发布为准。",
+  "metrics": {
+    "latency_ms": 23659,
+    "usage": {
+      "prompt_tokens": 2096,
+      "completion_tokens": 712,
+      "total_tokens": 2808
+    }
+  }
+}</pre>
+                  <p class="mt-2 text-[#8a867d]">metadata</p>
+                  <pre class="mt-1 overflow-auto text-[11px] text-[#8a867d]">{}</pre>
+                </details>
+              </li>
+              <li class="rounded-xl border border-[#ddd7ca] bg-[#fffcf6] p-2 text-xs">
+                <div class="flex items-center justify-between text-[#3e3a35]"><span
+                    class="font-semibold">AgentExecutionStart</span><span>00:16:28</span></div>
+                <p class="mt-1 text-[#8a867d]">发送者: agent_analyst</p>
+                <p class="mt-1 text-[#8a867d]">接收者: 广播</p>
+                <details class="mt-2 rounded-lg border border-[#ddd7ca] bg-[#f7f2e8] p-2">
+                  <summary class="cursor-pointer text-[#3e3a35]">查看 payload</summary>
+                  <pre class="mt-2 overflow-auto text-[11px] text-[#6b6860]">{
+  "step": 2,
+  "total_steps": 3,
+  "agent_id": "agent_analyst",
+  "agent_role": "analyst",
+  "provider": "openai_compatible",
+  "model": null
+}</pre>
+                  <p class="mt-2 text-[#8a867d]">metadata</p>
+                  <pre class="mt-1 overflow-auto text-[11px] text-[#8a867d]">{}</pre>
+                </details>
+              </li>
+              <li class="rounded-xl border border-[#ddd7ca] bg-[#fffcf6] p-2 text-xs">
+                <div class="flex items-center justify-between text-[#3e3a35]"><span
+                    class="font-semibold">AgentExecutionResult</span><span>00:16:28</span></div>
+                <p class="mt-1 text-[#8a867d]">发送者: agent_writer</p>
+                <p class="mt-1 text-[#8a867d]">接收者: 广播</p>
+                <details class="mt-2 rounded-lg border border-[#ddd7ca] bg-[#f7f2e8] p-2">
+                  <summary class="cursor-pointer text-[#3e3a35]">查看 payload</summary>
+                  <pre class="mt-2 overflow-auto text-[11px] text-[#6b6860]">{
+  "step": 1,
+  "total_steps": 3,
+  "agent_id": "agent_writer",
+  "summary": "# 湖南大学介绍报告\n\n## 1. 概述与定位\n湖南大学（Hunan University）坐落于中国湖南省长沙市，是一所历史悠久、声誉卓著的综合性全国重点大学。学校起源于公元976年创建的岳麓书院，享有“千年学府，百年名校”的美誉。现为中华人民共和国教育部直属的全国重点大学，是国家“双一流”、“211工程”、“985工程”重点建设高校。\n\n## 2. 历史沿革\n- **起源（976年）**：肇始于北宋开宝九年创建的岳麓书院，是中国古代四大书院之一。\n- **近代转型（1903年）**：改制为湖南高等学堂。\n- **定名与发展（1926年）**：正式定名为湖南大学。\n- **现代整合**：2000年，湖南大学与湖南财经学院合并，组建为新的湖南大学，学科体系更为完善。\n\n## 3. 校区与基础设施\n学校主要拥有以下校区：\n- **主校区（岳麓校区）**：位于岳麓山脚下，湘江之滨，环境优美，人文与自然景观交融，是核心教学科研区。\n- **财院校区**：原湖南财经学院校区，以经济、管理类学科为主。\n- **设施概况**：图书馆藏书丰富，实验室、科研中心配备先进，体育、生活设施齐全，为师生提供了良好的学习与研究环境。\n\n## 4. 学科建设与学术实力\n- **学科门类**：涵盖哲学、经济学、法学、教育学、文学、历史学、理学、工学、管理学、医学、艺术学等11大学科门类。\n- **优势学科**：\n    - **化学、机械工程、土木工程**：入选国家“世界一流学科”建设名单，实力雄厚，在国际上享有较高声誉。\n    - **电气工程、工商管理、设计学**：均为传统强势学科，在国内评估中名列前茅。\n- **科研平台**：拥有国家重点实验室、国家工程技术研究中心、教育部重点实验室等多个国家级及省部级科研平台。\n\n## 5. 师资力量与学生培养\n- **师资队伍**：汇聚了一批包括院士、国家杰出青年科学基金获得者、“长江学者”在内的优秀学者。\n- **人才培养**：坚持立德树人，培养具有国际视野、创新精神和社会责任感的高素质人才。毕业生以基础扎实、适应能力强广受社会各界好评。\n\n## 6. 国际交流与合作\n学校与多所世界知名大学和研究机构建立了广泛的合作关系，开展学生交换、联合培养、合作科研等项目，国际化办学水平持续提升。\n\n## 7. 校园文化与社会贡献\n- **文化精神**：秉承“实事求是、敢为人先”的校训和“博学、睿思、勤勉、致知”的校风，文化底蕴深厚。\n- **社会服务**：积极发挥智力优势，在区域经济发展、科技成果转化、文化传承创新等方面做出了重要贡献。\n\n## 8. 总结\n湖南大学以其千年文脉、百年积淀，发展成为一所学科齐全、特色鲜明、在国内外具有重要影响力的高水平研究型大学。它不仅是人才培养和科学研究的重要基地，也是推动社会进步与文化传承的关键力量。未来，学校将继续朝着中国特色世界一流大学的目标迈进。\n\n---\n**报告说明**：本报告基于对湖南大学公开信息与普遍认知的整合撰写，旨在提供概括性介绍。具体数据（如师生精确人数、最新排名、科研经费等）建议查阅学校官方最新发布的信息。",
+  "metrics": {
+    "latency_ms": 22985,
+    "usage": {
+      "prompt_tokens": 2096,
+      "completion_tokens": 725,
+      "total_tokens": 2821
+    }
+  }
+}</pre>
+                  <p class="mt-2 text-[#8a867d]">metadata</p>
+                  <pre class="mt-1 overflow-auto text-[11px] text-[#8a867d]">{}</pre>
+                </details>
+              </li>
+              <li class="rounded-xl border border-[#ddd7ca] bg-[#fffcf6] p-2 text-xs">
+                <div class="flex items-center justify-between text-[#3e3a35]"><span
+                    class="font-semibold">AgentExecutionStart</span><span>00:16:05</span></div>
+                <p class="mt-1 text-[#8a867d]">发送者: agent_writer</p>
+                <p class="mt-1 text-[#8a867d]">接收者: 广播</p>
+                <details class="mt-2 rounded-lg border border-[#ddd7ca] bg-[#f7f2e8] p-2">
+                  <summary class="cursor-pointer text-[#3e3a35]">查看 payload</summary>
+                  <pre class="mt-2 overflow-auto text-[11px] text-[#6b6860]">{
+  "step": 1,
+  "total_steps": 3,
+  "agent_id": "agent_writer",
+  "agent_role": "writer",
+  "provider": "openai_compatible",
+  "model": null
+}</pre>
+                  <p class="mt-2 text-[#8a867d]">metadata</p>
+                  <pre class="mt-1 overflow-auto text-[11px] text-[#8a867d]">{}</pre>
+                </details>
+              </li>
+              <li class="rounded-xl border border-[#ddd7ca] bg-[#fffcf6] p-2 text-xs">
+                <div class="flex items-center justify-between text-[#3e3a35]"><span
+                    class="font-semibold">TaskUpdate</span><span>00:16:05</span></div>
+                <p class="mt-1 text-[#8a867d]">发送者: api_gateway</p>
+                <p class="mt-1 text-[#8a867d]">接收者: 广播</p>
+                <p class="mt-1 text-[#6b6860]">status=in_progress</p>
+                <details class="mt-2 rounded-lg border border-[#ddd7ca] bg-[#f7f2e8] p-2">
+                  <summary class="cursor-pointer text-[#3e3a35]">查看 payload</summary>
+                  <pre class="mt-2 overflow-auto text-[11px] text-[#6b6860]">{
+  "status": "in_progress",
+  "progress": 85
+}</pre>
+                  <p class="mt-2 text-[#8a867d]">metadata</p>
+                  <pre class="mt-1 overflow-auto text-[11px] text-[#8a867d]">{}</pre>
+                </details>
+              </li>
+              <li class="rounded-xl border border-[#ddd7ca] bg-[#fffcf6] p-2 text-xs">
+                <div class="flex items-center justify-between text-[#3e3a35]"><span
+                    class="font-semibold">TaskUpdate</span><span>00:16:05</span></div>
+                <p class="mt-1 text-[#8a867d]">发送者: api_gateway</p>
+                <p class="mt-1 text-[#8a867d]">接收者: 广播</p>
+                <p class="mt-1 text-[#6b6860]">status=in_progress</p>
+                <details class="mt-2 rounded-lg border border-[#ddd7ca] bg-[#f7f2e8] p-2">
+                  <summary class="cursor-pointer text-[#3e3a35]">查看 payload</summary>
+                  <pre class="mt-2 overflow-auto text-[11px] text-[#6b6860]">{
+  "status": "in_progress",
+  "progress": 60
+}</pre>
+                  <p class="mt-2 text-[#8a867d]">metadata</p>
+                  <pre class="mt-1 overflow-auto text-[11px] text-[#8a867d]">{}</pre>
+                </details>
+              </li>
+              <li class="rounded-xl border border-[#ddd7ca] bg-[#fffcf6] p-2 text-xs">
+                <div class="flex items-center justify-between text-[#3e3a35]"><span
+                    class="font-semibold">TaskUpdate</span><span>00:16:05</span></div>
+                <p class="mt-1 text-[#8a867d]">发送者: api_gateway</p>
+                <p class="mt-1 text-[#8a867d]">接收者: 广播</p>
+                <p class="mt-1 text-[#6b6860]">status=in_progress</p>
+                <details class="mt-2 rounded-lg border border-[#ddd7ca] bg-[#f7f2e8] p-2">
+                  <summary class="cursor-pointer text-[#3e3a35]">查看 payload</summary>
+                  <pre class="mt-2 overflow-auto text-[11px] text-[#6b6860]">{
+  "status": "in_progress",
+  "progress": 25
+}</pre>
+                  <p class="mt-2 text-[#8a867d]">metadata</p>
+                  <pre class="mt-1 overflow-auto text-[11px] text-[#8a867d]">{}</pre>
+                </details>
+              </li>
+              <li class="rounded-xl border border-[#ddd7ca] bg-[#fffcf6] p-2 text-xs">
+                <div class="flex items-center justify-between text-[#3e3a35]"><span
+                    class="font-semibold">TaskUpdate</span><span>00:15:55</span></div>
+                <p class="mt-1 text-[#8a867d]">发送者: workflow_engine</p>
+                <p class="mt-1 text-[#8a867d]">接收者: 广播</p>
+                <p class="mt-1 text-[#6b6860]">workflow_event=queue_dispatch</p>
+                <details class="mt-2 rounded-lg border border-[#ddd7ca] bg-[#f7f2e8] p-2">
+                  <summary class="cursor-pointer text-[#3e3a35]">查看 payload</summary>
+                  <pre class="mt-2 overflow-auto text-[11px] text-[#6b6860]">{
+  "workflow_event": "queue_dispatch",
+  "ready_queue": [],
+  "dispatch_state": {
+    "pending_count": 4,
+    "ready_count": 0,
+    "blocked_count": 3,
+    "running_count": 1,
+    "completed_count": 0,
+    "failed_count": 0,
+    "last_transition_at": "2026-04-15T16:15:55.657498+00:00"
+  }
+}</pre>
+                  <p class="mt-2 text-[#8a867d]">metadata</p>
+                  <pre class="mt-1 overflow-auto text-[11px] text-[#8a867d]">{}</pre>
+                </details>
+              </li>
+              <li class="rounded-xl border border-[#ddd7ca] bg-[#fffcf6] p-2 text-xs">
+                <div class="flex items-center justify-between text-[#3e3a35]"><span
+                    class="font-semibold">TaskUpdate</span><span>00:15:55</span></div>
+                <p class="mt-1 text-[#8a867d]">发送者: workflow_engine</p>
+                <p class="mt-1 text-[#8a867d]">接收者: 广播</p>
+                <p class="mt-1 text-[#6b6860]">workflow_event=node_dispatched</p>
+                <details class="mt-2 rounded-lg border border-[#ddd7ca] bg-[#f7f2e8] p-2">
+                  <summary class="cursor-pointer text-[#3e3a35]">查看 payload</summary>
+                  <pre class="mt-2 overflow-auto text-[11px] text-[#6b6860]">{
+  "workflow_event": "node_dispatched",
+  "node_id": "step_1",
+  "assigned_agent_id": "agent_writer",
+  "attempt_count": 1
+}</pre>
+                  <p class="mt-2 text-[#8a867d]">metadata</p>
+                  <pre class="mt-1 overflow-auto text-[11px] text-[#8a867d]">{}</pre>
+                </details>
+              </li>
+              <li class="rounded-xl border border-[#ddd7ca] bg-[#fffcf6] p-2 text-xs">
+                <div class="flex items-center justify-between text-[#3e3a35]"><span
+                    class="font-semibold">TaskClaim</span><span>00:15:55</span></div>
+                <p class="mt-1 text-[#8a867d]">发送者: agent_writer</p>
+                <p class="mt-1 text-[#8a867d]">接收者: 广播</p>
+                <details class="mt-2 rounded-lg border border-[#ddd7ca] bg-[#f7f2e8] p-2">
+                  <summary class="cursor-pointer text-[#3e3a35]">查看 payload</summary>
+                  <pre class="mt-2 overflow-auto text-[11px] text-[#6b6860]">{
+  "agent_id": "agent_writer",
+  "note": "workflow dispatch"
+}</pre>
+                  <p class="mt-2 text-[#8a867d]">metadata</p>
+                  <pre class="mt-1 overflow-auto text-[11px] text-[#8a867d]">{}</pre>
+                </details>
+              </li>
+              <li class="rounded-xl border border-[#ddd7ca] bg-[#fffcf6] p-2 text-xs">
+                <div class="flex items-center justify-between text-[#3e3a35]"><span
+                    class="font-semibold">TaskPipelineStart</span><span>00:15:55</span></div>
+                <p class="mt-1 text-[#8a867d]">发送者: workflow_engine</p>
+                <p class="mt-1 text-[#8a867d]">接收者: 广播</p>
+                <details class="mt-2 rounded-lg border border-[#ddd7ca] bg-[#f7f2e8] p-2">
+                  <summary class="cursor-pointer text-[#3e3a35]">查看 payload</summary>
+                  <pre class="mt-2 overflow-auto text-[11px] text-[#6b6860]">{
+  "workflow_run_id": "wf_f6295518ea",
+  "node_count": 4,
+  "ready_queue": [
+    "step_1"
+  ]
+}</pre>
+                  <p class="mt-2 text-[#8a867d]">metadata</p>
+                  <pre class="mt-1 overflow-auto text-[11px] text-[#8a867d]">{}</pre>
+                </details>
+              </li>
+              <li class="rounded-xl border border-[#ddd7ca] bg-[#fffcf6] p-2 text-xs">
+                <div class="flex items-center justify-between text-[#3e3a35]"><span
+                    class="font-semibold">TaskUpdate</span><span>00:15:55</span></div>
+                <p class="mt-1 text-[#8a867d]">发送者: workflow_engine</p>
+                <p class="mt-1 text-[#8a867d]">接收者: 广播</p>
+                <p class="mt-1 text-[#6b6860]">status=in_progress</p>
+                <details class="mt-2 rounded-lg border border-[#ddd7ca] bg-[#f7f2e8] p-2">
+                  <summary class="cursor-pointer text-[#3e3a35]">查看 payload</summary>
+                  <pre class="mt-2 overflow-auto text-[11px] text-[#6b6860]">{
+  "status": "in_progress",
+  "progress": 5,
+  "assigned_agent_ids": [
+    "agent_writer",
+    "agent_analyst"
+  ],
+  "subtask_count": 4,
+  "routing_strategy": "keyword_skill_status_load",
+  "routing_reason": "No direct skill overlap found; selected ['agent_writer', 'agent_analyst'] using agent availability and low active task count."
+}</pre>
+                  <p class="mt-2 text-[#8a867d]">metadata</p>
+                  <pre class="mt-1 overflow-auto text-[11px] text-[#8a867d]">{}</pre>
+                </details>
+              </li>
+              <li class="rounded-xl border border-[#ddd7ca] bg-[#fffcf6] p-2 text-xs">
+                <div class="flex items-center justify-between text-[#3e3a35]"><span
+                    class="font-semibold">TaskRequest</span><span>00:15:55</span></div>
+                <p class="mt-1 text-[#8a867d]">发送者: api_gateway</p>
+                <p class="mt-1 text-[#8a867d]">接收者: 广播</p>
+                <details class="mt-2 rounded-lg border border-[#ddd7ca] bg-[#f7f2e8] p-2">
+                  <summary class="cursor-pointer text-[#3e3a35]">查看 payload</summary>
+                  <pre class="mt-2 overflow-auto text-[11px] text-[#6b6860]">{
+  "objective": "介绍一下湖南大学，写一份报告",
+  "priority": "medium"
+}</pre>
+                  <p class="mt-2 text-[#8a867d]">metadata</p>
+                  <pre class="mt-1 overflow-auto text-[11px] text-[#8a867d]">{}</pre>
+                </details>
+              </li>
+            </ul>
+          </section>
+          <section class="nexus-panel p-4">
+            <h3 class="mb-3 text-sm font-semibold uppercase tracking-wide text-[#8a867d]">智能体关系图</h3>
+            <p class="mb-3 text-xs text-[#6b6860]">当前高亮与 task_138c16eb 相关的 Agent</p>
+            <div class="grid grid-cols-1 gap-2 md:grid-cols-2">
+              <div class="rounded border p-3 text-xs border-[#ddd7ca] bg-[#fffcf6]">
+                <p class="font-semibold text-[#141413]">玄机策士</p>
+                <p class="text-[#6b6860]">agent_planner</p>
+                <p class="mt-1 text-[#8a867d]">角色: planner</p>
+                <p class="mt-1 text-[#8a867d]">状态: online</p>
+                <div class="mt-2 flex flex-wrap gap-1"><span
+                    class="rounded-full border border-[#d8d2c4] bg-[#f5f1e7] px-2 py-0.5 text-[11px] text-[#6b6860]">plan</span><span
+                    class="rounded-full border border-[#d8d2c4] bg-[#f5f1e7] px-2 py-0.5 text-[11px] text-[#6b6860]">breakdown</span><span
+                    class="rounded-full border border-[#d8d2c4] bg-[#f5f1e7] px-2 py-0.5 text-[11px] text-[#6b6860]">workflow</span><span
+                    class="rounded-full border border-[#d8d2c4] bg-[#f5f1e7] px-2 py-0.5 text-[11px] text-[#6b6860]">prioritize</span>
+                </div>
+              </div>
+              <div class="rounded border p-3 text-xs border-[#ddd7ca] bg-[#fffcf6]">
+                <p class="font-semibold text-[#141413]">玄览探微</p>
+                <p class="text-[#6b6860]">agent_research</p>
+                <p class="mt-1 text-[#8a867d]">角色: research</p>
+                <p class="mt-1 text-[#8a867d]">状态: online</p>
+                <div class="mt-2 flex flex-wrap gap-1"><span
+                    class="rounded-full border border-[#d8d2c4] bg-[#f5f1e7] px-2 py-0.5 text-[11px] text-[#6b6860]">research</span><span
+                    class="rounded-full border border-[#d8d2c4] bg-[#f5f1e7] px-2 py-0.5 text-[11px] text-[#6b6860]">search</span><span
+                    class="rounded-full border border-[#d8d2c4] bg-[#f5f1e7] px-2 py-0.5 text-[11px] text-[#6b6860]">analysis</span><span
+                    class="rounded-full border border-[#d8d2c4] bg-[#f5f1e7] px-2 py-0.5 text-[11px] text-[#6b6860]">sources</span>
+                </div>
+              </div>
+              <div class="rounded border p-3 text-xs border-[#d97757] bg-[#fff4ef]">
+                <p class="font-semibold text-[#141413]">翰墨执笔</p>
+                <p class="text-[#6b6860]">agent_writer</p>
+                <p class="mt-1 text-[#8a867d]">角色: writer</p>
+                <p class="mt-1 text-[#8a867d]">状态: online</p>
+                <div class="mt-2 flex flex-wrap gap-1"><span
+                    class="rounded-full border border-[#d8d2c4] bg-[#f5f1e7] px-2 py-0.5 text-[11px] text-[#6b6860]">write</span><span
+                    class="rounded-full border border-[#d8d2c4] bg-[#f5f1e7] px-2 py-0.5 text-[11px] text-[#6b6860]">summary</span><span
+                    class="rounded-full border border-[#d8d2c4] bg-[#f5f1e7] px-2 py-0.5 text-[11px] text-[#6b6860]">report</span><span
+                    class="rounded-full border border-[#d8d2c4] bg-[#f5f1e7] px-2 py-0.5 text-[11px] text-[#6b6860]">edit</span>
+                </div>
+                <p class="mt-2 text-[11px] font-medium text-[#c96544]">当前持有者</p>
+              </div>
+              <div class="rounded border p-3 text-xs border-[#d97757] bg-[#fff4ef]">
+                <p class="font-semibold text-[#141413]">洞玄析理</p>
+                <p class="text-[#6b6860]">agent_analyst</p>
+                <p class="mt-1 text-[#8a867d]">角色: analyst</p>
+                <p class="mt-1 text-[#8a867d]">状态: online</p>
+                <div class="mt-2 flex flex-wrap gap-1"><span
+                    class="rounded-full border border-[#d8d2c4] bg-[#f5f1e7] px-2 py-0.5 text-[11px] text-[#6b6860]">analysis</span><span
+                    class="rounded-full border border-[#d8d2c4] bg-[#f5f1e7] px-2 py-0.5 text-[11px] text-[#6b6860]">risk</span><span
+                    class="rounded-full border border-[#d8d2c4] bg-[#f5f1e7] px-2 py-0.5 text-[11px] text-[#6b6860]">evaluation</span><span
+                    class="rounded-full border border-[#d8d2c4] bg-[#f5f1e7] px-2 py-0.5 text-[11px] text-[#6b6860]">insight</span>
+                </div>
+              </div>
+              <div class="rounded border p-3 text-xs border-[#ddd7ca] bg-[#fffcf6]">
+                <p class="font-semibold text-[#141413]">鉴衡司议</p>
+                <p class="text-[#6b6860]">agent_reviewer</p>
+                <p class="mt-1 text-[#8a867d]">角色: reviewer</p>
+                <p class="mt-1 text-[#8a867d]">状态: online</p>
+                <div class="mt-2 flex flex-wrap gap-1"><span
+                    class="rounded-full border border-[#d8d2c4] bg-[#f5f1e7] px-2 py-0.5 text-[11px] text-[#6b6860]">review</span><span
+                    class="rounded-full border border-[#d8d2c4] bg-[#f5f1e7] px-2 py-0.5 text-[11px] text-[#6b6860]">quality</span><span
+                    class="rounded-full border border-[#d8d2c4] bg-[#f5f1e7] px-2 py-0.5 text-[11px] text-[#6b6860]">consistency</span><span
+                    class="rounded-full border border-[#d8d2c4] bg-[#f5f1e7] px-2 py-0.5 text-[11px] text-[#6b6860]">validation</span>
+                </div>
+              </div>
+              <div class="rounded border p-3 text-xs border-[#ddd7ca] bg-[#fffcf6]">
+                <p class="font-semibold text-[#141413]">衡断天平</p>
+                <p class="text-[#6b6860]">agent_judge</p>
+                <p class="mt-1 text-[#8a867d]">角色: judge</p>
+                <p class="mt-1 text-[#8a867d]">状态: online</p>
+                <div class="mt-2 flex flex-wrap gap-1"><span
+                    class="rounded-full border border-[#d8d2c4] bg-[#f5f1e7] px-2 py-0.5 text-[11px] text-[#6b6860]">arbitration</span><span
+                    class="rounded-full border border-[#d8d2c4] bg-[#f5f1e7] px-2 py-0.5 text-[11px] text-[#6b6860]">decision</span><span
+                    class="rounded-full border border-[#d8d2c4] bg-[#f5f1e7] px-2 py-0.5 text-[11px] text-[#6b6860]">conflict_resolution</span><span
+                    class="rounded-full border border-[#d8d2c4] bg-[#f5f1e7] px-2 py-0.5 text-[11px] text-[#6b6860]">consensus</span>
+                </div>
+              </div>
+            </div>
+          </section>
+        </section>
+      </main>
+    </div>
+  </div>
+  <script src="./NexusAI 协作中枢_files/webpack-99ec6124b608ddd3.js.下载" async=""></script>
+  <script>(self.__next_f = self.__next_f || []).push([0]); self.__next_f.push([2, null])</script>
+  <script>self.__next_f.push([1, "1:HL[\"/_next/static/css/418391731e0204f2.css\",\"style\"]\n2:HL[\"/_next/static/css/a275cc2b185e04f8.css\",\"style\"]\n"])</script>
+  <script>self.__next_f.push([1, "3:I[5751,[],\"\"]\n5:I[9977,[\"780\",\"static/chunks/c37d3baf-9f2a2cb8bc87c9fd.js\",\"138\",\"static/chunks/138-271c02f74d79736b.js\",\"556\",\"static/chunks/556-27df11d1730035a6.js\",\"505\",\"static/chunks/505-9ad7e255e7b1ccec.js\",\"282\",\"static/chunks/282-0050fce8e7c110ac.js\",\"404\",\"static/chunks/app/tasks/%5BtaskId%5D/page-76706a91032fd9f8.js\"],\"TaskWorkspace\"]\n6:I[9275,[],\"\"]\n8:I[1343,[],\"\"]\n9:I[7542,[\"138\",\"static/chunks/138-271c02f74d79736b.js\",\"505\",\"static/chunks/505-9ad7e255e7b1ccec.js\",\"185\",\"static/chunks/app/layout-eb9f820d12eaa967.js\"],\"LanguageProvider\"]\na:I[1690,[\"138\",\"static/chunks/138-271c02f74d79736b.js\",\"505\",\"static/chunks/505-9ad7e255e7b1ccec.js\",\"185\",\"static/chunks/app/layout-eb9f820d12eaa967.js\"],\"UserKeyProvider\"]\nb:I[4148,[\"138\",\"static/chunks/138-271c02f74d79736b.js\",\"505\",\"static/chunks/505-9ad7e255e7b1ccec.js\",\"185\",\"static/chunks/app/layout-eb9f820d12eaa967.js\"],\"AppShell\"]\nd:I[6130,[],\"\"]\n7:[\"taskId\",\"task_50612b1b\",\"d\"]\ne:[]\n"])</script>
+  <script>self.__next_f.push([1, "0:[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/418391731e0204f2.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\"}]],[\"$\",\"$L3\",null,{\"buildId\":\"p5Yk1TmOBgmz2ySJbDvyz\",\"assetPrefix\":\"\",\"initialCanonicalUrl\":\"/tasks/task_50612b1b\",\"initialTree\":[\"\",{\"children\":[\"tasks\",{\"children\":[[\"taskId\",\"task_50612b1b\",\"d\"],{\"children\":[\"__PAGE__\",{}]}]}]},\"$undefined\",\"$undefined\",true],\"initialSeedData\":[\"\",{\"children\":[\"tasks\",{\"children\":[[\"taskId\",\"task_50612b1b\",\"d\"],{\"children\":[\"__PAGE__\",{},[[\"$L4\",[\"$\",\"$L5\",null,{\"taskId\":\"task_50612b1b\"}]],null],null]},[\"$\",\"$L6\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"tasks\",\"children\",\"$7\",\"children\"],\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L8\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"styles\":[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/a275cc2b185e04f8.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\"}]]}],[[\"$\",\"main\",null,{\"className\":\"space-y-6 pb-3\",\"aria-busy\":\"true\",\"aria-live\":\"polite\",\"children\":[[\"$\",\"section\",null,{\"className\":\"nexus-panel animate-pulse p-6\",\"children\":[[\"$\",\"div\",null,{\"className\":\"h-4 w-44 rounded bg-[#ece6d9]\"}],[\"$\",\"div\",null,{\"className\":\"mt-3 h-8 w-full max-w-2xl rounded bg-[#ece6d9]\"}],[\"$\",\"div\",null,{\"className\":\"mt-3 h-4 w-full max-w-3xl rounded bg-[#f2ece1]\"}]]}],[\"$\",\"section\",null,{\"className\":\"grid gap-4 xl:grid-cols-[minmax(0,1.08fr)_360px]\",\"children\":[[\"$\",\"div\",null,{\"className\":\"nexus-panel min-h-[520px] animate-pulse p-4\"}],[\"$\",\"div\",null,{\"className\":\"space-y-4\",\"children\":[[\"$\",\"div\",null,{\"className\":\"nexus-panel min-h-[180px] animate-pulse p-4\"}],[\"$\",\"div\",null,{\"className\":\"nexus-panel min-h-[280px] animate-pulse p-4\"}]]}]]}],[\"$\",\"section\",null,{\"className\":\"grid gap-4 xl:grid-cols-[minmax(0,1fr)_360px]\",\"children\":[[\"$\",\"div\",null,{\"className\":\"nexus-panel min-h-[280px] animate-pulse p-4\"}],[\"$\",\"div\",null,{\"className\":\"nexus-panel min-h-[280px] animate-pulse p-4\"}]]}]]}],[],[]]]},[\"$\",\"$L6\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"tasks\",\"children\"],\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L8\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"styles\":null}],[[\"$\",\"main\",null,{\"className\":\"space-y-6 pb-3\",\"aria-busy\":\"true\",\"aria-live\":\"polite\",\"children\":[[\"$\",\"section\",null,{\"className\":\"nexus-panel animate-pulse p-6\",\"children\":[[\"$\",\"div\",null,{\"className\":\"h-4 w-36 rounded bg-[#ece6d9]\"}],[\"$\",\"div\",null,{\"className\":\"mt-3 h-8 w-56 rounded bg-[#ece6d9]\"}],[\"$\",\"div\",null,{\"className\":\"mt-3 h-4 w-full max-w-3xl rounded bg-[#f2ece1]\"}]]}],[\"$\",\"section\",null,{\"className\":\"grid gap-4 xl:grid-cols-[360px_minmax(0,1fr)]\",\"children\":[[\"$\",\"div\",null,{\"className\":\"space-y-4\",\"children\":[[\"$\",\"div\",null,{\"className\":\"nexus-panel min-h-[220px] animate-pulse p-4\"}],[\"$\",\"div\",null,{\"className\":\"nexus-panel min-h-[180px] animate-pulse p-4\"}]]}],[\"$\",\"div\",null,{\"className\":\"nexus-panel min-h-[520px] animate-pulse p-4\"}]]}]]}],[],[]]]},[[\"$\",\"html\",null,{\"lang\":\"zh-CN\",\"children\":[\"$\",\"body\",null,{\"className\":\"antialiased\",\"children\":[\"$\",\"$L9\",null,{\"children\":[\"$\",\"$La\",null,{\"children\":[\"$\",\"$Lb\",null,{\"children\":[\"$\",\"$L6\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L8\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],\"notFoundStyles\":[],\"styles\":null}]}]}]}]}]}],null],[[\"$\",\"main\",null,{\"className\":\"space-y-6 pb-3\",\"aria-busy\":\"true\",\"aria-live\":\"polite\",\"children\":[[\"$\",\"section\",null,{\"className\":\"nexus-panel animate-pulse p-6\",\"children\":[[\"$\",\"div\",null,{\"className\":\"h-4 w-28 rounded bg-[#ece6d9]\"}],[\"$\",\"div\",null,{\"className\":\"mt-3 h-8 w-64 rounded bg-[#ece6d9]\"}],[\"$\",\"div\",null,{\"className\":\"mt-3 h-4 w-full max-w-2xl rounded bg-[#f2ece1]\"}]]}],[\"$\",\"section\",null,{\"className\":\"grid gap-4 xl:grid-cols-[minmax(0,1fr)_420px]\",\"children\":[[\"$\",\"div\",null,{\"className\":\"nexus-panel min-h-[300px] animate-pulse p-5\"}],[\"$\",\"div\",null,{\"className\":\"nexus-panel min-h-[300px] animate-pulse p-5\"}]]}]]}],[],[]]],\"couldBeIntercepted\":false,\"initialHead\":[null,\"$Lc\"],\"globalErrorComponent\":\"$d\",\"missingSlots\":\"$We\"}]]\n"])</script>
+  <script>self.__next_f.push([1, "c:[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"meta\",\"1\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"2\",{\"children\":\"NexusAI 协作中枢\"}],[\"$\",\"meta\",\"3\",{\"name\":\"description\",\"content\":\"多智能体协作与任务编排控制台\"}]]\n4:null\n"])</script>
+  <next-route-announcer style="position: absolute;"><template shadowrootmode="open">
+      <div aria-live="assertive" id="__next-route-announcer__" role="alert"
+        style="position: absolute; border: 0px; height: 1px; margin: -1px; padding: 0px; width: 1px; clip: rect(0px, 0px, 0px, 0px); overflow: hidden; white-space: nowrap; overflow-wrap: normal;">
+      </div>
+    </template></next-route-announcer>
+</body>
+
+</html>

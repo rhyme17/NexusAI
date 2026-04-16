@@ -376,9 +376,21 @@ def list_tasks(request: Request, store: StoreContract = Depends(get_store)) -> l
 
 def _render_task_result_export(task: Task, format: Literal["md", "txt"]) -> str:
     result = task.result if isinstance(task.result, dict) else {}
-    summary = str(result.get("summary", "")).strip()
+    
+    content_keys = ["final_output", "output", "report", "document", "content", "text", "summary"]
+    summary = ""
+    for key in content_keys:
+        value = result.get(key)
+        if isinstance(value, str) and value.strip():
+            summary = value.strip()
+            break
+    
     if not summary and result:
-        summary = str(result)
+        try:
+            summary = json.dumps(result, ensure_ascii=False, indent=2)
+        except Exception:
+            summary = str(result)
+    
     if not summary:
         summary = "No result output yet." if format == "txt" else "暂无结果输出。"
 
