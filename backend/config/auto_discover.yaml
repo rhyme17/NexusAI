@@ -1,0 +1,75 @@
+# NexusAI 自主问题发现器配置
+
+# 后端服务配置
+backend:
+  base_url: "http://localhost:8000"
+  timeout: 30
+
+# 运行配置
+run:
+  check_interval_minutes: 30
+  max_tasks_per_run: 3
+  enable_continuous: false
+
+# 新闻源配置
+news_sources:
+  - name: TechCrunch
+    url: "https://techcrunch.com/feed/"
+    category: technology
+  
+  - name: Hacker News
+    url: "https://news.ycombinator.com/rss"
+    category: technology
+  
+  - name: BBC News
+    url: "http://feeds.bbci.co.uk/news/world/rss.xml"
+    category: world
+  
+  - name: CNN
+    url: "http://rss.cnn.com/rss/edition.rss"
+    category: general
+  
+  - name: MIT Technology Review
+    url: "https://www.technologyreview.com/feed/"
+    category: technology
+
+# 问题类型配置
+problem_types:
+  - type: opportunity
+    keywords: ["突破", "创新", "新发现", "革命性", "颠覆性", "机遇", "opportunity", "breakthrough", "innovation"]
+    priority_bonus: 15
+  
+  - type: problem
+    keywords: ["危机", "问题", "挑战", "失败", "风险", "短缺", "crisis", "problem", "challenge", "risk"]
+    priority_bonus: 20
+  
+  - type: trend
+    keywords: ["趋势", "增长", "下降", "预测", "未来", "趋势", "trend", "growth", "decline"]
+    priority_bonus: 10
+  
+  - type: conflict
+    keywords: ["冲突", "争议", "矛盾", "对立", "分歧", "conflict", "dispute", "controversy"]
+    priority_bonus: 25
+  
+  - type: innovation
+    keywords: ["AI", "人工智能", "机器学习", "自动化", "量子", "区块链", "artificial intelligence", "machine learning", "automation"]
+    priority_bonus: 15
+
+# 紧急关键词
+urgent_keywords:
+  - "紧急"
+  - "危机"
+  - "立即"
+  - "严重"
+  - "突发"
+  - "警告"
+  - "urgent"
+  - "emergency"
+  - "critical"
+  - "alert"
+
+# 日志配置
+logging:
+  level: INFO
+  format: "%(asctime)s - %(levelname)s - %(message)s"
+  file: "auto_discover.log"

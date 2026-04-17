@@ -10,6 +10,7 @@ import { useI18n } from "@/lib/i18n/language-context";
 import { useUserKey } from "@/lib/user-key-context";
 import { AuthUser, InviteCode } from "@/lib/api/types";
 import { LanguageToggle } from "./language-toggle";
+import { AutoDiscoverControl } from "./auto-discover-control";
 
 const PRESET_SKILLS = [
   "plan",
@@ -753,7 +754,15 @@ export function SettingsPage() {
       </section>
 
       <section className="nexus-panel p-3 text-xs text-[#8a867d]">
-        {isChinese ? "五、管理员与系统管理" : "5. Admin & System"}
+        {isChinese ? "五、自动发现配置" : "5. Auto-Discover Settings"}
+      </section>
+
+      <section className="grid gap-4 xl:grid-cols-[minmax(0,1fr)]">
+        <AutoDiscoverControl />
+      </section>
+
+      <section className="nexus-panel p-3 text-xs text-[#8a867d]">
+        {isChinese ? "六、管理员与系统管理" : "6. Admin & System"}
       </section>
 
       <section className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">

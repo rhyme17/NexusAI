@@ -34,6 +34,13 @@ const NAV_ITEMS: NavItem[] = [
     descriptionEn: "Create, filter, and open task workspaces."
   },
   {
+    href: "/auto-discover",
+    labelZh: "自动发现",
+    labelEn: "Auto-Discover",
+    descriptionZh: "AI自主浏览新闻，发现问题，生成任务。",
+    descriptionEn: "AI browses news, finds problems, generates tasks."
+  },
+  {
     href: "/agents",
     labelZh: "智能体",
     labelEn: "Agents",

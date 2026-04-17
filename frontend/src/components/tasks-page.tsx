@@ -10,6 +10,8 @@ import { CreateTaskPayload, TaskStatus } from "@/lib/api/types";
 import { TaskForm } from "./task-form";
 import { TaskList } from "./task-list";
 
+type TaskSource = "all" | "human" | "auto_discover";
+
 export function TasksPage() {
   const router = useRouter();
   const pathname = usePathname();
@@ -22,6 +24,7 @@ export function TasksPage() {
       ? initialStatus
       : "all"
   );
+  const [sourceFilter, setSourceFilter] = useState<TaskSource>("all");
   const [onlyConflicts, setOnlyConflicts] = useState(searchParams.get("conflicts") === "1");
 
   useEffect(() => {
@@ -60,10 +63,12 @@ export function TasksPage() {
       .filter((task) => {
         const matchesStatus = statusFilter === "all" || task.status === statusFilter;
         const matchesConflict = !onlyConflicts || Boolean(task.consensus?.conflict_detected);
-        return matchesStatus && matchesConflict;
+        const taskSource = task.metadata?.source || "human";
+        const matchesSource = sourceFilter === "all" || taskSource === sourceFilter;
+        return matchesStatus && matchesConflict && matchesSource;
       })
       .sort((left, right) => Date.parse(right.created_at) - Date.parse(left.created_at));
-  }, [onlyConflicts, statusFilter, tasks]);
+  }, [onlyConflicts, sourceFilter, statusFilter, tasks]);
 
   async function handleCreate(payload: CreateTaskPayload) {
     const created = await createTask(payload);
@@ -72,6 +77,7 @@ export function TasksPage() {
 
   const activeCount = tasks.filter((task) => task.status === "queued" || task.status === "in_progress").length;
   const failedCount = tasks.filter((task) => task.status === "failed").length;
+  const autoDiscoverCount = tasks.filter((task) => task.metadata?.source === "auto_discover").length;
 
   return (
     <main className="space-y-6 pb-3">
@@ -99,6 +105,9 @@ export function TasksPage() {
             <p>
               <span className="font-medium text-[#141413]">{failedCount}</span> {isChinese ? "个需要关注" : "need failure review"}
             </p>
+            <p>
+              <span className="font-medium text-[#141413]">{autoDiscoverCount}</span> {isChinese ? "个自动发现" : "auto discovered"}
+            </p>
           </div>
         </div>
       </header>
@@ -118,6 +127,7 @@ export function TasksPage() {
               <li>• {isChinese ? "创建任务后会自动进入该任务工作区，无需再次查找。" : "After creation, you are routed directly to that task workspace."}</li>
               <li>• {isChinese ? "建议先按状态筛选，再优先处理高优先级任务。" : "Filter by status first, then open the highest-priority item."}</li>
               <li>• {isChinese ? "任务工作区会集中展示执行、事件和结果，减少来回切换。" : "The task workspace centralizes execution, events, and results in one place."}</li>
+              <li>• {isChinese ? "使用来源筛选区分人工输入和自动发现的任务。" : "Use source filter to distinguish human and auto-discovered tasks."}</li>
             </ul>
           </article>
         </div>
@@ -129,6 +139,8 @@ export function TasksPage() {
           getTaskHref={(task) => `/tasks/${task.task_id}`}
           statusFilter={statusFilter}
           onStatusFilterChange={setStatusFilter}
+          sourceFilter={sourceFilter}
+          onSourceFilterChange={setSourceFilter}
           onlyConflicts={onlyConflicts}
           onOnlyConflictsChange={setOnlyConflicts}
           listMaxHeightClassName="max-h-[70vh]"

@@ -8,6 +8,7 @@ from fastapi.responses import JSONResponse
 
 from .api.agents import router as agents_router
 from .api.auth import router as auth_router
+from .api.auto_discover import router as auto_discover_router
 from .api.debug import router as debug_router
 from .api.events import router as events_router
 from .api.tasks import router as tasks_router
@@ -160,6 +161,7 @@ async def api_key_auth_middleware(request: Request, call_next):
 app.include_router(tasks_router)
 app.include_router(agents_router)
 app.include_router(auth_router)
+app.include_router(auto_discover_router)
 app.include_router(debug_router)
 app.include_router(events_router)
 

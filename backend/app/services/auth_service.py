@@ -90,6 +90,22 @@ class AuthService:
             elif existing.role != UserRole.ADMIN:
                 existing.role = UserRole.ADMIN
                 self._persist()
+        self._bootstrap_auto_discoverer()
+
+    def _bootstrap_auto_discoverer(self) -> None:
+        username = "auto_discoverer"
+        password = "nexusai-auto-discover-system-user"
+        with self._lock:
+            existing = self._users.get(username)
+            if existing is None:
+                self._users[username] = User(
+                    user_id=f"user_auto_discoverer_{uuid4().hex[:8]}",
+                    username=username,
+                    password_hash=hash_password(password),
+                    role=UserRole.OPERATOR,
+                    is_active=True,
+                )
+                self._persist()
 
     def _purge_expired_sessions(self) -> None:
         now = datetime.now(timezone.utc)
