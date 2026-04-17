@@ -346,7 +346,7 @@ export function AutoDiscoverPage() {
 
               {news.length === 0 ? (
                 <div className="py-8 text-center text-sm text-[#6b6860]">
-                  <p>{isChinese ? "暂无新闻，点击"获取最新新闻"按钮" : "No news yet. Click 'Fetch Latest News'"}</p>
+                  <p>{isChinese ? '暂无新闻，点击"获取最新新闻"按钮' : "No news yet. Click 'Fetch Latest News'"}</p>
                 </div>
               ) : (
                 <ul className="max-h-[60vh] space-y-2 overflow-y-auto">

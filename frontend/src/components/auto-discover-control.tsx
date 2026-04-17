@@ -6,6 +6,8 @@ import { apiClient } from "@/lib/api/client";
 import { getUserFacingErrorMessage } from "@/lib/errors";
 import { useI18n } from "@/lib/i18n/language-context";
 
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8000";
+
 interface AutoDiscoverConfig {
   news_rate_seconds: number;
   task_rate_minutes: number;
@@ -41,7 +43,7 @@ export function AutoDiscoverControl() {
 
   async function loadConfig() {
     try {
-      const response = await fetch(`${apiClient.getBaseUrl()}/api/auto-discover/config`);
+      const response = await fetch(`${API_BASE}/api/auto-discover/config`);
       if (response.ok) {
         const data = await response.json();
         setConfig(data);
@@ -55,7 +57,7 @@ export function AutoDiscoverControl() {
     setIsLoading(true);
     setMessage(null);
     try {
-      const response = await fetch(`${apiClient.getBaseUrl()}/api/auto-discover/config`, {
+      const response = await fetch(`${API_BASE}/api/auto-discover/config`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...config, ...updates }),
@@ -79,7 +81,7 @@ export function AutoDiscoverControl() {
     setMessage(null);
     setLastResult(null);
     try {
-      const response = await fetch(`${apiClient.getBaseUrl()}/api/auto-discover/run`, {
+      const response = await fetch(`${API_BASE}/api/auto-discover/run`, {
         method: "POST",
       });
       if (response.ok) {
