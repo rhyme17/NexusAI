@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n/language-context";
+import { getStoredAuthToken } from "@/lib/api/client";
 
 interface NewsItem {
   title: string;
@@ -51,31 +52,55 @@ interface RunResult {
   message: string;
 }
 
+interface AutoTask {
+  task_id: string;
+  objective: string;
+  priority: string;
+  status: string;
+  progress: number;
+  created_at: string | null;
+  metadata: Record<string, unknown>;
+}
+
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8000";
+
+function authHeaders(): HeadersInit {
+  const headers: HeadersInit = {};
+  const token = getStoredAuthToken();
+  if (token) {
+    headers["Authorization"] = `Bearer ${token}`;
+  }
+  return headers;
+}
 
 export function AutoDiscoverPage() {
   const { isChinese } = useI18n();
-  
+
   const [status, setStatus] = useState<AutoDiscoverStatus | null>(null);
   const [news, setNews] = useState<NewsItem[]>([]);
   const [problems, setProblems] = useState<ProblemItem[]>([]);
+  const [autoTasks, setAutoTasks] = useState<AutoTask[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isRunning, setIsRunning] = useState(false);
   const [isFetchingNews, setIsFetchingNews] = useState(false);
   const [lastResult, setLastResult] = useState<RunResult | null>(null);
   const [activeTab, setActiveTab] = useState<"news" | "problems" | "tasks">("news");
   const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null);
-  const [selectedProblem, setSelectedProblem] = useState<ProblemItem | null>(null);
   const [categoryFilter, setCategoryFilter] = useState<string>("all");
   const [sources, setSources] = useState<string[]>([]);
 
   useEffect(() => {
     loadStatus();
+    loadNews();
+    loadProblems();
+    loadAutoTasks();
   }, []);
 
   async function loadStatus() {
     try {
-      const response = await fetch(`${API_BASE}/api/auto-discover/status`);
+      const response = await fetch(`${API_BASE}/api/auto-discover/status`, {
+        headers: authHeaders(),
+      });
       if (response.ok) {
         const data = await response.json();
         setStatus(data);
@@ -85,16 +110,61 @@ export function AutoDiscoverPage() {
     }
   }
 
-  async function fetchNews() {
-    setIsFetchingNews(true);
+  async function loadNews() {
     try {
-      const response = await fetch(`${API_BASE}/api/auto-discover/fetch-news`, {
-        method: "POST",
+      const response = await fetch(`${API_BASE}/api/auto-discover/news?limit=100`, {
+        headers: authHeaders(),
       });
       if (response.ok) {
         const data = await response.json();
         setNews(data.items);
         setSources(data.sources);
+      }
+    } catch (err) {
+      console.error("Failed to load news:", err);
+    }
+  }
+
+  async function loadProblems() {
+    try {
+      const response = await fetch(`${API_BASE}/api/auto-discover/problems?limit=50`, {
+        headers: authHeaders(),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setProblems(data.items);
+      }
+    } catch (err) {
+      console.error("Failed to load problems:", err);
+    }
+  }
+
+  async function loadAutoTasks() {
+    try {
+      const response = await fetch(`${API_BASE}/api/auto-discover/tasks?limit=20`, {
+        headers: authHeaders(),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setAutoTasks(data);
+      }
+    } catch (err) {
+      console.error("Failed to load auto tasks:", err);
+    }
+  }
+
+  async function fetchNews() {
+    setIsFetchingNews(true);
+    try {
+      const response = await fetch(`${API_BASE}/api/auto-discover/fetch-news`, {
+        method: "POST",
+        headers: authHeaders(),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setNews(data.items);
+        setSources(data.sources);
+        await loadProblems();
       }
     } catch (err) {
       console.error("Failed to fetch news:", err);
@@ -109,12 +179,13 @@ export function AutoDiscoverPage() {
     try {
       const response = await fetch(`${API_BASE}/api/auto-discover/run`, {
         method: "POST",
+        headers: authHeaders(),
       });
       if (response.ok) {
         const data = await response.json();
         setLastResult(data);
         if (data.success) {
-          await loadStatus();
+          await Promise.all([loadStatus(), loadNews(), loadProblems(), loadAutoTasks()]);
         }
       }
     } catch (err) {
@@ -130,6 +201,7 @@ export function AutoDiscoverPage() {
       const endpoint = status.enabled ? "disable" : "enable";
       await fetch(`${API_BASE}/api/auto-discover/${endpoint}`, {
         method: "POST",
+        headers: authHeaders(),
       });
       await loadStatus();
     } catch (err) {
@@ -167,6 +239,15 @@ export function AutoDiscoverPage() {
     return labels[category] || category;
   };
 
+  const getStatusColor = (s: string) => {
+    switch (s) {
+      case "completed": return "text-[#2f5d3e] bg-[#edf7ef] border-[#9bc5a7]";
+      case "in_progress": return "text-[#9a6a34] bg-[#fff7ec] border-[#e5d0b4]";
+      case "failed": return "text-[#c0453a] bg-[#fff0ed] border-[#e6b6ad]";
+      default: return "text-[#6b6860] bg-[#f4efe4] border-[#d8d2c4]";
+    }
+  };
+
   return (
     <main className="space-y-6 pb-3">
       <header className="nexus-panel relative overflow-hidden p-5 md:p-6">
@@ -185,7 +266,7 @@ export function AutoDiscoverPage() {
                 : "AI automatically browses news, analyzes problems, and generates tasks. Fully independent from manual input mode."}
             </p>
           </div>
-          
+
           <div className="grid min-w-[220px] gap-2 rounded-2xl border border-[#ddd7ca] bg-[#fffcf6] p-4 text-sm text-[#6b6860]">
             <div className="flex items-center justify-between">
               <span>{isChinese ? "状态" : "Status"}</span>
@@ -198,8 +279,16 @@ export function AutoDiscoverPage() {
               <span className="font-medium text-[#141413]">{sources.length}</span>
             </div>
             <div className="flex items-center justify-between">
+              <span>{isChinese ? "缓存新闻" : "Cached"}</span>
+              <span className="font-medium text-[#141413]">{news.length}</span>
+            </div>
+            <div className="flex items-center justify-between">
               <span>{isChinese ? "发现问题" : "Problems"}</span>
-              <span className="font-medium text-[#141413]">{status?.problems_count || 0}</span>
+              <span className="font-medium text-[#141413]">{problems.length}</span>
+            </div>
+            <div className="flex items-center justify-between">
+              <span>{isChinese ? "自动任务" : "Auto Tasks"}</span>
+              <span className="font-medium text-[#141413]">{autoTasks.length}</span>
             </div>
           </div>
         </div>
@@ -211,7 +300,7 @@ export function AutoDiscoverPage() {
             <p className="text-xs uppercase tracking-[0.16em] text-[#8a867d]">
               {isChinese ? "控制面板" : "Control Panel"}
             </p>
-            
+
             <div className="mt-4 space-y-3">
               <button
                 onClick={toggleEnabled}
@@ -322,7 +411,7 @@ export function AutoDiscoverPage() {
                   : "text-[#6b6860] hover:bg-[#f4efe4]"
               }`}
             >
-              {isChinese ? "📋 已创建任务" : "📋 Tasks"}
+              {isChinese ? "📋 已创建任务" : "📋 Tasks"} ({autoTasks.length})
             </button>
           </div>
 
@@ -422,6 +511,11 @@ export function AutoDiscoverPage() {
                           <span className="text-[10px] text-[#8a867d]">
                             {isChinese ? "关键词" : "Keyword"}: {item.keyword_found}
                           </span>
+                          {item.source_name && (
+                            <span className="text-[10px] text-[#8a867d]">
+                              {item.source_name}
+                            </span>
+                          )}
                         </div>
                         <p className="mt-2 text-xs text-[#6b6860]">{item.description}</p>
                       </div>
@@ -440,32 +534,44 @@ export function AutoDiscoverPage() {
                 </h2>
               </div>
 
-              {lastResult?.tasks && lastResult.tasks.length > 0 ? (
-                <ul className="space-y-2">
-                  {lastResult.tasks.map((task) => (
-                    <li key={task.task_id}>
-                      <Link
-                        href={`/tasks/${task.task_id}`}
-                        className="block rounded-xl border border-[#ddd7ca] bg-[#fffcf6] p-3 transition hover:border-[#c7c0b1]"
-                      >
-                        <div className="flex items-center justify-between gap-2">
-                          <p className="text-sm font-medium text-[#141413] line-clamp-2">{task.objective}</p>
-                          <span className="shrink-0 rounded-full bg-[#9bc5a7]/20 px-2 py-0.5 text-[10px] text-[#2f5d3e]">
-                            🤖 auto
-                          </span>
-                        </div>
-                        <p className="mt-1 text-xs text-[#8a867d]">{task.task_id}</p>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
+              {autoTasks.length === 0 ? (
                 <div className="py-8 text-center text-sm text-[#6b6860]">
                   <p>{isChinese ? "暂无自动创建的任务" : "No auto-created tasks yet"}</p>
                   <Link href="/tasks" className="mt-2 inline-block text-xs text-[#d97757] hover:underline">
                     {isChinese ? "查看所有任务 →" : "View all tasks →"}
                   </Link>
                 </div>
+              ) : (
+                <ul className="max-h-[60vh] space-y-2 overflow-y-auto">
+                  {autoTasks.map((task) => (
+                    <li key={task.task_id}>
+                      <Link
+                        href={`/tasks/${task.task_id}`}
+                        className="block rounded-xl border border-[#ddd7ca] bg-[#fffcf6] p-3 transition hover:border-[#c7c0b1]"
+                      >
+                        <div className="flex items-start justify-between gap-2">
+                          <p className="text-sm font-medium text-[#141413] line-clamp-2">{task.objective}</p>
+                          <div className="flex shrink-0 gap-1">
+                            <span className={`rounded-full border px-2 py-0.5 text-[10px] ${getStatusColor(task.status)}`}>
+                              {task.status}
+                            </span>
+                            <span className="rounded-full bg-[#9bc5a7]/20 px-2 py-0.5 text-[10px] text-[#2f5d3e]">
+                              🤖 auto
+                            </span>
+                          </div>
+                        </div>
+                        <div className="mt-2 flex flex-wrap gap-2 text-[10px] text-[#8a867d]">
+                          <span>{task.task_id}</span>
+                          <span>{isChinese ? "优先级" : "Priority"}: {task.priority}</span>
+                          <span>{isChinese ? "进度" : "Progress"}: {task.progress}%</span>
+                          {task.created_at && (
+                            <span>{new Date(task.created_at).toLocaleString()}</span>
+                          )}
+                        </div>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               )}
             </section>
           )}

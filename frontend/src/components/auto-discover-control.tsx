@@ -2,11 +2,20 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { apiClient } from "@/lib/api/client";
 import { getUserFacingErrorMessage } from "@/lib/errors";
 import { useI18n } from "@/lib/i18n/language-context";
+import { getStoredAuthToken } from "@/lib/api/client";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8000";
+
+function authHeaders(): HeadersInit {
+  const headers: HeadersInit = { "Content-Type": "application/json" };
+  const token = getStoredAuthToken();
+  if (token) {
+    headers["Authorization"] = `Bearer ${token}`;
+  }
+  return headers;
+}
 
 interface AutoDiscoverConfig {
   news_rate_seconds: number;
@@ -43,7 +52,9 @@ export function AutoDiscoverControl() {
 
   async function loadConfig() {
     try {
-      const response = await fetch(`${API_BASE}/api/auto-discover/config`);
+      const response = await fetch(`${API_BASE}/api/auto-discover/config`, {
+        headers: authHeaders(),
+      });
       if (response.ok) {
         const data = await response.json();
         setConfig(data);
@@ -59,7 +70,7 @@ export function AutoDiscoverControl() {
     try {
       const response = await fetch(`${API_BASE}/api/auto-discover/config`, {
         method: "PATCH",
-        headers: { "Content-Type": "application/json" },
+        headers: authHeaders(),
         body: JSON.stringify({ ...config, ...updates }),
       });
       if (response.ok) {
@@ -83,6 +94,7 @@ export function AutoDiscoverControl() {
     try {
       const response = await fetch(`${API_BASE}/api/auto-discover/run`, {
         method: "POST",
+        headers: authHeaders(),
       });
       if (response.ok) {
         const data = await response.json();
@@ -103,7 +115,7 @@ export function AutoDiscoverControl() {
       <p className="text-xs uppercase tracking-[0.16em] text-[#8a867d]">
         {isChinese ? "🤖 自动发现模式" : "🤖 Auto-Discover Mode"}
       </p>
-      
+
       <div className="mt-3 rounded-lg border border-[#ddd7ca] bg-[#fffcf6] p-3">
         <div className="flex items-center justify-between">
           <div>
@@ -135,7 +147,7 @@ export function AutoDiscoverControl() {
 
       <div className="mt-4 space-y-3 text-xs text-[#6b6860]">
         <p className="font-medium text-[#141413]">{isChinese ? "速率配置" : "Rate Configuration"}</p>
-        
+
         <div className="grid gap-3 md:grid-cols-3">
           <div className="flex items-center justify-between rounded-lg border border-[#ddd7ca] bg-[#fffcf6] p-2">
             <span>{isChinese ? "新闻间隔" : "News Interval"}</span>
