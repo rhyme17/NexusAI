@@ -45,13 +45,22 @@ NEWS_SOURCES = [
     {"name": "MIT Technology Review", "url": "https://www.technologyreview.com/feed/", "category": "technology"},
 ]
 
-# 问题类型模板
+# 问题类型模板（中英文关键词）
 PROBLEM_TEMPLATES = [
-    {"type": "opportunity", "keywords": ["突破", "创新", "新发现", "革命性", "颠覆性", "机遇"]},
-    {"type": "problem", "keywords": ["危机", "问题", "挑战", "失败", "风险", "短缺", "危机", "紧急"]},
-    {"type": "trend", "keywords": ["趋势", "增长", "下降", "预测", "未来", "发展"]},
-    {"type": "conflict", "keywords": ["冲突", "争议", "矛盾", "对立", "分歧"]},
-    {"type": "innovation", "keywords": ["AI", "人工智能", "机器学习", "自动化", "量子", "区块链"]},
+    {"type": "opportunity", "keywords": ["突破", "创新", "新发现", "革命性", "颠覆性", "机遇", 
+                                         "breakthrough", "innovation", "discovery", "revolutionary", 
+                                         "opportunity", "launch", "raise", "funding", "growth"]},
+    {"type": "problem", "keywords": ["危机", "问题", "挑战", "失败", "风险", "短缺", "紧急", 
+                                     "crisis", "problem", "challenge", "fail", "risk", "shortage", 
+                                     "urgent", "warning", "issue", "threat"]},
+    {"type": "trend", "keywords": ["趋势", "增长", "下降", "预测", "未来", "发展",
+                                    "trend", "growth", "decline", "predict", "future", "develop",
+                                    "increase", "decrease", "forecast"]},
+    {"type": "conflict", "keywords": ["冲突", "争议", "矛盾", "对立", "分歧",
+                                       "conflict", "controversy", "dispute", "oppose", "divide"]},
+    {"type": "innovation", "keywords": ["AI", "人工智能", "机器学习", "自动化", "量子", "区块链",
+                                         "artificial intelligence", "machine learning", "automation", 
+                                         "quantum", "blockchain", "robotics", "deep learning"]},
 ]
 
 
@@ -195,7 +204,9 @@ class ProblemAnalyzer:
         """计算问题紧急程度"""
         urgency = 50
         
-        urgent_keywords = ["紧急", "危机", "立即", "严重", "突发", "警告"]
+        urgent_keywords = ["紧急", "危机", "立即", "严重", "突发", "警告",
+                          "urgent", "crisis", "immediate", "severe", "breaking", 
+                          "warning", "critical", "emergency"]
         for word in urgent_keywords:
             if word.lower() in title.lower():
                 urgency += 30
