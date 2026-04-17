@@ -327,6 +327,59 @@ def disable_auto_discover() -> dict[str, str]:
     return {"status": "disabled"}
 
 
+@router.get("/debug/auth")
+def debug_auth(request: Request) -> dict[str, Any]:
+    """调试端点：检查当前请求的认证状态"""
+    return {
+        "auth_role": getattr(request.state, "auth_role", None),
+        "auth_user": getattr(request.state, "auth_user", None),
+        "auth_actor": getattr(request.state, "auth_actor", None),
+        "has_bearer_token": bool(getattr(request.state, "auth_user", None)),
+    }
+
+
+@router.get("/debug/task/{task_id}")
+def debug_task(request: Request, task_id: str) -> dict[str, Any]:
+    """调试端点：检查任务是否存在及权限"""
+    from ..services.store import get_store
+    
+    store = get_store()
+    task = store.get_task(task_id)
+    
+    if not task:
+        return {"exists": False, "error": "Task not found in store"}
+    
+    user = getattr(request.state, "auth_user", None)
+    is_admin = getattr(request.state, "auth_role", None) == "admin"
+    
+    can_access = False
+    reason = ""
+    
+    if is_admin:
+        can_access = True
+        reason = "Admin access granted"
+    elif user and task.owner_user_id == user.user_id:
+        can_access = True
+        reason = "Owner access granted"
+    elif not is_admin and not user:
+        can_access = False
+        reason = "Not authenticated"
+    else:
+        can_access = False
+        reason = "Not owner and not admin"
+    
+    return {
+        "exists": True,
+        "task_id": task.task_id,
+        "owner_user_id": task.owner_user_id,
+        "is_admin": is_admin,
+        "current_user_id": user.user_id if user else None,
+        "can_access": can_access,
+        "reason": reason,
+        "metadata": task.metadata,
+    }
+
+
 @router.get("/sources")
 def get_sources() -> list[dict[str, str]]:
     import sys
